@@ -1,5 +1,13 @@
+$bgcolor: #3b66ab;
+$maincolor: #e2c34b;
+
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+
+body {
+    background-color: $bgcolor;
+}
 
 #logo {
     font-family: 'Rajdhani', sans-serif;
+    color: $maincolor;
 }
