@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap");
 body {
   background-color: #3b66ab;
+  font-size: 16px;
 }
 
-#logo {
+.logo {
   font-family: "Rajdhani", sans-serif;
+  font-size: 8em;
   color: #e2c34b;
+  margin-top: 5%;
 }/*# sourceMappingURL=base.css.map */
