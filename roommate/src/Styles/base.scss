@@ -14,3 +14,13 @@ body {
     color: $maincolor;
     margin-top: 5%;
 }
+
+.movie-card {
+    margin: 5% 0;
+}
+
+.card-columns {
+    -webkit-column-count: 6;
+	-moz-column-count: 6;
+	column-count: 6;
+}

@@ -9,4 +9,13 @@ body {
   font-size: 8em;
   color: #e2c34b;
   margin-top: 5%;
+}
+
+.movie-card {
+  margin: 5% 0;
+}
+
+.card-columns {
+  -moz-column-count: 6;
+  column-count: 6;
 }/*# sourceMappingURL=base.css.map */
