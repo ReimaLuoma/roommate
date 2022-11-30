@@ -18,7 +18,7 @@ function App() {
 
       <div className="container">
         <div className="row">
-          <div className="card-columns col-6 text-center">
+          <div className="card-columns col text-end">
             <MovieCard />
             <MovieCard />
             <MovieCard />

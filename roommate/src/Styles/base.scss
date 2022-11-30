@@ -2,25 +2,27 @@ $bgcolor: #3b66ab;
 $maincolor: #e2c34b;
 
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Rajdhani:wght@700&display=swap');
 
 body {
     background-color: $bgcolor;
     font-size: 16px;
+    font-family: 'Barlow', sans-serif;
 }
 
 .logo {
     font-family: 'Rajdhani', sans-serif;
     font-size: 8em;
     color: $maincolor;
-    margin-top: 5%;
-}
-
-.movie-card {
-    margin: 5% 0;
+    margin: 2% 0;
 }
 
 .card-columns {
     -webkit-column-count: 6;
 	-moz-column-count: 6;
 	column-count: 6;
+}
+
+.areacheck {
+    background-color: darkmagenta;
 }
