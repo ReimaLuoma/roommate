@@ -20,4 +20,17 @@ body {
 
 .areacheck {
   background-color: darkmagenta;
+}
+
+.btn-filter {
+  -moz-column-count: 2;
+  column-count: 2;
+  margin: 35% 5% 25% 0;
+  background-color: white;
+  color: black;
+}
+
+.filter-columns {
+  -moz-column-count: 6;
+  column-count: 6;
 }/*# sourceMappingURL=base.css.map */
