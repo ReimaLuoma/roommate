@@ -50,9 +50,12 @@ body {
 
 .search {
     margin: 8.5% 2% 8.5% 0;
+
     border: 2px;
     border-style: solid;
     border-color: white;
     border-radius: 15px;
-    align-self: flex-end;
+
+    color: white;
+    text-align-last: right;
 }
