@@ -1,24 +1,28 @@
 import Authentication from "./Components/Authentication";
 import MovieCard from "./Components/MovieCard";
-import FilterButton from "./Components/FilterButton";
+import MultipleSelectPlaceholder from "./Components/MultipleSelectPlaceholder";
+import Search from "./Components/Search";
 
 function App() {
   return (
     <>
       <div className="container">
         <div className="row">
-          <div className="col-4 align-items-left logo">
+          <div className="col text-center logo">
             ROOMMATE
           </div>
-          <Authentication />
+          Authentication
         </div>
       </div>
 
       <div className="container">
         <div className="row">
-          <div className="col filter-columns">
-            <FilterButton filterName={"Genres"} />
-            <FilterButton filterName={"Duration"} />
+          <div className="col-6 filter-columns">
+            <MultipleSelectPlaceholder placeholder={'genres'}/>
+            <MultipleSelectPlaceholder placeholder={'duration'}/>
+          </div>
+          <div className="col-6">
+            <Search />
           </div>
         </div>
       </div>

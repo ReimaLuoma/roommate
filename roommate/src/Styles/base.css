@@ -8,9 +8,9 @@ body {
 
 .logo {
   font-family: "Rajdhani", sans-serif;
-  font-size: 8em;
+  font-size: 12em;
   color: #e2c34b;
-  margin: 2% 0;
+  margin: 2% 0 0;
 }
 
 .card-columns {
@@ -28,9 +28,20 @@ body {
   margin: 35% 5% 25% 0;
   background-color: white;
   color: black;
+  border-radius: 15px;
+  padding: 5% 0 5% 10%;
 }
 
 .filter-columns {
-  -moz-column-count: 6;
-  column-count: 6;
+  -moz-column-count: 3;
+  column-count: 3;
+}
+
+.search {
+  margin: 8.5% 2% 8.5% 0;
+  border: 2px;
+  border-style: solid;
+  border-color: white;
+  border-radius: 15px;
+  align-self: flex-end;
 }/*# sourceMappingURL=base.css.map */
