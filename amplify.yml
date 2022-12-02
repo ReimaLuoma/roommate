@@ -4,13 +4,12 @@ frontend:
     preBuild:
       commands:
         - cd roommate
-        - mkdir build
         - npm ci
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: /
+    baseDirectory: /build
     files:
       - '**/*'
   cache:
