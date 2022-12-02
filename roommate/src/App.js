@@ -9,7 +9,7 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="col text-center logo">
-            ROOMMATE -du
+            ROOMMATE
           </div>
           Authentication
         </div>
