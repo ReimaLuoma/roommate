@@ -2,12 +2,12 @@ version: 1
 frontend:
   phases:
     # IMPORTANT - Please verify your build commands
+    preBuild:
+      commands:
+        - npm install
     build:
-      commands: [
-        npm install -g pkg-foo
-        pgk-foo deploy
-        npm run build
-      ]
+      commands: 
+        - npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: /build
