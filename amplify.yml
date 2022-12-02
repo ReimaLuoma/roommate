@@ -4,6 +4,7 @@ frontend:
     preBuild:
       commands:
         - cd roommate
+        - mkdir build
         - npm ci
     build:
       commands:
