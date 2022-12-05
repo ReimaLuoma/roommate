@@ -10,7 +10,7 @@ const Search = () => {
                 fullWidth
                 id='outlined-basic'
                 variant='outlined'
-                sx={{ className: 'search', input: {color: 'white', mr:3}, '& fieldset': {border: 'none'} }}
+                sx={{ className: 'search', input: {color: 'white', mr:3}, '& fieldset': {border: 'none'}}}
                 InputProps={{
                     placeholder: 'title',
                     endAdornment: (
