@@ -8,7 +8,7 @@ function App() {
     <>
       <div className="container">
         <div className="row">
-          <div className="col text-center logo">ROOMMATE-V</div>
+          <div className="col text-center logo">ROOMMATE</div>
           Authentication
         </div>
       </div>
