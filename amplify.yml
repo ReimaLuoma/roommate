@@ -9,10 +9,9 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: ./frontend/build
+    baseDirectory: ./roommate/build
     files:
       - '**/*'
   cache:
     paths:
       - node_modules/**/*
-
