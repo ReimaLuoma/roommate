@@ -1,6 +1,7 @@
 //COLORS
 $bgcolor: #3b66ab;
 $maincolor: #e2c34b;
+$altcolor01: #b2a866;
 
 //FONTS
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
@@ -14,9 +15,8 @@ body {
 
 .logo {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 12em;
+    font-size: 8em;
     color: $maincolor;
-    margin: 2% 0 0;
 }
 
 .card-columns {
