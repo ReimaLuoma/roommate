@@ -8,9 +8,7 @@ function App() {
     <>
       <div className="container">
         <div className="row">
-          <div className="col text-center logo">
-            ROOMMATE
-          </div>
+          <div className="col text-center logo">ROOMMATE-V</div>
           Authentication
         </div>
       </div>
@@ -18,8 +16,8 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="col-6 filter-columns">
-            <MultipleSelectPlaceholder placeholder={'genres'}/>
-            <MultipleSelectPlaceholder placeholder={'duration'}/>
+            <MultipleSelectPlaceholder placeholder={"genres"} />
+            <MultipleSelectPlaceholder placeholder={"duration"} />
           </div>
           <div className="col-6">
             <Search />
@@ -47,7 +45,6 @@ function App() {
       </div>
     </>
   );
-  
 }
 
 export default App;
