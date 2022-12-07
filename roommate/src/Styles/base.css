@@ -4,12 +4,14 @@ body {
   background-color: #3b66ab;
   font-size: 16px;
   font-family: "Barlow", sans-serif;
+  font-optical-sizing: auto;
 }
 
 .logo {
   font-family: "Rajdhani", sans-serif;
   font-size: 8em;
   color: #e2c34b;
+  font-optical-sizing: auto;
 }
 
 .card-columns {

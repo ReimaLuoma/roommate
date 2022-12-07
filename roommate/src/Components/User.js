@@ -1,18 +1,16 @@
 import React from "react";
 import Account from "./Account";
-import Add from "./Add";
-import Remove from "./Remove";
+import Loans from "./Loans";
 import Logo from "./Logo";
 
-const Admin = () => {
+const User = () => {
     return (
         <section>
             <div className="row mb-5">
                 <Logo />
 
                 <div className="col-6 d-flex justify-content-end">
-                    <Add />
-                    <Remove />
+                    <Loans />
                     <Account userName={'Reima'}/>
                 </div>
             </div>
@@ -20,4 +18,4 @@ const Admin = () => {
     )
 }
 
-export default Admin;
+export default User;

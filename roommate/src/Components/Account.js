@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Account = ({userName}) => {
     return (
-        <Button variant='text' sx={{color: 'white', mr:3}}>
+        <Button variant='text' sx={{color: 'white'}}>
             <AccountCircleIcon sx={{mr:1}}/>{userName}
         </Button>
     )

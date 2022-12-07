@@ -1,12 +1,13 @@
 import React from "react";
 import LoginRegister from "./LoginRegister";
+import Logo from "./Logo";
 
 const Landing = () => {
     return (
         <section className="container">
             <div className="row mb-5">
             
-            <div className="col-6 logo pt-3">ROOMMATE</div>
+            <Logo />
 
             <div className="col-6 align-self-center d-flex justify-content-end">
                 <LoginRegister />
