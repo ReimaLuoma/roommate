@@ -4,7 +4,7 @@ import Add from "./Add";
 import Remove from "./Remove";
 import Logo from "./Logo";
 
-const Admin = () => {
+const Admin = ({user}) => {
     return (
         <section>
             <div className="row mb-5">
@@ -13,7 +13,7 @@ const Admin = () => {
                 <div className="col-6 d-flex justify-content-end">
                     <Add />
                     <Remove />
-                    <Account userName={'Reima'}/>
+                    <Account userName={user.userName}/>
                 </div>
             </div>
         </section>

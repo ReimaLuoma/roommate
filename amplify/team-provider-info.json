@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify51402febdb3e4-staging-121207-authRole",
+      "UnauthRoleArn": "arn:aws:iam::633071738032:role/amplify-amplify51402febdb3e4-staging-121207-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::633071738032:role/amplify-amplify51402febdb3e4-staging-121207-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-amplify51402febdb3e4-staging-121207-deployment",
+      "UnauthRoleName": "amplify-amplify51402febdb3e4-staging-121207-unauthRole",
+      "StackName": "amplify-amplify51402febdb3e4-staging-121207",
+      "StackId": "arn:aws:cloudformation:eu-north-1:633071738032:stack/amplify-amplify51402febdb3e4-staging-121207/0a09bc40-7496-11ed-9939-0a63b02e807c",
+      "AmplifyAppId": "d1ip7ap8tsy33z"
+    },
+    "categories": {
+      "auth": {
+        "roommate": {}
+      }
+    }
+  }
+}
