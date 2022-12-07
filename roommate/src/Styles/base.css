@@ -37,7 +37,7 @@ body {
 }
 
 .search {
-  margin: 8.5% 2% 8.5% 0;
+  width: 64%;
   border: 2px;
   border-style: solid;
   border-color: white;

@@ -3,24 +3,24 @@ import MovieCard from "./MovieCard";
 
 const Display = () => {
     return (
-        <div className="container">
-        <div className="row">
-          <div className="card-columns col text-end">
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-          </div>
-        </div>
-      </div>
+        <section>
+            <div className="row">
+                <div className="card-columns col text-end">
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                </div>
+            </div>
+      </section>
     )
 }
 
