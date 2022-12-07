@@ -5,7 +5,7 @@ const Display = () => {
     return (
         <section>
             <div className="row mt-3">
-                <div className="card-columns col text-end">
+                <div className="col text-end card-columns">
                     <MovieCard />
                     <MovieCard />
                     <MovieCard />

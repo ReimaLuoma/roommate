@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barlow&family=Rajdhani:wght@700&display=swap");
-.container {
-  max-width: 1440px;
-}
-
 body {
   background-color: #3b66ab;
   font-size: 16px;
