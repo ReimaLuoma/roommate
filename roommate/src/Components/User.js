@@ -3,7 +3,7 @@ import Account from "./Account";
 import Loans from "./Loans";
 import Logo from "./Logo";
 
-const User = () => {
+const User = ({user}) => {
     return (
         <section>
             <div className="row mb-5">
@@ -11,7 +11,7 @@ const User = () => {
 
                 <div className="col-6 d-flex justify-content-end">
                     <Loans />
-                    <Account userName={'Reima'}/>
+                    <Account userName={user.userName}/>
                 </div>
             </div>
         </section>

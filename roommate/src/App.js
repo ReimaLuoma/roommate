@@ -1,19 +1,23 @@
-import Filters from "./Components/Filters";
-import Landing from "./Components/Landing";
-import Display from "./Components/Display";
+import UserApp from "./UserApp";
+import Base from "./Components/Base";
+import { atom, useRecoilValue } from 'recoil';
 
-function App() {
-  return (
-    <>
-    <div className="container">
-      <Landing />
+const App = () => {
 
-      <Filters />
+// state to whether user is logged in or not
+const loginState = atom({
+  key: 'userLoginInfo',
+  default: false,
+});
 
-      <Display />
-    </div>
-    </>
-  );
+  const isLoggedIn = useRecoilValue(loginState);
+
+  if(isLoggedIn){
+    return <UserApp />;
+  }
+
+  return <Base />;
+
 }
 
 export default App;

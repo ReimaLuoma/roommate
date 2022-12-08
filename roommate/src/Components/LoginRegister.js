@@ -1,8 +1,21 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { shadows } from '@mui/system';
+import { atom, useRecoilState } from 'recoil';
 
 const LoginRegister = () => {
+
+    // state to whether user is logged in or not
+    const loginState = atom({
+        key: 'userLoginInfo',
+        default: false,
+    });
+
+    const [isLogged, setIsLogged] = useRecoilState(loginState);
+
+    const loginUser = () => {
+        setIsLogged(!isLogged);
+    };
+
     return (
         <Button variant='contained' sx={{ 
             padding:2,
@@ -15,7 +28,7 @@ const LoginRegister = () => {
                 bgcolor: '#ffdc54',
                 color: '#3b66ab'
             }
-            }}>Login / Register</Button>
+            }} onClick={loginUser}>Login / Register</Button>
     )
 };
 

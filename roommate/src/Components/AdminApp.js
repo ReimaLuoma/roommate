@@ -10,9 +10,7 @@ const AdminApp = ({ signOut, user }) => {
     <>
     <div className="container">
       <Admin user={user}/>
-
       <Filters />
-
       <Display />
     </div>
     </>
