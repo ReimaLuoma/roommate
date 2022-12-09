@@ -7,7 +7,7 @@ import './Styles/base.css';
 import { RecoilRoot } from 'recoil';
 
 // amplify
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
 import awsmobile from './aws-exports';
 Amplify.configure(awsmobile);
 
