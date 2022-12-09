@@ -11,7 +11,7 @@ const User = ({user}) => {
 
                 <div className="col-6 d-flex justify-content-end">
                     <Loans />
-                    <Account userName={user.userName}/>
+                    <Account userName={'default'}/>
                 </div>
             </div>
         </section>
