@@ -8,7 +8,7 @@ import { RecoilRoot } from 'recoil';
 
 // amplify
 import { Amplify, Auth } from 'aws-amplify';
-import awsmobile from './aws-exports';
+//import awsmobile from './aws-exports';
 Amplify.configure(awsmobile);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
