@@ -19,7 +19,7 @@ const LoginRegister = () => {
             borderRadius: 4,
             '& fieldset':
                 {border: 'none'},
-            ":hover": {
+            ':hover': {
                 bgcolor: '#ffdc54',
                 color: '#3b66ab'
             }

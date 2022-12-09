@@ -13,8 +13,8 @@ const signOut = async () => {
 
 const SignOutButton = () => {
     return (
-        <Button variant='text' sx={{color: 'white', mr:3, borderRadius: 2}} onClick={signOut}>
-            <ExitToAppIcon sx={{mr:1}} />Sign Out
+        <Button variant='contained' sx={{color: 'black', bgcolor: '#e2c34b', mr:3, borderRadius: 2, ':hover': {bgcolor: '#ffdc54', color: '#3b66ab'} }} onClick={signOut}>
+            <ExitToAppIcon sx={{mr:1, color: '#black'}} />Sign Out
         </Button>
     )
 }
