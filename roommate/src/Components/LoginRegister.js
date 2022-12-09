@@ -1,14 +1,9 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { atom, useRecoilState } from 'recoil';
+import { loginState } from '../Atoms/login';
 
 const LoginRegister = () => {
-
-    // state to whether user is logged in or not
-    const loginState = atom({
-        key: 'userLoginInfo',
-        default: false,
-    });
 
     const [isLogged, setIsLogged] = useRecoilState(loginState);
 

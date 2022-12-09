@@ -1,14 +1,9 @@
 import UserApp from "./Components/UserApp";
 import Base from "./Components/Base";
 import { atom, useRecoilValue } from 'recoil';
+import { loginState } from "./Atoms/login";
 
 const App = () => {
-
-// state to whether user is logged in or not
-const loginState = atom({
-  key: 'userLoginInfo',
-  default: false,
-});
 
   const isLoggedIn = useRecoilValue(loginState);
 
