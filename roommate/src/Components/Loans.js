@@ -4,7 +4,7 @@ import BrowseGalleryIcon from '@mui/icons-material/BrowseGallery';
 
 const Loans = () => {
     return (
-        <Button variant='text' sx={{color: 'white', mr:3}}>
+        <Button variant='text' sx={{color: 'white', mr:3, borderRadius: 2}}>
             <BrowseGalleryIcon sx={{mr:1}}/>Loans
         </Button>
     )
