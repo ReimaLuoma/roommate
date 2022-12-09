@@ -12,7 +12,7 @@ const LoginRegister = () => {
     };
 
     return (
-        <Button variant='contained' sx={{ 
+        <Button className='box-shadow' variant='contained' sx={{ 
             padding:2,
             bgcolor: '#e2c34b',
             color: 'black',

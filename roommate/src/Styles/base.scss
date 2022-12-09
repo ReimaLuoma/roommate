@@ -1,15 +1,18 @@
 //COLORS
 $bgcolor: #3b66ab;
+$bgcolor2: #3A92C2;
 $maincolor: #e2c34b;
 $altcolor01: #b2a866;
+
+$box-shadow: .5rem .5rem .5rem $bgcolor;
+$text-shadow: .5rem .5rem .5rem $bgcolor;
 
 //FONTS
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Rajdhani:wght@700&display=swap');
 
 body {
-    background-color: $bgcolor;
-    font-size: 16px;
+    background: linear-gradient(-45deg, $bgcolor, $bgcolor2);
     font-family: 'Barlow', sans-serif;
     font-optical-sizing: auto;
 }
@@ -18,7 +21,12 @@ body {
     font-family: 'Rajdhani', sans-serif;
     font-size: 8em;
     color: $maincolor;
+    text-shadow: $text-shadow;
     font-optical-sizing: auto;
+}
+
+.box-shadow {
+    box-shadow: $box-shadow;
 }
 
 .card-columns {
