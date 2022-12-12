@@ -8,7 +8,7 @@ import '@aws-amplify/ui-react/styles.css';
 const UserApp = ({ signout, user }) => {
   return (
     <div className="container">
-      <User />
+      <User user={user}/>
       <Filters />
       <Display />
     </div>

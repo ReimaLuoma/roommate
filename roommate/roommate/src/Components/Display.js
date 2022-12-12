@@ -2,6 +2,7 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const Display = () => {
+
     return (
         <section>
             <div className="row mt-3">

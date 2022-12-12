@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { atom, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { loginState } from '../Atoms/login';
 
 const LoginRegister = () => {

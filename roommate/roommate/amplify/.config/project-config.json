@@ -8,8 +8,8 @@
   "javascript": {
     "framework": "react",
     "config": {
-      "SourceDir": "/roommate/src",
-      "DistributionDir": "roommate/build",
+      "SourceDir": "./src",
+      "DistributionDir": "./build",
       "BuildCommand": "npm run build",
       "StartCommand": "npm start"
     }

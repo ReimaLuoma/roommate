@@ -1,6 +1,6 @@
 import UserApp from "./Components/UserApp";
 import Base from "./Components/Base";
-import { atom, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { loginState } from "./Atoms/login";
 
 const App = () => {
@@ -13,6 +13,6 @@ const App = () => {
 
   return <Base />;
 
-}
+};
 
 export default App;

@@ -24,6 +24,7 @@ yarn-error.log*
 
 # enviroment variables
 .env
+env.sh
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

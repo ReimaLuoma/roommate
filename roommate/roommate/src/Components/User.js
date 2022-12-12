@@ -12,7 +12,7 @@ const User = ({user}) => {
 
                 <div className="col-6 d-flex justify-content-end align-items-center">
                     <Loans />
-                    <Account userName={'default'}/>
+                    <Account userName={user.userName}/>
                     <SignOutButton />
                 </div>
             </div>
