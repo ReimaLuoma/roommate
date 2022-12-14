@@ -4,13 +4,13 @@ backend:
   phases:
     build:
       commands:
+        . cd roommate
         - amplifyPush --simple
 
 frontend:
   phases:
     preBuild:
       commands:
-        - cd roommate
         - cd roommate
         - npm ci
     build:
