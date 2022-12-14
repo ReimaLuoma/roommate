@@ -10,13 +10,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd roommate/roommate
+        - cd roommate
+        - cd roommate
         - npm ci
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: ./roommate/build
+    baseDirectory: ./roommate/roommate/build
     files:
       - '**/*'
   cache:
