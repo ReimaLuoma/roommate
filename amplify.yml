@@ -2,6 +2,9 @@ version: 1
 
 backend:
   phases:
+    preBuild:
+      commands:
+        - cd roommate
     build:
       commands:
         - amplifyPush --simple
