@@ -1,7 +1,7 @@
 import env from 'react-dotenv';
 const { MovieDb } = require('moviedb-promise');
 
-const moviedb = new MovieDb(REACT_APP_TMDB_API_KEY);
+const moviedb = new MovieDb(env.REACT_APP_TMDB_API_KEY);
 
 const PopularMovie = () => {
     moviedb
