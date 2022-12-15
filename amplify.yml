@@ -13,7 +13,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd roommate
         - npm ci
     build:
       commands:
