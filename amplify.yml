@@ -10,7 +10,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd roommate/roommate
+        - cd roommate
         - npm ci
     build:
       commands:

@@ -11,10 +11,9 @@
           "EMAIL"
         ],
         "signupAttributes": [
-          "EMAIL",
-          "FAMILY_NAME",
-          "NAME",
-          "PHONE_NUMBER"
+          "PHONE_NUMBER",
+          "GIVEN_NAME",
+          "FAMILY_NAME"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
