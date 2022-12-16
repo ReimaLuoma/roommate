@@ -1,9 +1,11 @@
-import * as React from 'react';
+import React, { useState, useEffect} from 'react';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import axios from 'axios';
+import env from 'react-dotenv';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -16,18 +18,29 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+const duration = [
+  'less than 90 min',
+  '90 - 150 min',
+  'over 150 min',
 ];
+
+const PopulateGenres = () => {
+  const [genresList, setGenresList] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-US').then((response) => {
+      //console.log(response.data.genres);
+      const arr = response.data.genres;
+      const arr2 = arr.map(item => {return item.name});
+      //console.log(arr2);
+      setGenresList(arr2);
+    }).catch(err => {
+      console.log(err);
+    })
+  },[])
+
+  return genresList;
+};
 
 const getStyles = (name, personName, theme) => {
   return {
@@ -41,6 +54,40 @@ const getStyles = (name, personName, theme) => {
 const MultipleSelectPlaceholder = ({placeholder}) => {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+
+  const optionsList = () => {
+
+    if(placeholder == 'duration'){
+      return (
+        duration.map((name) => (
+          <MenuItem
+            key={name}
+            value={name}
+            style={getStyles(name, personName, theme)}
+          >
+            {name}
+          </MenuItem>
+        ))
+      )
+    }
+    if(placeholder == 'genres'){
+
+      const genres = PopulateGenres();
+
+      return (
+        genres.map((name) => (
+          <MenuItem
+            key={name}
+            value={name}
+            style={getStyles(name, personName, theme)}
+          >
+            {name}
+          </MenuItem>
+        ))
+      )
+    }
+    
+  };
 
   const handleChange = (event) => {
     const {
@@ -74,15 +121,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
           <MenuItem disabled value="">
             <em>{placeholder}</em>
           </MenuItem>
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
+          {optionsList({placeholder})}
         </Select>
       </FormControl>
     </div>
