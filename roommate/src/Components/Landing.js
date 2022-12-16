@@ -4,7 +4,7 @@ import Logo from "./Logo";
 
 const Landing = () => {
     return (
-        <section className="container">
+        <section>
             <div className="row mb-5">
             
             <Logo />

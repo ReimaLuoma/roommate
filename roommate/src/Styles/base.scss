@@ -29,12 +29,6 @@ body {
     box-shadow: $box-shadow;
 }
 
-.card-columns {
-    -webkit-column-count: 5;
-	-moz-column-count: 5;
-	column-count: 5;
-}
-
 .areacheck {
     background-color: darkmagenta;
 }
@@ -68,4 +62,12 @@ body {
 
     color: white;
     text-align-last: right;
+}
+
+.container {
+    max-width: 75vw;
+}
+
+.card {
+    padding: 0;
 }

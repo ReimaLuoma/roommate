@@ -17,14 +17,12 @@ const Display = () => {
 
     return (
         <section>
-            <div className="row mt-3">
-                <div className="col justify-content-evenly text-end card-columns">
-                    {
-                        movies.map((movie, index) => {
-                            return <MovieCard key={index} {...movie} />
-                        })
-                    }
-                </div>
+            <div className="row justify-content-around mt-3">
+                {
+                    movies.map((movie, index) => {
+                        return <MovieCard key={index} {...movie} />
+                    })
+                }
             </div>
       </section>
     )
