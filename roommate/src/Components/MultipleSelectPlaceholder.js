@@ -6,6 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from 'axios';
 import env from 'react-dotenv';
+import { useRecoilState } from 'recoil';
+import { moviesInfo } from '../Atoms/movieData';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -29,10 +31,8 @@ const PopulateGenres = () => {
 
   useEffect(() => {
     axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-US').then((response) => {
-      //console.log(response.data.genres);
       const arr = response.data.genres;
       const arr2 = arr.map(item => {return item.name});
-      //console.log(arr2);
       setGenresList(arr2);
     }).catch(err => {
       console.log(err);
@@ -42,10 +42,10 @@ const PopulateGenres = () => {
   return genresList;
 };
 
-const getStyles = (name, personName, theme) => {
+const getStyles = (name, genreName, theme) => {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      genreName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -53,7 +53,8 @@ const getStyles = (name, personName, theme) => {
 
 const MultipleSelectPlaceholder = ({placeholder}) => {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [genreName, setGenreName] = React.useState([]);
+  const [movies, setMovies] = useRecoilState(moviesInfo);
 
   const optionsList = () => {
 
@@ -63,7 +64,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
           <MenuItem
             key={name}
             value={name}
-            style={getStyles(name, personName, theme)}
+            style={getStyles(name, genreName, theme)}
           >
             {name}
           </MenuItem>
@@ -79,7 +80,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
           <MenuItem
             key={name}
             value={name}
-            style={getStyles(name, personName, theme)}
+            style={getStyles(name, genreName, theme)}
           >
             {name}
           </MenuItem>
@@ -93,11 +94,15 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setGenreName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
+
+  useEffect(() => {
+    //handle movie filtering here
+  });
 
   return (
     <div>
@@ -105,7 +110,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
         <Select
           multiple
           displayEmpty
-          value={personName}
+          value={genreName}
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {

@@ -11,7 +11,7 @@ const MovieCard = ({ poster_path, id = 0, release_date }) => {
     const [runtime, setRuntime] = useState([])
 
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/movie/'+id+'?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-US').then(response => {
+        axios.get('https://api.themoviedb.org/3/movie/'+id+'?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-EN').then(response => {
                 setRuntime(response.data.runtime);
             }).catch(err => {
                 console.log(err);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
 import env from 'react-dotenv';
@@ -10,7 +10,7 @@ const Display = () => {
     const [movies, setMovies] = useRecoilState(moviesInfo);
 
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-US&page=1').then(response => {
+        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-EN&page=1').then(response => {
             setMovies(response.data.results);
         }).catch(err => {
             console.log(err);
