@@ -4,13 +4,15 @@ import MovieCard from "./MovieCard";
 import env from 'react-dotenv';
 import { useRecoilState } from 'recoil';
 import { moviesInfo } from '../Atoms/movieData';
+import { languageAndArea } from '../Atoms/LanguageSetting';
 
 const Display = () => {
 
     const [movies, setMovies] = useRecoilState(moviesInfo);
+    const [language, SetLanguage] = useRecoilState(languageAndArea);
 
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-EN&page=1').then(response => {
+        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language +'&page=1').then(response => {
             setMovies(response.data.results);
         }).catch(err => {
             console.log(err);

@@ -8,6 +8,7 @@ import axios from 'axios';
 import env from 'react-dotenv';
 import { useRecoilState } from 'recoil';
 import { moviesInfo } from '../Atoms/movieData';
+import { languageAndArea } from '../Atoms/LanguageSetting';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -28,12 +29,26 @@ const duration = [
 
 const PopulateGenres = () => {
   const [genresList, setGenresList] = useState([]);
+  const [language, SetLanguage] = useRecoilState(languageAndArea);
+
+  //Map for filtering using ids and names of genres
+  //Populating the map happens in useEffect
+  const genreMap = new Map();
 
   useEffect(() => {
-    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language=en-US').then((response) => {
+    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language).then((response) => {
       const arr = response.data.genres;
+      console.log(response.data.genres);
+
+      //List for 'genres'-filter dropdown element
       const arr2 = arr.map(item => {return item.name});
       setGenresList(arr2);
+
+      //Map for filtering using ids and names of genres
+      arr.map(item => genreMap.set(item.id,item.name));
+      console.log(genreMap.keys('Action'));
+      console.log(genreMap);
+
     }).catch(err => {
       console.log(err);
     })
@@ -100,9 +115,14 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
     );
   };
 
+  const filterGenres = () => {
+    
+  };
+
   useEffect(() => {
     //handle movie filtering here
-  });
+    filterGenres();
+  },[]);
 
   return (
     <div>
