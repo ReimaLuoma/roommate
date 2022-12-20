@@ -40,6 +40,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
   const theme = useTheme();
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [movies, setMovies] = useRecoilState(moviesInfo);
+  const [baseMoviesList, setBaseMoviesList] = useState([]);
   const [filterItems, setFilterItems] = useState([]);
   const [genresList, setGenresList] = useState([]);
   const [genresListRaw, setGenresListRaw] = useState([]);
@@ -104,6 +105,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
   }, []);
 
   useEffect(() => {
+    setBaseMoviesList(movies);
     filterGenres();
   },[selectedGenre]);
 
@@ -113,9 +115,9 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
     console.log(selectedGenre[selectedGenre.length-1], typeof selectedGenre[selectedGenre.length-1]);
     console.log(genreMap.get(selectedGenre[selectedGenre.length-1]), typeof genreMap.get(selectedGenre[selectedGenre.length-1]));
     setFilterItems(genreMap.get(selectedGenre[selectedGenre.length-1]));
-    const newList = movies.filter(movie => movie.genre_ids.includes(filterItems));
+    const newList = baseMoviesList.filter(movie => movie.genre_ids.includes(filterItems));
     console.log(newList);
-    //setMovies(newList);
+    setMovies(newList);
   };
 
   return (
