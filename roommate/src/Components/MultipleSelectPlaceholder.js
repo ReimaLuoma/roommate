@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from 'axios';
 import env from 'react-dotenv';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { moviesInfo } from '../Atoms/movieData';
 import { languageAndArea } from '../Atoms/LanguageSetting';
 
@@ -27,33 +27,6 @@ const duration = [
   'over 150 min',
 ];
 
-//Map for filtering using ids and names of genres
-//Populating the map happens in useEffect
-const genreMap = new Map();
-
-const PopulateGenres = () => {
-  const [genresList, setGenresList] = useState([]);
-  const [language, SetLanguage] = useRecoilState(languageAndArea);
-
-  useEffect(() => {
-    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language).then((response) => {
-      const arr = response.data.genres;
-
-      //List for 'genres'-filter dropdown element
-      const arr2 = arr.map(item => {return item.name});
-      setGenresList(arr2);
-
-      //Map for filtering using names as keys and ids as values of genres
-      arr.map(item => genreMap.set(item.name,item.id));
-
-    }).catch(err => {
-      console.log(err);
-    })
-  },[])
-
-  return genresList;
-};
-
 const getStyles = (name, genreName, theme) => {
   return {
     fontWeight:
@@ -65,34 +38,37 @@ const getStyles = (name, genreName, theme) => {
 
 const MultipleSelectPlaceholder = ({placeholder}) => {
   const theme = useTheme();
-  const [genreName, setGenreName] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState([]);
   const [movies, setMovies] = useRecoilState(moviesInfo);
+  const [filterItems, setFilterItems] = useState([]);
+  const [genresList, setGenresList] = useState([]);
+  const [genresListRaw, setGenresListRaw] = useState([]);
+  const language = useRecoilValue(languageAndArea);
+  const genreMap = new Map();
 
   const optionsList = () => {
 
-    if(placeholder == 'duration'){
+    if(placeholder === 'duration'){
       return (
         duration.map((name) => (
           <MenuItem
             key={name}
             value={name}
-            style={getStyles(name, genreName, theme)}
+            style={getStyles(name, selectedGenre, theme)}
           >
             {name}
           </MenuItem>
         ))
       )
     }
-    if(placeholder == 'genres'){
-
-      const genres = PopulateGenres();
+    if(placeholder === 'genres'){
 
       return (
-        genres.map((name) => (
+        genresList.map((name) => (
           <MenuItem
             key={name}
             value={name}
-            style={getStyles(name, genreName, theme)}
+            style={getStyles(name, selectedGenre, theme)}
           >
             {name}
           </MenuItem>
@@ -106,24 +82,41 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
     const {
       target: { value },
     } = event;
-    setGenreName(
+    setSelectedGenre(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
 
-  const filterGenres = () => {
-    console.log(genreName);
-    console.log(genreMap);
-    const arrayWithGenreIds = genreMap.get(genreName);
-    console.log(arrayWithGenreIds);
-    const newList = movies.filter(movie => movie.genre_ids.includes(arrayWithGenreIds));
-  };
+  //Fetch initial data
+  useEffect(() => {
+    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language).then((response) => {
+      const arr = response.data.genres;
+
+      //List for 'genres'-filter dropdown element
+      const arr2 = arr.map(item => {return item.name});
+      setGenresList(arr2);
+      setGenresListRaw(arr);
+
+    }).catch(err => {
+      console.log(err);
+    })
+  }, []);
 
   useEffect(() => {
-    //handle movie filtering here
     filterGenres();
-  },[genreName]);
+  },[selectedGenre]);
+
+  const filterGenres = () => {
+    //Map for filtering using names as keys and ids as values of genres
+    genresListRaw.map(item => genreMap.set(item.name,item.id));
+    console.log(selectedGenre[selectedGenre.length-1], typeof selectedGenre[selectedGenre.length-1]);
+    console.log(genreMap.get(selectedGenre[selectedGenre.length-1]), typeof genreMap.get(selectedGenre[selectedGenre.length-1]));
+    setFilterItems(genreMap.get(selectedGenre[selectedGenre.length-1]));
+    const newList = movies.filter(movie => movie.genre_ids.includes(filterItems));
+    console.log(newList);
+    //setMovies(newList);
+  };
 
   return (
     <div>
@@ -131,7 +124,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
         <Select
           multiple
           displayEmpty
-          value={genreName}
+          value={selectedGenre}
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
