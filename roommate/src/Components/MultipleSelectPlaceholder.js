@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 import axios from 'axios';
 import env from 'react-dotenv';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { moviesInfo } from '../Atoms/movieData';
+import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
 import { languageAndArea } from '../Atoms/LanguageSetting';
 
 const ITEM_HEIGHT = 48;
@@ -40,6 +40,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
   const theme = useTheme();
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [movies, setMovies] = useRecoilState(moviesInfo);
+  const [moviesToDisplay, setMoviesToDisplay] = useRecoilState(moviesDisplay);
   const [baseMoviesList, setBaseMoviesList] = useState([]);
   const [filterItems, setFilterItems] = useState([]);
   const [genresList, setGenresList] = useState([]);
@@ -105,19 +106,15 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
   }, []);
 
   useEffect(() => {
-    setBaseMoviesList(movies);
     filterGenres();
   },[selectedGenre]);
 
   const filterGenres = () => {
-    //Map for filtering using names as keys and ids as values of genres
+    setBaseMoviesList(movies);
     genresListRaw.map(item => genreMap.set(item.name,item.id));
-    //console.log(selectedGenre[selectedGenre.length-1], typeof selectedGenre[selectedGenre.length-1]);
-    //console.log(genreMap.get(selectedGenre[selectedGenre.length-1]), typeof genreMap.get(selectedGenre[selectedGenre.length-1]));
     setFilterItems(genreMap.get(selectedGenre[selectedGenre.length-1]));
     const newList = baseMoviesList.filter(movie => movie.genre_ids.includes(filterItems));
-    //console.log(newList);
-    setMovies(newList);
+    setMoviesToDisplay(newList);
   };
 
   return (

@@ -1,7 +1,14 @@
 import { atom } from 'recoil';
 
-// state to whether user is logged in or not
+// main movie data
 export const moviesInfo = atom({
-    key: 'movieInfo',
+    key: 'moviesInfo',
+    default: [],
+});
+
+// displayed movie data
+
+export const moviesDisplay = atom({
+    key: 'moviesDisplay',
     default: [],
 });

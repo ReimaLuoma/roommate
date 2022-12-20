@@ -2,6 +2,7 @@ import axios from "axios";
 import env from "react-dotenv";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { languageAndArea } from '../Atoms/LanguageSetting';
+import { moviesInfo } from "../Atoms/movieData";
 
 const GetMovies = () => {
     const language = useRecoilValue(languageAndArea);
@@ -14,3 +15,5 @@ const GetMovies = () => {
         console.log(err);
     })
 };
+
+export default GetMovies;
