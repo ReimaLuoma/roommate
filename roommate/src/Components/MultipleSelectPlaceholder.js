@@ -112,11 +112,11 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
   const filterGenres = () => {
     //Map for filtering using names as keys and ids as values of genres
     genresListRaw.map(item => genreMap.set(item.name,item.id));
-    console.log(selectedGenre[selectedGenre.length-1], typeof selectedGenre[selectedGenre.length-1]);
-    console.log(genreMap.get(selectedGenre[selectedGenre.length-1]), typeof genreMap.get(selectedGenre[selectedGenre.length-1]));
+    //console.log(selectedGenre[selectedGenre.length-1], typeof selectedGenre[selectedGenre.length-1]);
+    //console.log(genreMap.get(selectedGenre[selectedGenre.length-1]), typeof genreMap.get(selectedGenre[selectedGenre.length-1]));
     setFilterItems(genreMap.get(selectedGenre[selectedGenre.length-1]));
     const newList = baseMoviesList.filter(movie => movie.genre_ids.includes(filterItems));
-    console.log(newList);
+    //console.log(newList);
     setMovies(newList);
   };
 
