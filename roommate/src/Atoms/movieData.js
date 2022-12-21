@@ -7,7 +7,6 @@ export const moviesInfo = atom({
 });
 
 // displayed movie data
-
 export const moviesDisplay = atom({
     key: 'moviesDisplay',
     default: [],

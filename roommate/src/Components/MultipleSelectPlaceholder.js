@@ -39,9 +39,8 @@ const getStyles = (name, genreName, theme) => {
 const MultipleSelectPlaceholder = ({placeholder}) => {
   const theme = useTheme();
   const [selectedGenre, setSelectedGenre] = useState([]);
-  const [movies, setMovies] = useRecoilState(moviesInfo);
+  const [movies] = useRecoilState(moviesInfo);
   const [moviesToDisplay, setMoviesToDisplay] = useRecoilState(moviesDisplay);
-  const [baseMoviesList, setBaseMoviesList] = useState([]);
   const [filterItems, setFilterItems] = useState([]);
   const [genresList, setGenresList] = useState([]);
   const [genresListRaw, setGenresListRaw] = useState([]);
@@ -88,6 +87,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
+    filterGenres();
   };
 
   //Fetch initial data
@@ -107,14 +107,23 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
 
   useEffect(() => {
     filterGenres();
-  },[selectedGenre]);
+  },[selectedGenre, filterItems]);
 
   const filterGenres = () => {
-    setBaseMoviesList(movies);
+    // reset
+    setMoviesToDisplay(movies);
+    // generate dictionary for genre/id
     genresListRaw.map(item => genreMap.set(item.name,item.id));
+    // generate filter items into state
     setFilterItems(genreMap.get(selectedGenre[selectedGenre.length-1]));
-    const newList = baseMoviesList.filter(movie => movie.genre_ids.includes(filterItems));
-    setMoviesToDisplay(newList);
+    // create new list based on filtered items
+    const newList = movies.filter(movie => movie.genre_ids.includes(filterItems));
+    // display new list of items
+    if(newList == ""){
+      setMoviesToDisplay(movies);
+    }else {
+      setMoviesToDisplay(newList);
+    }
   };
 
   return (
