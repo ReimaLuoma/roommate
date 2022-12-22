@@ -11,3 +11,9 @@ export const moviesDisplay = atom({
     key: 'moviesDisplay',
     default: [],
 });
+
+// displayed movie runtime
+export const movieRuntime = atom({
+    key: 'movieRuntime',
+    default: [],
+});

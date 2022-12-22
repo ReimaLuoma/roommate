@@ -58,4 +58,33 @@ body {
 
 .card-body {
   padding: auto;
+}
+
+@media (max-width: 1080px) {
+  .container {
+    max-width: 90vw;
+  }
+  .logo {
+    font-size: 6em;
+  }
+  .search {
+    width: 100%;
+  }
+  .filter-columns {
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+@media (max-width: 575.98px) {
+  .container {
+    max-width: 100vw;
+  }
+  .logo {
+    font-size: 4em;
+    text-align: center;
+  }
+  .card-column {
+    width: 50%;
+    margin-bottom: 1rem;
+  }
 }/*# sourceMappingURL=base.css.map */

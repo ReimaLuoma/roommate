@@ -23,7 +23,7 @@ const Display = () => {
 
     return (
         <section>
-            <div className="row justify-content-around mt-3">
+            <div className="row justify-content-center">
                 {
                     moviesToDisplay.map((movie, index) => {
                         return <MovieCard key={index} {...movie} />

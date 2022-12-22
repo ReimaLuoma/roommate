@@ -5,13 +5,13 @@ import Logo from "./Logo";
 const Landing = () => {
     return (
         <section>
-            <div className="row mb-5">
+            <div className="row mb-md-5">
             
-            <Logo />
+                <Logo />
 
-            <div className="col-6 align-self-center d-flex justify-content-end">
-                <LoginRegister />
-            </div>
+                <div className="col-md-6 col-sm-12 align-self-center d-flex justify-content-end">
+                    <LoginRegister />
+                </div>
 
             </div>
       </section>

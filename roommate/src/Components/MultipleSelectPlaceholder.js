@@ -38,7 +38,7 @@ const getStyles = (name, genreName, theme) => {
 
 const MultipleSelectPlaceholder = ({placeholder}) => {
   const theme = useTheme();
-  const [selectedGenre, setSelectedGenre] = useState([]);
+  const [selectedItem, setSelectedItem] = useState([]);
   const [movies] = useRecoilState(moviesInfo);
   const [moviesToDisplay, setMoviesToDisplay] = useRecoilState(moviesDisplay);
   const [filterItems, setFilterItems] = useState([]);
@@ -55,7 +55,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
           <MenuItem
             key={name}
             value={name}
-            style={getStyles(name, selectedGenre, theme)}
+            style={getStyles(name, selectedItem, theme)}
           >
             {name}
           </MenuItem>
@@ -69,7 +69,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
           <MenuItem
             key={name}
             value={name}
-            style={getStyles(name, selectedGenre, theme)}
+            style={getStyles(name, selectedItem, theme)}
           >
             {name}
           </MenuItem>
@@ -80,14 +80,26 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
   };
 
   const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSelectedGenre(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-    filterGenres();
+    if(placeholder == 'genres'){
+      const {
+        target: { value },
+      } = event;
+      setSelectedItem(
+        // On autofill we get a stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+      filterGenres();
+    }
+    if(placeholder == 'duration'){
+      const {
+        target: { value },
+      } = event;
+      setSelectedItem(
+        // On autofill we get a stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+      filterDuration();
+    }
   };
 
   //Fetch initial data
@@ -107,7 +119,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
 
   useEffect(() => {
     filterGenres();
-  },[selectedGenre, filterItems]);
+  },[selectedItem, filterItems]);
 
   const filterGenres = () => {
     // reset
@@ -115,7 +127,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
     // generate dictionary for genre/id
     genresListRaw.map(item => genreMap.set(item.name,item.id));
     // generate filter items into state
-    setFilterItems(genreMap.get(selectedGenre[selectedGenre.length-1]));
+    setFilterItems(genreMap.get(selectedItem[selectedItem.length-1]));
     // create new list based on filtered items
     const newList = movies.filter(movie => movie.genre_ids.includes(filterItems));
     // display new list of items
@@ -126,13 +138,16 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
     }
   };
 
+  const filterDuration = () => {
+    
+  };
+
   return (
-    <div>
       <FormControl sx={{ width: '100%', mt: 6.5, borderRadius: 4, bgcolor: 'white', '& fieldset': {border: 'none'} }}>
         <Select
           multiple
           displayEmpty
-          value={selectedGenre}
+          value={selectedItem}
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
@@ -151,7 +166,6 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
           {optionsList({placeholder})}
         </Select>
       </FormControl>
-    </div>
   );
 }
 

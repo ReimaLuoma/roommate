@@ -7,11 +7,11 @@ const Filters = () => {
     return (
         <section>
             <div className="row">
-                <div className="col-6 filter-columns mb-5">
+                <div className="col-xl-6 col-lg-8 col-md-12 filter-columns mb-lg-5">
                     <MultipleSelectPlaceholder placeholder={"genres"} />
                     <MultipleSelectPlaceholder placeholder={"duration"} />
                 </div>
-                <div className="col-6 d-flex justify-content-end mb-5 mt-5">
+                <div className="col-xl-6 col-lg-4 col-md-12 d-flex justify-content-end mb-5 mt-5">
                     <Search />
                 </div>
             </div>
