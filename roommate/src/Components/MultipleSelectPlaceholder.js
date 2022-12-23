@@ -143,6 +143,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
   };
 
   return (
+    <div>
       <FormControl sx={{ width: '100%', mt: 6.5, borderRadius: 4, bgcolor: 'white', '& fieldset': {border: 'none'} }}>
         <Select
           multiple
@@ -166,6 +167,7 @@ const MultipleSelectPlaceholder = ({placeholder}) => {
           {optionsList({placeholder})}
         </Select>
       </FormControl>
+    </div>
   );
 }
 
