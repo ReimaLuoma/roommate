@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 
-const Search = () => {
+const Search = ({dataFromSearch}) => {
     return (
         <div className='search'>
             <TextField
@@ -19,6 +19,7 @@ const Search = () => {
                         </InputAdornment>
                     )
                 }}
+                onChange={(e) => dataFromSearch(e.target.value)}
              />
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from "@mui/material/Box";
@@ -6,6 +6,10 @@ import Modal from '@mui/material/Modal';
 import Search from './Search';
 import MovieCardListView from "./MovieCardListView";
 import CloseIcon from '@mui/icons-material/Close';
+import axios from "axios";
+import env from 'react-dotenv';
+import { languageAndArea } from '../Atoms/LanguageSetting';
+import { useRecoilValue } from 'recoil';
 
 const style = {
     position: 'relative',
@@ -24,6 +28,28 @@ const Add = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const language = useRecoilValue(languageAndArea);
+    const [searchValue, setSearchValue] = useState("");
+    const isInitialMount = useRef(true);
+    const [foundMovies, setFoundMovies] = useState([]);
+
+    useEffect(() => {
+        if(isInitialMount.current){
+            isInitialMount.current = false;
+        }else{
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language +'&query=' + searchValue + '&page=1&include_adult=false').then((response) => {
+                const arr = response.data.results;
+                //console.log(arr);
+                setFoundMovies(arr);
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    }, [searchValue])
+
+    const dataFromSearch = (data) => {
+        setSearchValue(data);
+    };
 
     return (
         <>
@@ -43,8 +69,14 @@ const Add = () => {
                 <br />
                 <br />
                 <br />
-                <Search />
-                <MovieCardListView />
+                <Search dataFromSearch={dataFromSearch} />
+
+                {
+                    foundMovies.map((movie, index) => {
+                        return <MovieCardListView key={index} {...movie} />
+                    })
+                }
+
             </Box>
         </Modal>
         </>
