@@ -4,6 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from "@mui/material/Box";
 import Modal from '@mui/material/Modal';
 import Search from './Search';
+import MovieCardListView from "./MovieCardListView";
 
 const style = {
     position: 'relative',
@@ -40,6 +41,7 @@ const Add = () => {
                 <br />
                 <br />
                 <Search />
+                <MovieCardListView />
             </Box>
         </Modal>
         </>
