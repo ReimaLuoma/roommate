@@ -10,11 +10,11 @@ const Search = () => {
                 fullWidth
                 id='outlined-basic'
                 variant='outlined'
-                sx={{ input: {color: 'white', mr:3}, '& fieldset': {border: 'none'}}}
+                sx={{ input: {color: 'white', mr:3, textAlign: 'right'}, '& fieldset': {border: 'none'}}}
                 InputProps={{
                     placeholder: 'title',
                     endAdornment: (
-                        <InputAdornment position="start">
+                        <InputAdornment position="end">
                             <SearchIcon sx={{color: 'white'}}/>
                         </InputAdornment>
                     )

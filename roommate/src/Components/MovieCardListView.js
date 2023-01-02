@@ -13,7 +13,7 @@ const MovieCardListView = () => {
                     <h5>Title</h5>
                 </div>
                 <div className="col ms-5 d-flex justify-content-end align-items-center">
-                    <Button variant='contained' sx={{color: 'black', bgcolor: '#e2c34b', mr:3, borderRadius: 2, ':hover': {bgcolor: '#ffdc54', color: '#3b66ab'} }}>Add</Button>
+                    <Button variant='contained' sx={{color: 'black', bgcolor: '#e2c34b', mr:3, borderRadius: 2, boxShadow: '3px 3px #1c1c1c', ':hover': {bgcolor: '#ffdc54', color: '#2c2c2c', boxShadow: '3px 3px #1c1c1c'} }}>Add</Button>
                 </div>
             </Card>
         </div>

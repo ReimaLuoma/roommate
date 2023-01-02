@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Modal from '@mui/material/Modal';
 import Search from './Search';
 import MovieCardListView from "./MovieCardListView";
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
     position: 'relative',
@@ -36,7 +37,9 @@ const Add = () => {
             aria-describeby='add movie by giving movie title and choosing from returned options'
         >
             <Box sx={style}>
-                <div className="d-flex justify-content-end">X</div>
+                <div className="d-flex justify-content-end">
+                    <Button sx={{color: 'white'}} onClick={handleClose}><CloseIcon /></Button>
+                </div>
                 <br />
                 <br />
                 <br />
