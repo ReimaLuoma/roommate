@@ -8,8 +8,8 @@ import Remove from "./Remove";
 
 const User = ({user}) => {
 
-    console.log(user.signInUserSession.idToken.payload['cognito:groups']);
-    let userGroup = user.signInUserSession.idToken.payload['cognito:groups'];
+    //console.log(user.signInUserSession.idToken.payload['cognito:groups']);
+    const userGroup = user.signInUserSession.idToken.payload['cognito:groups'];
 
     if(userGroup.includes('admin')){
         return (
@@ -26,21 +26,21 @@ const User = ({user}) => {
                 </div>
             </section>
         )
-    }else {
-        return (
-            <section>
-                <div className="row mb-5">
-                    <Logo />
-
-                    <div className="col-6 d-flex justify-content-end align-items-center">
-                        <Loans />
-                        <Account userName={user.attributes.name}/>
-                        <SignOutButton />
-                    </div>
-                </div>
-            </section>
-        )
     }
+
+    return (
+        <section>
+            <div className="row mb-5">
+                <Logo />
+
+                <div className="col-6 d-flex justify-content-end align-items-center">
+                    <Loans />
+                    <Account userName={user.attributes.name}/>
+                    <SignOutButton />
+                </div>
+            </div>
+        </section>
+    )
 }
 
 export default User;
