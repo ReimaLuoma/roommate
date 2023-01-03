@@ -38,8 +38,10 @@ const Add = () => {
             isInitialMount.current = false;
         }else{
             axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language +'&query=' + searchValue + '&page=1&include_adult=false').then((response) => {
-                const arr = response.data.results;
-                //console.log(arr);
+                const arr = [];
+                for(let i = 0; i < 4; i++){
+                    arr.push(response.data.results[i])
+                }
                 setFoundMovies(arr);
             }).catch(err => {
                 console.log(err);
