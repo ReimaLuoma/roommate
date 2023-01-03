@@ -10,19 +10,7 @@ import axios from "axios";
 import env from 'react-dotenv';
 import { languageAndArea } from '../Atoms/LanguageSetting';
 import { useRecoilValue } from 'recoil';
-
-const style = {
-    position: 'relative',
-    top: '50%',
-    left: '49.7%',
-    transform: 'translate(-50%, -50%)',
-    width: '32rem',
-    bgcolor: '#2c2c2c',
-    borderRadius: '15px',
-    boxShadow: 24,
-    p: 4,
-    color: 'white',
-  };
+import style from '../Styles/modalStyle';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
@@ -72,7 +60,7 @@ const Add = () => {
                 <br />
                 <br />
                 <Search dataFromSearch={dataFromSearch} />
-
+                <br />
                 {
                     foundMovies.map((movie, index) => {
                         return <MovieCardListView key={index} {...movie} />

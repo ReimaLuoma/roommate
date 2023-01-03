@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Get
 router.get('/:id', (req, res) => {
-
+    
 })
 
 // Create

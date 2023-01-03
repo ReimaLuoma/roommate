@@ -60,6 +60,10 @@ body {
   padding: auto;
 }
 
+.profilePage b {
+  color: #e2c34b;
+}
+
 @media (max-width: 1080px) {
   .container {
     max-width: 90vw;

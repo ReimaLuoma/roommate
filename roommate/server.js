@@ -8,10 +8,11 @@ mongoose.connect('mongodb+srv://' + process.env.MONGO_USER +':' + process.env.MO
     sslValidate: false
 });
 const db = mongoose.connection;
-db.on('error', (error) => console.log(error));
+db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('connected to database'));
 
 app.use(express.json());
+
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
 app.listen(3000, () => console.log('server started'));

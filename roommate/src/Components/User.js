@@ -11,6 +11,8 @@ const User = ({user}) => {
     //console.log(user.signInUserSession.idToken.payload['cognito:groups']);
     const userGroup = user.signInUserSession.idToken.payload['cognito:groups'];
 
+    console.log(user.attributes);
+
     if(userGroup.includes('admin')){
         return (
             <section>
@@ -20,7 +22,7 @@ const User = ({user}) => {
                     <div className="col-6 d-flex justify-content-end align-items-center">
                         <Add />
                         <Remove />
-                        <Account userName={user.attributes.name}/>
+                        <Account userInfo={user.attributes}/>
                         <SignOutButton />
                     </div>
                 </div>
