@@ -31,20 +31,57 @@ const Account = ({userInfo}) => {
                 <AccountCircleIcon sx={{fontSize: '6rem'}}/>
                 <h1>Profile</h1>
                 <br />
-                <p><b>First Name:</b> {userInfo.name}</p>
-                <p><b>Family Name:</b> {userInfo.family_name}</p>
-                <p><b>Email:</b> {userInfo.email}</p>
-                <p><b>Phone:</b> {userInfo.phone_number}</p>
+
+                <div className="row">
+                    <div className="col-4">
+                        <h5>First Name:</h5>
+                    </div>
+                    <div className="col">
+                        <h5>{userInfo.name}</h5>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-4">
+                        <h5>Family Name:</h5>
+                    </div>
+                    <div className="col">
+                        <h5>{userInfo.family_name}</h5>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-4">
+                        <h5>Email:</h5>
+                    </div>
+                    <div className="col">
+                        <h5>{userInfo.email}</h5>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-4">
+                        <h5>Phone:</h5>
+                    </div>
+                    <div className="col">
+                        <h5>{userInfo.phone_number}</h5>
+                    </div>
+                </div>
 
                 <br />
-                <Button variant='contained' sx={{color: 'black',
-                                                bgcolor: '#e2c34b',
-                                                mr:3,
-                                                borderRadius: 2,
-                                                boxShadow: '3px 3px #1c1c1c',
-                                                ':hover': {bgcolor: '#ffdc54',
-                                                            color: '#2c2c2c',
-                                                            boxShadow: '3px 3px #1c1c1c'} }}>Edit</Button>
+                <div className="col">
+                    <Button variant='contained'
+                            sx={{color: 'black',
+                                bgcolor: '#e2c34b',
+                                mr:3,
+                                borderRadius: 2,
+                                boxShadow: '3px 3px #1c1c1c',
+                                ':hover': {bgcolor: '#ffdc54',
+                                            color: '#2c2c2c',
+                                            boxShadow: '3px 3px #1c1c1c'} 
+                                }}
+                    >Edit</Button>
+                </div>
             </div>
 
         </Box>

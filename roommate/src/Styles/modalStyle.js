@@ -4,7 +4,7 @@ const style = {
     left: '49.7%',
     transform: 'translate(-50%, -50%)',
     width: '32rem',
-    minHeight: '45rem',
+    minHeight: '46rem',
     bgcolor: '#2c2c2c',
     borderRadius: '15px',
     boxShadow: 24,

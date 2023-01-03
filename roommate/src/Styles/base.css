@@ -60,7 +60,7 @@ body {
   padding: auto;
 }
 
-.profilePage b {
+.profilePage .row div:first-child {
   color: #e2c34b;
 }
 
