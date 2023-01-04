@@ -3,16 +3,18 @@ const app = express();
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb+srv://' + process.env.MONGO_USER +':' + process.env.MONGO_PASSWORD +'@roommate-cluster.pvvjw2q.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect(process.env.DATABASE,{
    ssl: true,
     sslValidate: false
 });
+
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('connected to database'));
 
 app.use(express.json());
 
-const usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
+// Movies
+const moviesRouter = require('./routes/movies');
+app.use('/movies', moviesRouter);
 app.listen(3000, () => console.log('server started'));
