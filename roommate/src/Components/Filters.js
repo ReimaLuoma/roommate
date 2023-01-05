@@ -4,7 +4,6 @@ import MultipleSelectPlaceholder from './MultipleSelectPlaceholder';
 import Search from './Search';
 import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
 import { languageAndArea } from '../Atoms/LanguageSetting';
-import { selectedFilterItem } from '../Atoms/FilterSelectionItems';
 import axios from 'axios';
 import env from 'react-dotenv';
 
@@ -37,7 +36,7 @@ const genres = [
 ];
 
 const Filters = () => {
-    const [selectedItem, setSelectedItem] = useRecoilState(selectedFilterItem);
+    const [selectedItem, setSelectedItem] = useState([]);
     const [movies] = useRecoilState(moviesInfo);
     const [moviesToDisplay, setMoviesToDisplay] = useRecoilState(moviesDisplay);
     const [filterItems, setFilterItems] = useState([]);
@@ -63,9 +62,9 @@ const Filters = () => {
 
     useEffect(() => {
         filterGenres();
-      },[selectedItem, filterItems]);
+    },[selectedItem, filterItems]);
     
-      const filterGenres = () => {
+    const filterGenres = () => {
         // reset
         setMoviesToDisplay(movies);
         // generate dictionary for genre/id
@@ -82,11 +81,15 @@ const Filters = () => {
         }
     };
 
+    const onFilterSelect = (dataFromMultipleSelectPlaceholder) => {
+        setSelectedItem(dataFromMultipleSelectPlaceholder);
+    };
+
     return (
         <section>
             <div className="row">
                 <div className="col-6 col-lg-8 col-md-12 filter-columns mb-lg-5">
-                    <MultipleSelectPlaceholder placeholder={"genres"} selectionItems={genresList}/>
+                    <MultipleSelectPlaceholder placeholder={"genres"} selectionItems={genresList} onFilterSelect={onFilterSelect}/>
                     <MultipleSelectPlaceholder placeholder={"duration"} selectionItems={duration} />
                 </div>
                 <div className="col-6 col-lg-4 col-md-12 d-flex justify-content-end mb-5 mt-5">

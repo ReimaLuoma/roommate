@@ -4,8 +4,6 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useRecoilState } from 'recoil';
-import { selectedFilterItem } from '../Atoms/FilterSelectionItems';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -27,9 +25,9 @@ const getStyles = (name, genreName, theme) => {
   };
 }
 
-const MultipleSelectPlaceholder = ({placeholder, selectionItems}) => {
+const MultipleSelectPlaceholder = ({placeholder, selectionItems, onFilterSelect}) => {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = useRecoilState(selectedFilterItem);
+  const [selectedItem, setSelectedItem] = useState([]);
   const [selectionList, setSelectionList] = useState([]);
 
   useEffect(() => {
@@ -68,7 +66,7 @@ const MultipleSelectPlaceholder = ({placeholder, selectionItems}) => {
           multiple
           displayEmpty
           value={selectedItem}
-          onChange={handleChange}
+          onChange={e => {handleChange(e); onFilterSelect(selectedItem)}}
           input={<OutlinedInput />}
           renderValue={(selected) => {
             if (selected.length === 0) {
