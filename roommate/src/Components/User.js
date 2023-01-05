@@ -11,7 +11,7 @@ const User = ({user}) => {
     //console.log(user.signInUserSession.idToken.payload['cognito:groups']);
     const userGroup = user.signInUserSession.idToken.payload['cognito:groups'];
 
-    console.log(user.attributes);
+    //console.log(user.attributes);
 
     if(userGroup.includes('admin')){
         return (

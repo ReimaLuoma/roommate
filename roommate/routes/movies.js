@@ -6,7 +6,7 @@ const Movie = require('../models/movie');
 // router.METHOD(PATH, HANDLER)
 
 // Get
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     
 })
 
