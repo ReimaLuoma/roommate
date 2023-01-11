@@ -69,7 +69,8 @@ body {
 }
 
 .card {
-    padding: 0;
+    padding: auto;
+    min-height: 27rem;
 }
 
 .card-body {
