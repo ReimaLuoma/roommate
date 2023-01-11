@@ -1,9 +1,11 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useRecoilState } from 'recoil';
+import { selectedFilter } from '../Atoms/FilterSelectionItems';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -25,19 +27,14 @@ const getStyles = (name, genreName, theme) => {
   };
 }
 
-const MultipleSelectPlaceholder = ({placeholder, selectionItems, onFilterSelect}) => {
+const MultipleSelectPlaceholder = ({ placeholder, selectionItems, filterToDisplay }) => {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = useState([]);
-  const [selectionList, setSelectionList] = useState([]);
-
-  useEffect(() => {
-    setSelectionList(selectionItems);
-  },[])
+  const [selectedItem, setSelectedItem] = useRecoilState(selectedFilter);
 
   const optionsList = () => {
 
     return (
-      selectionList.map((name) => (
+      selectionItems.map((name) => (
         <MenuItem
           key={name}
           value={name}
@@ -49,10 +46,15 @@ const MultipleSelectPlaceholder = ({placeholder, selectionItems, onFilterSelect}
     )
   };
 
+  useEffect(() => {
+    //console.log(selectedItem)
+  })
+
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
+
     setSelectedItem(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
@@ -66,7 +68,7 @@ const MultipleSelectPlaceholder = ({placeholder, selectionItems, onFilterSelect}
           multiple
           displayEmpty
           value={selectedItem}
-          onChange={e => {handleChange(e); onFilterSelect(selectedItem)}}
+          onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
             if (selected.length === 0) {

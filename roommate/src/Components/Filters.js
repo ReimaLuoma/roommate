@@ -1,11 +1,13 @@
 import React, { useEffect, useState} from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import MultipleSelectPlaceholder from './MultipleSelectPlaceholder';
 import Search from './Search';
-import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
 import { languageAndArea } from '../Atoms/LanguageSetting';
 import axios from 'axios';
 import env from 'react-dotenv';
+import { Chip } from '@mui/material';
+import { selectedFilter, selectedGenreFilter } from '../Atoms/FilterSelectionItems';
+import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
 
 const duration = [
     'less than 90 min',
@@ -36,13 +38,13 @@ const genres = [
 ];
 
 const Filters = () => {
-    const [selectedItem, setSelectedItem] = useState([]);
-    const [movies] = useRecoilState(moviesInfo);
-    const [moviesToDisplay, setMoviesToDisplay] = useRecoilState(moviesDisplay);
-    const [filterItems, setFilterItems] = useState([]);
-    const [genresListRaw, setGenresListRaw] = useState([]);
+    const setGenresListRaw = useSetRecoilState(selectedGenreFilter);
     const [genresList, setGenresList] = useState(genres);
+    const [selectedFilterItem, setSelectedFilterItem] = useRecoilState(selectedFilter);
     const language = useRecoilValue(languageAndArea);
+    const movies = useRecoilValue(moviesInfo);
+    const genresListRaw = useRecoilValue(selectedGenreFilter);
+    const setMoviesToDisplay = useSetRecoilState(moviesDisplay);
     const genreMap = new Map();
 
     //Fetch initial data
@@ -50,50 +52,94 @@ const Filters = () => {
         axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language).then((response) => {
         const arr = response.data.genres;
 
+        // generate dictionary for genre/id
+        setGenresListRaw(arr);
+
         //List for 'genres'-filter dropdown element
         const arr2 = arr.map(item => {return item.name});
         setGenresList(arr2);
-        setGenresListRaw(arr);
 
         }).catch(err => {
         console.log(err);
         })
-    }, []);
+    }, [language]);
 
     useEffect(() => {
-        filterGenres();
-    },[selectedItem, filterItems]);
-    
-    const filterGenres = () => {
-        // reset
-        setMoviesToDisplay(movies);
-        // generate dictionary for genre/id
-        genresListRaw.map(item => genreMap.set(item.name,item.id));
-        // generate filter items into state
-        setFilterItems(genreMap.get(selectedItem[selectedItem.length-1]));
-        // create new list based on filtered items
-        const newList = movies.filter(movie => movie.genre_ids.includes(filterItems));
-        // display new list of items
-        if(newList == ""){
-          setMoviesToDisplay(movies);
-        }else {
-          setMoviesToDisplay(newList);
+        filterToDisplay();
+    }, [selectedFilterItem])
+
+    const handleDelete = (e) => {
+
+        const arr = [...selectedFilterItem];
+        const index = arr.indexOf(e.item);
+
+        if(index !== -1){
+            arr.splice(index, 1);
+            setSelectedFilterItem(arr);
         }
+
+        filterToDisplay();
     };
 
-    const onFilterSelect = (dataFromMultipleSelectPlaceholder) => {
-        setSelectedItem(dataFromMultipleSelectPlaceholder);
+    const filterToDisplay = () => {
+        
+        // reset movies for filttering
+        let list = [...movies];
+    
+        // check if items to filter
+        if(selectedFilterItem.length !== 0){
+            
+            // set new filter list from selected items
+            // Genres:
+    
+            // generate dictionary for genre/id
+            genresListRaw.map(item => genreMap.set(item.name,item.id));
+            
+            // generate filter items into array
+            let items = [];
+            for(let i = 0; i < selectedFilterItem.length; i++){
+                items.push(genreMap.get(selectedFilterItem[i]));
+            }
+            console.log('items', items, typeof items)
+
+            // create new list based on filter items array
+
+            let itemsOfMatch = [];
+            for(let i = 0; i < items.length; i++){
+                itemsOfMatch.push(movies.filter(movie => movie.genre_ids.includes(items[i])));
+            }
+
+            // flatten itemsOfMatch into single array and set only uniques in list
+            let newlist = itemsOfMatch.flat(1);
+            list = [...new Set(newlist)];
+    
+            // Duration:
+    
+        }
+    
+        setMoviesToDisplay(list);
     };
 
     return (
         <section>
-            <div className="row">
-                <div className="col-6 col-lg-8 col-md-12 filter-columns mb-lg-5">
-                    <MultipleSelectPlaceholder placeholder={"genres"} selectionItems={genresList} onFilterSelect={onFilterSelect}/>
+            <div className="row mb-3">
+                <div className="col-6 col-lg-8 col-md-12 filter-columns">
+                    <MultipleSelectPlaceholder placeholder={"genres"} selectionItems={genresList} />
                     <MultipleSelectPlaceholder placeholder={"duration"} selectionItems={duration} />
                 </div>
-                <div className="col-6 col-lg-4 col-md-12 d-flex justify-content-end mb-5 mt-5">
+                <div className="col-6 col-lg-4 col-md-12 d-flex justify-content-end mt-5">
                     <Search />
+                </div>
+            </div>
+            <div className='row mb-3'>
+                <div>
+                    {
+                        selectedFilterItem.length !== 0
+                        ? selectedFilterItem.map((item, index) => {
+                            return <Chip key={index} label={item} value={item} onDelete={() => handleDelete({item})} sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px', marginRight: 1 }}/>
+                        })
+                        : <Chip label='Popular' sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px', marginRight: 2 }}/>
+                    }
                 </div>
             </div>
       </section>
