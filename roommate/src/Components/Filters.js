@@ -73,6 +73,10 @@ const Filters = () => {
         const arr = [...selectedFilterItem];
         const index = arr.indexOf(e.item);
 
+        if(e.item === undefined){
+            setSelectedFilterItem([]);
+        }
+
         if(index !== -1){
             arr.splice(index, 1);
             setSelectedFilterItem(arr);
@@ -100,7 +104,6 @@ const Filters = () => {
             for(let i = 0; i < selectedFilterItem.length; i++){
                 items.push(genreMap.get(selectedFilterItem[i]));
             }
-            console.log('items', items, typeof items)
 
             // create new list based on filter items array
 
@@ -133,6 +136,10 @@ const Filters = () => {
             </div>
             <div className='row mb-3'>
                 <div>
+                    {
+                        selectedFilterItem.length !== 0 &&
+                        <Chip label='selected genres' onDelete={() => handleDelete('')} sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px', marginRight: 1 }}/>
+                    }
                     {
                         selectedFilterItem.length !== 0
                         ? selectedFilterItem.map((item, index) => {
