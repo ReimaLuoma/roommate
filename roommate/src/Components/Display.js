@@ -13,12 +13,12 @@ const Display = () => {
     const language = useRecoilValue(languageAndArea);
 
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language +'&page=1').then(response => {
-            setMovies(response.data.results);
-            setMoviesToDisplay(response.data.results);
-        }).catch(err => {
-            console.log(err);
-        })
+        fetch('http://localhost:8000')
+            .then((response) => response.json())
+            .then((data) => {
+                setMovies(data);
+                setMoviesToDisplay(data);
+            });
     }, [language]);
 
     return (
