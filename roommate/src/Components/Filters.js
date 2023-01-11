@@ -138,7 +138,7 @@ const Filters = () => {
                 <div>
                     {
                         selectedFilterItem.length !== 0 &&
-                        <Chip label='selected genres' onDelete={() => handleDelete('')} sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px', marginRight: 1 }}/>
+                        <Chip label='selected genres' onDelete={() => handleDelete('')} sx={{ bgcolor: '#ff0000', color: 'white', boxShadow: '2px 2px 3px black', marginRight: 1 }}/>
                     }
                     {
                         selectedFilterItem.length !== 0
