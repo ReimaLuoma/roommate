@@ -24,15 +24,6 @@ const moviesRouter = require('./routes/movies');
 app.use('/movies', moviesRouter);
 app.listen(PORT, () => console.log('server started'));
 
-// Popular
-app.get('/', async (req, res) => {
-    try {
-        const response = await axios({
-            url: 'https://api.themoviedb.org/3/movie/popular?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-US&page=1',
-            method: 'get',
-        });
-        res.status(200).json(response.data.results);
-    } catch (error) {
-        res.status(500).json({ message: error });
-    }
-})
+// TMDB
+const tmdbRouter = require('./routes/TMDB');
+app.use('/tmdb', tmdbRouter);

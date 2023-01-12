@@ -3,8 +3,6 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import MultipleSelectPlaceholder from './MultipleSelectPlaceholder';
 import Search from './Search';
 import { languageAndArea } from '../Atoms/LanguageSetting';
-import axios from 'axios';
-import env from 'react-dotenv';
 import { Chip } from '@mui/material';
 import { selectedFilter, selectedGenreFilter } from '../Atoms/FilterSelectionItems';
 import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
@@ -49,19 +47,15 @@ const Filters = () => {
 
     //Fetch initial data
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language).then((response) => {
-        const arr = response.data.genres;
-
-        // generate dictionary for genre/id
-        setGenresListRaw(arr);
-
-        //List for 'genres'-filter dropdown element
-        const arr2 = arr.map(item => {return item.name});
-        setGenresList(arr2);
-
-        }).catch(err => {
-        console.log(err);
-        })
+        fetch('http://localhost:8000/tmdb/genres')
+            .then((response) => response.json())
+            .then((data) => {
+                // generate dictionary for genre/id
+                setGenresListRaw(data);
+                //List for 'genres'-filter dropdown element
+                const arr = data.map(item => {return item.name});
+                setGenresList(arr);
+            });
     }, [language]);
 
     useEffect(() => {

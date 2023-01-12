@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import MovieCard from "./MovieCard";
-import env from 'react-dotenv';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
 import { languageAndArea } from '../Atoms/LanguageSetting';
@@ -13,7 +11,7 @@ const Display = () => {
     const language = useRecoilValue(languageAndArea);
 
     useEffect(() => {
-        fetch('http://localhost:8000')
+        fetch('http://localhost:8000/tmdb/popular')
             .then((response) => response.json())
             .then((data) => {
                 setMovies(data);
