@@ -11,7 +11,7 @@ const Display = () => {
     const language = useRecoilValue(languageAndArea);
 
     useEffect(() => {
-        fetch('https://rvc6yx5eg7.execute-api.eu-north-1.amazonaws.com/master/tmdb/popular')
+        fetch(process.env.SERVER_API + '/tmdb/popular')
             .then((response) => response.json())
             .then((data) => {
                 setMovies(data);

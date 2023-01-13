@@ -9,7 +9,7 @@ const MovieCard = ({ poster_path, id = 0, release_date }) => {
     const [runtime, setRuntime] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8000/tmdb/movie/'+id)
+        fetch(process.env.SERVER_API + '/tmdb/movie/'+id)
             .then((response) => response.json())
             .then((data) => {
                 setRuntime(data.runtime)

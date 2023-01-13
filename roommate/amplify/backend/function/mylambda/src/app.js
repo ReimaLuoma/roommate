@@ -38,12 +38,13 @@ app.use('/tmdb', tmdbRouter);
  * Example get method *
  **********************/
 
-app.get('/items', function(req, res) {
+app.get('/', function(req, res) {
   // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+  const items = ['hello', 'world'];
+  res.json({success: 'get call succeed!', items});
 });
 
-app.get('/items/*', function(req, res) {
+app.get('/*', function(req, res) {
   // Add your code here
   res.json({success: 'get call succeed!', url: req.url});
 });
