@@ -8,7 +8,6 @@ backend:
     build:
       commands:
         - amplifyPush --simple
-        - npm run devStart
 
 frontend:
   phases:

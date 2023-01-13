@@ -3,6 +3,7 @@ import MovieCard from "./MovieCard";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
 import { languageAndArea } from '../Atoms/LanguageSetting';
+import { API } from "aws-amplify";
 
 const Display = () => {
 
@@ -11,12 +12,9 @@ const Display = () => {
     const language = useRecoilValue(languageAndArea);
 
     useEffect(() => {
-        fetch('http://localhost:8000/tmdb/popular')
-            .then((response) => response.json())
-            .then((data) => {
-                setMovies(data);
-                setMoviesToDisplay(data);
-            });
+        const popular = API.get('myapi', '/tmdb/popular');
+        setMovies(popular);
+        setMoviesToDisplay(popular);
     }, [language]);
 
     return (
