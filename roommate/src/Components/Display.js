@@ -12,10 +12,14 @@ const Display = () => {
     const language = useRecoilValue(languageAndArea);
 
     useEffect(() => {
-        const popular = API.get('myapi', '/tmdb/popular');
-        setMovies(popular);
-        setMoviesToDisplay(popular);
+        fetchData();
     }, [language]);
+
+    const fetchData = async () => {
+        const data = await API.get('myapi', '/tmdb/popular');
+        setMovies(data);
+        setMoviesToDisplay(data);
+    }
 
     return (
         <section>
