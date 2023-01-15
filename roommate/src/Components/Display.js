@@ -11,7 +11,7 @@ const Display = () => {
     const language = useRecoilValue(languageAndArea);
 
     useEffect(() => {
-        fetch(process.env.SERVER_API + '/tmdb/popular')
+        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/popular', {method: 'GET', headers: {"X-Auth-Token": process.env.REACT_APP_SERVER_API, 'Content-Type': 'application/json'}})
             .then((response) => response.json())
             .then((data) => {
                 setMovies(data);
