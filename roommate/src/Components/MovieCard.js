@@ -9,7 +9,7 @@ const MovieCard = ({ poster_path, id = 0, release_date }) => {
     const [runtime, setRuntime] = useState([]);
 //'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
     useEffect(() => {
-        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/movie/'+id, {method: 'GET', headers: {'Content-Type': 'application/json', 'X-Amz-Date': Date, 'X-Api-Key':process.env.REACT_APP_SERVER_API}})
+        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/movie/'+id, {method: 'GET', headers: {'Content-Type': 'application/json','X-Api-Key':process.env.REACT_APP_SERVER_API}})
             .then((response) => response.json())
             .then((data) => {
                 setRuntime(data.runtime)
