@@ -47,7 +47,7 @@ const Filters = () => {
 
     //Fetch initial data
     useEffect(() => {
-        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/genres', {method: 'GET', headers:{'Content-Type': any}})
+        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/genres', {method: 'GET', headers:{'Content-Type': 'application-json'}})
             .then((response) => response.json())
             .then((data) => {
                 // generate dictionary for genre/id
