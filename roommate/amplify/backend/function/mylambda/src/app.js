@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 });
 
 // TMDB
-const tmdbRouter = require('../../../../../routes/TMDB');
+const tmdbRouter = require('../routes/TMDB');
 app.use('/tmdb', tmdbRouter);
 
 
