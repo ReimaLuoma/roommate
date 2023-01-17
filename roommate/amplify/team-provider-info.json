@@ -12,9 +12,6 @@
       "AmplifyAppId": "d25iv8mz7ephi7"
     },
     "categories": {
-      "auth": {
-        "roommate": {}
-      },
       "function": {
         "mylambda": {
           "deploymentBucketName": "amplify-roommate-master-93706-deployment",
