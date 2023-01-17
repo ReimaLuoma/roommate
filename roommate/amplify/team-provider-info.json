@@ -21,6 +21,9 @@
       },
       "api": {
         "myapi": {}
+      },
+      "auth": {
+        "roommatef6cdfcf4": {}
       }
     }
   }
