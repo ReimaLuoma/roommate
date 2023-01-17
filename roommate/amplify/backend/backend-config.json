@@ -67,6 +67,14 @@
         }
       ]
     },
+    "AMPLIFY_function_mylambda_reactAppTmdbApiKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "mylambda"
+        }
+      ]
+    },
     "AMPLIFY_function_mylambda_s3Key": {
       "usedBy": [
         {
