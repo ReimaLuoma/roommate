@@ -42,7 +42,7 @@ router.get('/movie/:id', async (req, res) => {
     }
 })
 
-router.get('/movie/:searchValue', async (req, res) => {
+router.get('/searchMovie/:searchValue', async (req, res) => {
     try {
         const response = await axios({
             url: 'https://api.themoviedb.org/3/search/movie?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-US&query=' + req.params.searchValue + '&page=1&include_adult=false',

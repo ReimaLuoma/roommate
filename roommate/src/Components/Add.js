@@ -20,7 +20,7 @@ const Add = () => {
         if(isInitialMount.current){
             isInitialMount.current = false;
         }else{
-            fetch(process.env.REACT_APP_SERVER_API + '/tmdb/movie/' + searchValue)
+            fetch(process.env.REACT_APP_SERVER_API + '/tmdb/searchMovie/' + searchValue)
             .then((response) => response.json())
             .then((data) => {
                 const arr = [];
