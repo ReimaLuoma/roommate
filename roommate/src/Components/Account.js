@@ -20,7 +20,7 @@ const Account = ({userInfo}) => {
         open={open}
         onClose={handleClose}
         aria-labelledby='add movie'
-        aria-describeby='add movie by giving movie title and choosing from returned options'
+        aria-describedby='add movie by giving movie title and choosing from returned options'
         >
         <Box sx={style}>
             <div className="d-flex justify-content-end">

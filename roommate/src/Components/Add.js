@@ -6,17 +6,12 @@ import Modal from '@mui/material/Modal';
 import Search from './Search';
 import MovieCardListView from "./MovieCardListView";
 import CloseIcon from '@mui/icons-material/Close';
-import axios from "axios";
-import env from 'react-dotenv';
-import { languageAndArea } from '../Atoms/LanguageSetting';
-import { useRecoilValue } from 'recoil';
 import style from '../Styles/modalStyle';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const language = useRecoilValue(languageAndArea);
     const [searchValue, setSearchValue] = useState("");
     const isInitialMount = useRef(true);
     const [foundMovies, setFoundMovies] = useState([]);
@@ -25,15 +20,16 @@ const Add = () => {
         if(isInitialMount.current){
             isInitialMount.current = false;
         }else{
-            axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + env.REACT_APP_TMDB_API_KEY + '&language='+ language +'&query=' + searchValue + '&page=1&include_adult=false').then((response) => {
+            fetch(process.env.REACT_APP_SERVER_API + '/tmdb/movie/' + searchValue)
+            .then((response) => response.json())
+            .then((data) => {
                 const arr = [];
+                console.log(data)
                 for(let i = 0; i < 4; i++){
-                    arr.push(response.data.results[i])
+                    //arr.push(data.data.results[i])
                 }
-                setFoundMovies(arr);
-            }).catch(err => {
-                console.log(err);
-            })
+                //setFoundMovies(arr);
+            });
         }
     }, [searchValue])
 
@@ -50,7 +46,7 @@ const Add = () => {
             open={open}
             onClose={handleClose}
             aria-labelledby='add movie'
-            aria-describeby='add movie by giving movie title and choosing from returned options'
+            aria-describedby='add movie by giving movie title and choosing from returned options'
         >
             <Box sx={style}>
                 <div className="d-flex justify-content-end">
