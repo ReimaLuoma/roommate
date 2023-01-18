@@ -22,10 +22,7 @@ app.use(awsServerlessExpressMiddleware.eventContext())
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.DATABASE,{
-   ssl: true,
-    sslValidate: false
-});
+mongoose.connect(process.env.DATABASE);
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
