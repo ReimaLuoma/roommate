@@ -15,7 +15,7 @@
       "function": {
         "mylambda": {
           "deploymentBucketName": "amplify-roommate-master-93706-deployment",
-          "s3Key": "amplify-builds/mylambda-2b455a424643694c5863-build.zip",
+          "s3Key": "amplify-builds/mylambda-4c714572657950367465-build.zip",
           "reactAppTmdbApiKey": "b0beaa773915386f3f890d7aa8d0625d"
         }
       },
