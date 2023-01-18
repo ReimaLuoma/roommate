@@ -24,9 +24,8 @@ const Add = () => {
             .then((response) => response.json())
             .then((data) => {
                 const arr = [];
-                console.log(data);
                 for(let i = 0; i < 4; i++){
-                    arr.push(data.data.results[i])
+                    arr.push(data.results[i])
                 }
                 setFoundMovies(arr);
             });
