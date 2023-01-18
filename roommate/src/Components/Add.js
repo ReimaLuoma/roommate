@@ -23,6 +23,7 @@ const Add = () => {
             fetch(process.env.REACT_APP_SERVER_API + '/tmdb/searchMovie/' + searchValue)
             .then((response) => response.json())
             .then((data) => {
+                console.log(data)
                 const arr = [];
                 for(let i = 0; i < 4; i++){
                     arr.push(data.results[i])

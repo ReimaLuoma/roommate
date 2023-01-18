@@ -13,7 +13,7 @@ const Account = ({userInfo}) => {
     return (
         <>
         <Button variant='text' sx={{color: 'white', mr: 3, borderRadius: 2}} onClick={handleOpen}>
-            <AccountCircleIcon sx={{mr:1}}/>{userInfo.name}
+            <AccountCircleIcon sx={{mr:1}}/>{userInfo.given_name}
         </Button>
 
         <Modal
@@ -37,7 +37,7 @@ const Account = ({userInfo}) => {
                         <h5>First Name:</h5>
                     </div>
                     <div className="col">
-                        <h5>{userInfo.name}</h5>
+                        <h5>{userInfo.given_name}</h5>
                     </div>
                 </div>
 

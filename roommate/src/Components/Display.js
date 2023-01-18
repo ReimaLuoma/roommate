@@ -19,17 +19,23 @@ const Display = () => {
             });
     }, [language]);
 
-    return (
-        <section>
-            <div className="row justify-content-center">
-                {
-                    moviesToDisplay.map((movie, index) => {
-                        return <MovieCard key={index} {...movie} />
-                    })
-                }
-            </div>
-      </section>
-    )
+    if(moviesToDisplay.length !== 0){
+        return (
+            <section>
+                <div className="row justify-content-center">
+                    {
+                        moviesToDisplay.map((movie, index) => {
+                            return <MovieCard key={index} {...movie} />
+                        })
+                    }
+                </div>
+          </section>
+        )
+    }else{
+        return <section>
+            <h1 style={{color: 'white'}}>wow! such empty place...</h1>
+        </section>
+    }
 }
 
 export default Display;

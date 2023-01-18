@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 const poster_URL = (posterpath) => {
     return 'https://image.tmdb.org/t/p/w500' + posterpath;
