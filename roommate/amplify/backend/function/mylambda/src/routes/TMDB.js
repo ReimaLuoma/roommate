@@ -33,7 +33,7 @@ router.get('/genres', async (req, res) => {
 router.get('/movie/:id', async (req, res) => {
     try {
         const response = await axios({
-            url: 'https://api.themoviedb.org/3/movie/'+req.params.id+'?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-EN',
+            url: 'https://api.themoviedb.org/3/movie/' + req.params.id + '?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-EN',
             method: 'get',
         });
         res.status(200).json(response.data);
@@ -43,14 +43,17 @@ router.get('/movie/:id', async (req, res) => {
 })
 
 router.get('/searchMovie/:searchValue', async (req, res) => {
+    console.log(req.params.searchValue);
     try {
         const response = await axios({
             url: 'https://api.themoviedb.org/3/search/movie?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-US&query=' + req.params.searchValue + '&page=1&include_adult=false',
             method: 'get',
         });
+        console.log(response);
         res.status(200).json(response);
     } catch (error) {
-        res.status(500).json({ message: error });
+        console.log(error);
+        res.status(error).json({ message: error });
     }
 })
 
