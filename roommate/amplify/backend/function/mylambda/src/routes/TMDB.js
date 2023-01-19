@@ -51,7 +51,7 @@ router.get('/searchMovie/:searchValue', async (req, res) => {
         });
         res.status(200).json(response);
     } catch (error) {
-        res.status(error).json({ message: error });
+        res.status(500).json({ message: error });
     }
 })
 
