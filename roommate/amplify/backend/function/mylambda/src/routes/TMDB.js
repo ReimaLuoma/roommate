@@ -49,10 +49,8 @@ router.get('/searchMovie/:searchValue', async (req, res) => {
             url: 'https://api.themoviedb.org/3/search/movie?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-US&query=' + req.params.searchValue + '&page=1&include_adult=false',
             method: 'get',
         });
-        console.log(response);
         res.status(200).json(response);
     } catch (error) {
-        console.log(error);
         res.status(error).json({ message: error });
     }
 })
