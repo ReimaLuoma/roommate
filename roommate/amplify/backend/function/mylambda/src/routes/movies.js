@@ -21,12 +21,12 @@ router.get('/:id', async (req, res) => {
 })
 
 // Create
-router.post('/', async (req, res) => {
+router.post('/:id/:title/:runtime/:genres', async (req, res) => {
     const movie = new Movie({
         movieID: req.body.id,
         title: req.body.title,
         runtime: req.body.runtime,
-        genre: req.body.genre
+        genres: req.body.genres
     })
     try {
         const newMovie = await movie.save();

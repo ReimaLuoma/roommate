@@ -13,7 +13,7 @@ const movieSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    genre: {
+    genres: {
         type: Array,
         required: true
     },
