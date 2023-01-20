@@ -9,7 +9,7 @@ const MovieCardListView = ({ poster_path, title }) => {
     
     return (
         <div className="row mt-2">
-            <Card sx={{display: 'flex', bgcolor: '#2c2c2c', color: 'white', boxShadow: '3px 3px #1c1c1c', paddingLeft:0}}>
+            <Card sx={{display: 'flex', borderTop: 'solid 1px #3c3c3c', borderLeft: 'solid 1px #3c3c3c', bgcolor: '#2c2c2c', color: 'white', boxShadow: '3px 3px #1c1c1c', paddingLeft:0}}>
                 <div className="col-2">
                     <img src={poster_URL(poster_path)} className='card-img-top img-fluid' alt='...'></img>
                 </div>
