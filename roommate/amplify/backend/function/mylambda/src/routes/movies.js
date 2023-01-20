@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie');
 
+// mongoose and database setup
+const mongoose = require('mongoose');
+
+mongoose.set('strictQuery', true);
+mongoose.connect(process.env.DATABASE);
+
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('connected to database'));
+
 // SYNTAX:
 // router.METHOD(PATH, HANDLER)
 

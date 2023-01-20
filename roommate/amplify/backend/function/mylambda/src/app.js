@@ -18,16 +18,6 @@ const app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
-// mongoose and database setup
-const mongoose = require('mongoose');
-
-mongoose.set('strictQuery', true);
-mongoose.connect(process.env.DATABASE);
-
-const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('connected to database'));
-
 // Enable CORS for all methods
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
