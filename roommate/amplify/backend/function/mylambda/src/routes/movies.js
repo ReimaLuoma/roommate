@@ -4,6 +4,7 @@ const Movie = require('../models/movie');
 
 // mongoose and database setup
 const mongoose = require('mongoose');
+const { default: axios } = require('axios');
 
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.DATABASE);
@@ -11,6 +12,17 @@ mongoose.connect(process.env.DATABASE);
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('connected to database'));
+
+// TMDB router
+const app = express();
+const tmdbRouter = require('./TMDB');
+app.use('/tmdb', tmdbRouter);
+
+// Handler functions
+
+const retrieveDataById = (req, res, next) => {
+    next();
+}
 
 // SYNTAX:
 // router.METHOD(PATH, HANDLER)
@@ -21,19 +33,8 @@ router.get('/:id', async (req, res) => {
 })
 
 // Create
-router.post('/:id/:title/:runtime/:genres', async (req, res) => {
-    const movie = new Movie({
-        movieID: req.body.id,
-        title: req.body.title,
-        runtime: req.body.runtime,
-        genres: req.body.genres
-    })
-    try {
-        const newMovie = await movie.save();
-        res.status(201).json(newMovie);
-    } catch (error) {
-        console.error(400).json({ message: error.message });
-    }
+router.post('/addMovie/:id', async (req, res) => {
+    res.status(201).json({success: 'post call succeed!', url: req.url, body: req.body})
 })
 
 // Update

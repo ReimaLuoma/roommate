@@ -5,7 +5,17 @@ const poster_URL = (posterpath) => {
     return 'https://image.tmdb.org/t/p/w500' + posterpath;
 };
 
-const MovieCardListView = ({ poster_path, title }) => {
+const MovieCardListView = ({ id, poster_path, title }) => {
+
+    const addMovie = () => {
+        fetch(process.env.REACT_APP_SERVER_API + '/movies/addMovie/' + id)
+            .then((response) => {
+                if(!response.ok){
+                    console.log(response.status, 'something went wrong');
+                }
+                console.log(response.status, 'hello there');
+            })
+    }
     
     return (
         <div className="row mt-2">
@@ -17,7 +27,7 @@ const MovieCardListView = ({ poster_path, title }) => {
                     <h5>{title}</h5>
                 </div>
                 <div className="col ms-5 d-flex justify-content-end align-items-center">
-                    <Button variant='contained' sx={{color: 'black', bgcolor: '#e2c34b', mr:3, borderRadius: 2, boxShadow: '3px 3px #1c1c1c', ':hover': {bgcolor: '#ffdc54', color: '#2c2c2c', boxShadow: '3px 3px #1c1c1c'} }}>Add</Button>
+                    <Button variant='contained' id={id} onClick={addMovie} sx={{color: 'black', bgcolor: '#e2c34b', mr:3, borderRadius: 2, boxShadow: '3px 3px #1c1c1c', ':hover': {bgcolor: '#ffdc54', color: '#2c2c2c', boxShadow: '3px 3px #1c1c1c'} }}>Add</Button>
                 </div>
             </Card>
         </div>

@@ -25,10 +25,16 @@ app.use(function(req, res, next) {
   next()
 });
 
-// TMDB
+const cors = require('cors');
+app.use(cors());
+
+// TMDB router
 const tmdbRouter = require('./routes/TMDB');
 app.use('/tmdb', tmdbRouter);
 
+// Movies router
+const moviesRouter = require('./routes/movies');
+app.use('/movies', moviesRouter);
 
 /**********************
  * Example get method *
