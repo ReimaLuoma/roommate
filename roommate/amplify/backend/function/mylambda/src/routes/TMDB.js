@@ -30,16 +30,23 @@ router.get('/genres', async (req, res) => {
     }
 })
 
-router.get('/movie/:id', async (req, res) => {
+// fetch movie by id from tmdb
+
+const fetchMovieById = async (movieId) => {
     try {
         const response = await axios({
-            url: 'https://api.themoviedb.org/3/movie/' + req.params.id + '?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-EN',
+            url: 'https://api.themoviedb.org/3/movie/' + movieId + '?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-EN',
             method: 'get',
         });
-        res.status(200).json(response.data);
+        return response.data;
     } catch (error) {
-        res.status(500).json({ message: error });
+        return res.status(500).json({ message: error });
     }
+}
+
+router.get('/movie/:id', async (req, res) => {
+    const movie = await fetchMovieById(req.params.id);
+    res.json(movie);
 })
 
 router.get('/searchMovie/:searchValue', async (req, res) => {
@@ -71,3 +78,4 @@ router.delete('/:id', (req, res) => {
 })
 
 module.exports = router;
+exports.fetchMovieById = fetchMovieById;
