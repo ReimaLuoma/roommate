@@ -10,7 +10,8 @@
     "express": "^4.15.2",
     "axios": "^1.2.2",
     "mongoose": "^6.8.4",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "mongodb": "^4.13.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92"

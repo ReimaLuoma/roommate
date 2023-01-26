@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
 
 // TMDB router
 const tmdbRouter = require('./routes/TMDB');
-app.use('/tmdb', tmdbRouter);
+app.use('/tmdb', tmdbRouter.router);
 
 // Movies router
 const moviesRouter = require('./routes/movies');

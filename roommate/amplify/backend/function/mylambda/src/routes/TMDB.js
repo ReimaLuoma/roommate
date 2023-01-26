@@ -33,6 +33,7 @@ router.get('/genres', async (req, res) => {
 // fetch movie by id from tmdb
 
 const fetchMovieById = async (movieId) => {
+    console.log('attempting fetch data from TMDB');
     try {
         const response = await axios({
             url: 'https://api.themoviedb.org/3/movie/' + movieId + '?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-EN',
@@ -77,5 +78,4 @@ router.delete('/:id', (req, res) => {
 
 })
 
-module.exports = router;
-exports.fetchMovieById = fetchMovieById;
+module.exports = {router, fetchMovieById};

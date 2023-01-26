@@ -8,7 +8,7 @@ const poster_URL = (posterpath) => {
 const MovieCardListView = ({ id, poster_path, title }) => {
 
     const addMovie = () => {
-        fetch(process.env.REACT_APP_SERVER_API + '/movies/addMovie/' + id)
+        fetch(process.env.REACT_APP_SERVER_API + '/movies/addMovie/' + id, {method: 'POST'})
             .then((response) => {
                 if(!response.ok){
                     console.log(response.status, 'something went wrong');

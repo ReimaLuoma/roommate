@@ -1,23 +1,27 @@
-'use strict';
+const MongoClient = require('mongodb').MongoClient;
 
-const mongoose = require('mongoose');
+let cachedDb = null;
 
-let conn = null;
-
-const uri = process.env.DATABASE;
-
-exports.connect = async function() {
-  if (conn == null) {
-    conn = mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 5000,
-      //keepAlive: true,
-      //keepAliveInitialDelay:10000
-    }).then(() => mongoose);
-    
-    // `await`ing connection after assigning to the `conn` variable
-    // to avoid multiple function calls creating new connections
-    await conn;
+const connecToDatabase = async () => {
+  if(cachedDb) {
+    console.log('Use existing connection');
+    return Promise.resolve(cachedDb);
+  } else {
+    return MongoClient.connect(process.env.DATABASE, {
+      native_parser: true,
+      useUnifiedTopology: true,
+    })
+    .then((client) => {
+      let db = client.db('test');
+      console.log('New Database connection');
+      cachedDb = db;
+      return cachedDb;
+    })
+    .catch((error) => {
+      console.log('Mongo Connection error');
+      console.log(error);
+    })
   }
+}
 
-  return conn;
-};
+module.exports = {connecToDatabase};

@@ -3,25 +3,35 @@ const router = express.Router();
 const Movie = require('../models/movie');
 
 // tmdb functions
-const fetchMovieById = require('./TMDB');
+const tmdb = require('./TMDB');
 
 // mongoose and database setup
-// DO THIS WITH DATA API by MongoDB
+const mongo = require('./mongo');
 
 
 // SYNTAX:
 // router.METHOD(PATH, HANDLER)
 
 // Get
-router.get('/:id', async (req, res) => {
-    
+router.get('/find/:id', async (req, res) => {
+    const movie = await tmdb.fetchMovieById(req.params.id);
+    console.log(movie);
+    res.json(movie);
 })
 
 // Create
 router.post('/addMovie/:id', async (req, res) => {
-    const movieData = await fetchMovieById(req.params.id);
+
+    console.log('hello from addmovie!');
+
+    const movieData = await tmdb.fetchMovieById(req.params.id);
 
     console.log(movieData);
+
+    const db = await mongo.connectToDatabase();
+    const collection =  await db.collection('movies');
+
+    console.log(db);
 
     const movie = new Movie({
         movieID: movieData.id,
@@ -31,14 +41,10 @@ router.post('/addMovie/:id', async (req, res) => {
         posterpath: movieData.poster_path
     })
 
-    console.log(movie);
+    const newMovie = await collection.insertOne(movie);
 
-    try {
-        const newMovie = await movie.save();
-        res.status(201).json(newMovie);
-    } catch (error) {
-        res.error(400).json({ message: error.message });
-    }
+    res.status(201).json({ newMovie });
+
 })
 
 // Update
