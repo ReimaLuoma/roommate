@@ -16,6 +16,7 @@ const UserApp = ({ signout, user }) => {
     <div className="container">
       <User user={user}/>
       <Filters />
+      <Display />
     </div>
   )
 }

@@ -13,32 +13,32 @@ const mongo = require('./mongo');
 // router.METHOD(PATH, HANDLER)
 
 // Get
-router.get('/find/:id', async (req, res) => {
-    const movie = await tmdb.fetchMovieById(req.params.id);
-    console.log(movie);
-    res.json(movie);
+router.get('/find/all', async (req, res) => {
+    const db = await mongo.connectToDatabase();
+    const collection =  await db.collection('movies');
+
+    const cursor = await collection.find(); // return cursor
+    const allValues = await cursor.toArray(); // return array of all docs
+    console.log(allValues);
+
+    res.json(allValues);
 })
 
 // Create
 router.post('/addMovie/:id', async (req, res) => {
 
-    console.log('hello from addmovie!');
-
     const movieData = await tmdb.fetchMovieById(req.params.id);
-
-    console.log(movieData);
 
     const db = await mongo.connectToDatabase();
     const collection =  await db.collection('movies');
-
-    console.log(db);
 
     const movie = new Movie({
         movieID: movieData.id,
         title: movieData.title,
         runtime: movieData.runtime,
         genres: movieData.genres,
-        posterpath: movieData.poster_path
+        posterpath: movieData.poster_path,
+        releaseDate: movieData.release_date
     })
 
     const newMovie = await collection.insertOne(movie);

@@ -20,6 +20,10 @@ const movieSchema = new mongoose.Schema({
     posterpath: {
         type: String || null,
         required: false
+    },
+    releaseDate: {
+        type: Date,
+        required: false
     }
 }, {
     collection: 'movies'

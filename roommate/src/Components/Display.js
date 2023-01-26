@@ -11,9 +11,10 @@ const Display = () => {
     const language = useRecoilValue(languageAndArea);
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/popular')
+        fetch(process.env.REACT_APP_SERVER_API + '/movies/find/all')
             .then((response) => response.json())
             .then((data) => {
+                console.log(data);
                 setMovies(data);
                 setMoviesToDisplay(data);
             });

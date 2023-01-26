@@ -2,15 +2,12 @@ const MongoClient = require('mongodb').MongoClient;
 
 let cachedDb = null;
 
-const connecToDatabase = async () => {
+const connectToDatabase = async () => {
   if(cachedDb) {
     console.log('Use existing connection');
     return Promise.resolve(cachedDb);
   } else {
-    return MongoClient.connect(process.env.DATABASE, {
-      native_parser: true,
-      useUnifiedTopology: true,
-    })
+    return MongoClient.connect(process.env.DATABASE)
     .then((client) => {
       let db = client.db('test');
       console.log('New Database connection');
@@ -24,4 +21,4 @@ const connecToDatabase = async () => {
   }
 }
 
-module.exports = {connecToDatabase};
+module.exports = {connectToDatabase};

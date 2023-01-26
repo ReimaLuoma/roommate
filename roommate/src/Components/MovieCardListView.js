@@ -13,7 +13,7 @@ const MovieCardListView = ({ id, poster_path, title }) => {
                 if(!response.ok){
                     console.log(response.status, 'something went wrong');
                 }
-                console.log(response.status, 'hello there');
+                console.log(response.status);
             })
     }
     
