@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useRecoilState } from 'recoil';
-import { selectedFilter } from '../Atoms/FilterSelectionItems';
+import { selectedGenreFilter, selectedDurationFilter } from '../Atoms/FilterSelectionItems';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -29,7 +29,8 @@ const getStyles = (name, genreName, theme) => {
 
 const MultipleSelectPlaceholder = ({ placeholder, selectionItems, filterToDisplay }) => {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = useRecoilState(selectedFilter);
+  const [selectedGenreItem, setSelectedGenreItem] = useRecoilState(selectedGenreFilter);
+  const [selectedDurationItem, setSelectedDurationItem] = useRecoilState(selectedDurationFilter);
 
   const optionsList = () => {
 
@@ -38,7 +39,7 @@ const MultipleSelectPlaceholder = ({ placeholder, selectionItems, filterToDispla
         <MenuItem
           key={name}
           value={name}
-          style={getStyles(name, selectedItem, theme)}
+          style={getStyles(name, selectedGenreItem, theme)}
         >
           {name}
         </MenuItem>
@@ -55,10 +56,19 @@ const MultipleSelectPlaceholder = ({ placeholder, selectionItems, filterToDispla
       target: { value },
     } = event;
 
-    setSelectedItem(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    if(placeholder === 'genres'){
+      setSelectedGenreItem(
+        // On autofill we get a stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+    }
+
+    if(placeholder === 'duration'){
+      setSelectedDurationItem(
+        // On autofill we get a stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+    }
   };
 
   return (
@@ -67,7 +77,7 @@ const MultipleSelectPlaceholder = ({ placeholder, selectionItems, filterToDispla
         <Select
           multiple
           displayEmpty
-          value={selectedItem}
+          value={placeholder === 'genres' ? selectedGenreItem: selectedDurationItem}
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
