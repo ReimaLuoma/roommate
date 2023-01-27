@@ -4,7 +4,7 @@ import MultipleSelectPlaceholder from './MultipleSelectPlaceholder';
 import Search from './Search';
 import { languageAndArea } from '../Atoms/LanguageSetting';
 import { Chip } from '@mui/material';
-import { selectedFilter, selectedGenreFilter } from '../Atoms/FilterSelectionItems';
+import { selectedDurationFilter, selectedGenreFilter } from '../Atoms/FilterSelectionItems';
 import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
 
 const duration = [
@@ -38,6 +38,7 @@ const genres = [
 const Filters = () => {
     const [genresList, setGenresList] = useState(genres);
     const [selectedGenreFilterItem, setSelectedGenreFilterItem] = useRecoilState(selectedGenreFilter);
+    const [selectedDurationFilterItem, setSelectedDurationFilterItem] = useRecoilState(selectedDurationFilter);
     const language = useRecoilValue(languageAndArea);
     const movies = useRecoilValue(moviesInfo);
 
@@ -56,9 +57,9 @@ const Filters = () => {
 
     useEffect(() => {
         filterToDisplay();
-    }, [selectedGenreFilterItem])
+    }, [selectedGenreFilterItem, selectedDurationFilterItem])
 
-    const handleDelete = (e) => {
+    const handleDeleteGenre = (e) => {
 
         const arr = [...selectedGenreFilterItem];
         const index = arr.indexOf(e.item);
@@ -75,6 +76,23 @@ const Filters = () => {
         filterToDisplay();
     };
 
+    const handleDeleteDuration = (e) => {
+
+        const arr = [...selectedDurationFilterItem];
+        const index = arr.indexOf(e.item);
+
+        if(e.item === undefined){
+            setSelectedDurationFilterItem([]);
+        }
+
+        if(index !== -1){
+            arr.splice(index, 1);
+            setSelectedDurationFilterItem(arr);
+        }
+
+        filterToDisplay();
+    };
+
     const filterToDisplay = () => {
         
         // reset movies for filttering
@@ -83,14 +101,32 @@ const Filters = () => {
         // check if genre items to filter
         if(selectedGenreFilterItem.length !== 0){
             
-            // set new filter list from selected items
-            // Genres:
-
+            // set new filter list from selected genre items
             // create new list based on filter items array
 
             let itemsOfMatch = [];
             for(let i = 0; i < selectedGenreFilterItem.length; i++){
                 itemsOfMatch.push(movies.filter(movie => movie.genres.filter(e => e.name === selectedGenreFilterItem[i]).length > 0));
+            }
+
+            // flatten itemsOfMatch into single array and set only uniques in list
+            let newlist = itemsOfMatch.flat(1);
+            list = [...new Set(newlist)];
+        }
+
+        if(selectedDurationFilterItem.length !== 0){
+            // set new filter list from selected duration items
+            // create new list based on filter items array
+
+            let itemsOfMatch = [];
+            if(selectedDurationFilterItem.includes('less than 90 min')){
+                itemsOfMatch.push(list.filter(movie => movie.runtime < 90));
+            }
+            if(selectedDurationFilterItem.includes('90 - 150 min')){
+                itemsOfMatch.push(list.filter(movie => movie.runtime >= 90 && movie.runtime < 150));
+            }
+            if(selectedDurationFilterItem.includes('over 150 min')){
+                itemsOfMatch.push(list.filter(movie => movie.runtime >= 150));
             }
 
             // flatten itemsOfMatch into single array and set only uniques in list
@@ -117,15 +153,28 @@ const Filters = () => {
                     {
                         // generate 'selected genres' tag if selecterFilterItem isn't empty
                         selectedGenreFilterItem.length !== 0 &&
-                        <Chip label='selected genres' onDelete={() => handleDelete('')} sx={{ bgcolor: '#ff0000', color: 'white', boxShadow: '2px 2px 3px black', marginRight: 1 }}/>
+                        <Chip label='selected genres' onDelete={() => handleDeleteGenre('')} sx={{ bgcolor: '#ff0000', color: 'white', boxShadow: '2px 2px 3px black', marginRight: 1 }}/>
                     }
                     {
-                        // generate placeholder tag 'all movies' if selectedFilterItem is empty
-                        selectedGenreFilterItem.length !== 0
+                        // generate 'selected duration' tag if selecterFilterItem isn't empty
+                        selectedDurationFilterItem.length !== 0 &&
+                        <Chip label='selected durations' onDelete={() => handleDeleteDuration('')} sx={{ bgcolor: '#ff0000', color: 'white', boxShadow: '2px 2px 3px black', marginRight: 1 }}/>
+                    }
+                    {
+                        // generate placeholder tag 'all movies' if no selections otherwise return genre tags
+                        selectedGenreFilterItem.length !== 0 || selectedDurationFilterItem.length !== 0
                         ? selectedGenreFilterItem.map((item, index) => {
-                            return <Chip key={index} label={item} value={item} onDelete={() => handleDelete({item})} sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px', marginRight: 1 }}/>
+                            return <Chip key={index} label={item} value={item} onDelete={() => handleDeleteGenre({item})} sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px black', marginRight: 1 }}/>
                         })
-                        : <Chip label='All movies' sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px', marginRight: 2 }}/>
+                        : <Chip label='All movies' sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px black', marginRight: 2 }}/>
+                    }
+                    {
+                        // generate durations tags if any on selectedDurationFilterItem array
+                        selectedDurationFilterItem.length !== 0
+                        ? selectedDurationFilterItem.map((item, index) => {
+                            return <Chip key={index} label={item} value={item} onDelete={() => handleDeleteDuration({item})} sx={{ bgcolor: '#AB3C7D', color: 'white', boxShadow: '2px 2px 3px black', marginRight: 1 }}/>
+                        })
+                        : <></>
                     }
                 </div>
             </div>
