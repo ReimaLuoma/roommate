@@ -36,12 +36,12 @@ const genres = [
 ];
 
 const Filters = () => {
-    const setGenresListRaw = useSetRecoilState(selectedGenreFilter);
+    const [genresListRaw, setGenresListRaw] = useRecoilState(selectedGenreFilter);
     const [genresList, setGenresList] = useState(genres);
     const [selectedFilterItem, setSelectedFilterItem] = useRecoilState(selectedFilter);
     const language = useRecoilValue(languageAndArea);
     const movies = useRecoilValue(moviesInfo);
-    const genresListRaw = useRecoilValue(selectedGenreFilter);
+
     const setMoviesToDisplay = useSetRecoilState(moviesDisplay);
     const genreMap = new Map();
 
@@ -103,7 +103,7 @@ const Filters = () => {
 
             let itemsOfMatch = [];
             for(let i = 0; i < items.length; i++){
-                itemsOfMatch.push(movies.filter(movie => movie.genre_ids.includes(items[i])));
+                itemsOfMatch.push(movies.filter(movie => movie.genres.filter(e => e.id === items[i]).length > 0));
             }
 
             // flatten itemsOfMatch into single array and set only uniques in list
@@ -111,7 +111,7 @@ const Filters = () => {
             list = [...new Set(newlist)];
     
             // Duration:
-    
+            
         }
     
         setMoviesToDisplay(list);

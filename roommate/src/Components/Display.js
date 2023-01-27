@@ -14,7 +14,6 @@ const Display = () => {
         fetch(process.env.REACT_APP_SERVER_API + '/movies/find/all')
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setMovies(data);
                 setMoviesToDisplay(data);
             });
@@ -23,7 +22,7 @@ const Display = () => {
     if(moviesToDisplay.length !== 0){
         return (
             <section>
-                <div className="row justify-content-center">
+                <div className="row justify-content-start">
                     {
                         moviesToDisplay.map((movie, index) => {
                             return <MovieCard key={index} {...movie} />
