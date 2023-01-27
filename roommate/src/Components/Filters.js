@@ -41,6 +41,7 @@ const Filters = () => {
     const [selectedDurationFilterItem, setSelectedDurationFilterItem] = useRecoilState(selectedDurationFilter);
     const language = useRecoilValue(languageAndArea);
     const movies = useRecoilValue(moviesInfo);
+    const [searchValue, setSearchValue] = useState("");
 
     const setMoviesToDisplay = useSetRecoilState(moviesDisplay);
 
@@ -57,7 +58,7 @@ const Filters = () => {
 
     useEffect(() => {
         filterToDisplay();
-    }, [selectedGenreFilterItem, selectedDurationFilterItem])
+    }, [selectedGenreFilterItem, selectedDurationFilterItem, searchValue]);
 
     const handleDeleteGenre = (e) => {
 
@@ -133,8 +134,24 @@ const Filters = () => {
             let newlist = itemsOfMatch.flat(1);
             list = [...new Set(newlist)];
         }
+
+        if(searchValue.length !== 0){
+
+            let itemsOfMatch = [];
+
+            itemsOfMatch.push(list.filter(movie => movie.title.toLowerCase().includes(searchValue.toLowerCase())));
+
+            let newlist = itemsOfMatch.flat(1);
+            list = [...new Set(newlist)];
+
+            console.log('list', list);
+        }
     
         setMoviesToDisplay(list);
+    };
+
+    const dataFromSearch = (data) => {
+        setSearchValue(data);
     };
 
     return (
@@ -145,7 +162,7 @@ const Filters = () => {
                     <MultipleSelectPlaceholder placeholder={"duration"} selectionItems={duration} />
                 </div>
                 <div className="col-6 col-lg-4 col-md-12 d-flex justify-content-end mt-5">
-                    <Search />
+                    <Search dataFromSearch={dataFromSearch}/>
                 </div>
             </div>
             <div className='row mb-3'>
