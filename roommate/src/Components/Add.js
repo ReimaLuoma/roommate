@@ -31,7 +31,9 @@ const Add = () => {
             .then((data) => {
                 const arr = [];
                 for(let i = 0; i < 4; i++){
-                    arr.push(data.results[i])
+                    if(data.results !== undefined){
+                        arr.push(data.results[i])
+                    }
                 }
                 setFoundMovies(arr);
             });

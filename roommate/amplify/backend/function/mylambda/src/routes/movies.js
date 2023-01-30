@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie');
+const app = express();
 
 // tmdb functions
 const tmdb = require('./TMDB');
@@ -12,14 +13,13 @@ const mongo = require('./mongo');
 // SYNTAX:
 // router.METHOD(PATH, HANDLER)
 
-// Get
+// Get all
 router.get('/find/all', async (req, res) => {
     const db = await mongo.connectToDatabase();
     const collection =  await db.collection('movies');
 
     const cursor = await collection.find(); // return cursor
     const allValues = await cursor.toArray(); // return array of all docs
-    console.log(allValues);
 
     res.json(allValues);
 })
@@ -52,9 +52,38 @@ router.patch('/:id', (req, res) => {
 
 })
 
-// Delete
-router.delete('/:id', (req, res) => {
+// Middleware to remove movie from database
 
+const removeFromDatabase = async (req, res, next) => {
+
+    try {
+        const db = await mongo.connectToDatabase();
+        const collection =  await db.collection('movies');
+
+        res.status(202).json({ message: 'Movie is being removed' });
+
+        const cursor = await collection.deleteMany({ movieID: req.params.id }); // return cursor
+        next();
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
+}
+
+// Delete
+router.post('/removeMovie/:id', async (req, res) => {
+    try {
+        const db = await mongo.connectToDatabase();
+        const collection =  await db.collection('movies');
+
+        console.log('TO BE REMOVED -> movieID: ', req.params.id);
+
+        const deleted = await collection.deleteOne({ movieID: req.params.id });
+        console.log(deleted);
+        res.status(204).json({ message: 'Movie has been removed' });
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
+    
 })
 
 module.exports = router;

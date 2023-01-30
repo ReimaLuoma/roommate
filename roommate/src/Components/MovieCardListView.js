@@ -1,7 +1,7 @@
 import { Button, Card } from "@mui/material";
-import React from "react";
-import { useRecoilValue } from "recoil";
-import { moviesInfo } from "../Atoms/movieData";
+import React, { useEffect } from "react";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { moviesInfo, movieDataUpdate } from "../Atoms/movieData";
 
 const poster_URL = (posterpath) => {
     return 'https://image.tmdb.org/t/p/w500' + posterpath;
@@ -10,6 +10,7 @@ const poster_URL = (posterpath) => {
 const MovieCardListView = ({ id, poster_path, title, release_date }) => {
 
     const movies = useRecoilValue(moviesInfo);
+    const [movieUpdate, setMovieUpdate] = useRecoilState(movieDataUpdate);
 
     const addMovie = () => {
         fetch(process.env.REACT_APP_SERVER_API + '/movies/addMovie/' + id, {method: 'POST'})
@@ -18,11 +19,19 @@ const MovieCardListView = ({ id, poster_path, title, release_date }) => {
                     console.log(response.status, 'something went wrong');
                 }
                 console.log(response.status);
-            })
+            });
+        setMovieUpdate(!movieUpdate);
     }
 
     const removeMovie = () => {
-        console.log('remove');
+        fetch(process.env.REACT_APP_SERVER_API + '/movies/removeMovie/' + id, {method: 'POST'})
+            .then((response) => {
+                if(!response.ok){
+                    console.log(response.status, 'something went wrong');
+                }
+                console.log(response.status);
+            });
+        setMovieUpdate(!movieUpdate);
     }
     
     return (

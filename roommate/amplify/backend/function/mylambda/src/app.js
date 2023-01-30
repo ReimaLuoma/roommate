@@ -25,6 +25,9 @@ app.use(function(req, res, next) {
   next()
 });
 
+//const cors = require('cors');
+//cors();
+
 // TMDB router
 const tmdbRouter = require('./routes/TMDB');
 app.use('/tmdb', tmdbRouter.router);
