@@ -7,11 +7,17 @@ import Search from './Search';
 import MovieCardListView from "./MovieCardListView";
 import CloseIcon from '@mui/icons-material/Close';
 import style from '../Styles/modalStyle';
+import { movieDataUpdate } from "../Atoms/movieData";
+import { useRecoilState } from "recoil";
 
 const Add = () => {
+    const [movieUpdate, setMovieUpdate] = useRecoilState(movieDataUpdate);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false);
+        setMovieUpdate(!movieUpdate);
+    };
     const [searchValue, setSearchValue] = useState("");
     const isInitialMount = useRef(true);
     const [foundMovies, setFoundMovies] = useState([]);

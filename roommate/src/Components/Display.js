@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import MovieCard from "./MovieCard";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import { moviesInfo, moviesDisplay } from '../Atoms/movieData';
+import { moviesInfo, moviesDisplay, movieDataUpdate } from '../Atoms/movieData';
 import { languageAndArea } from '../Atoms/LanguageSetting';
 
 const Display = () => {
 
     const setMovies = useSetRecoilState(moviesInfo);
+    const updateMovies = useRecoilValue(movieDataUpdate);
     const [moviesToDisplay, setMoviesToDisplay] = useRecoilState(moviesDisplay);
     const language = useRecoilValue(languageAndArea);
 
@@ -17,7 +18,7 @@ const Display = () => {
                 setMovies(data);
                 setMoviesToDisplay(data);
             });
-    }, [language]);
+    }, [language, updateMovies]);
 
     if(moviesToDisplay.length !== 0){
         return (

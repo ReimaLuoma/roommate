@@ -12,6 +12,13 @@ export const moviesDisplay = atom({
     default: [],
 });
 
+// update main movie and displayed movie data
+
+export const movieDataUpdate = atom ({
+    key: 'movieDataUp',
+    default: true,
+})
+
 // displayed movie runtime
 export const movieRuntime = atom({
     key: 'movieRuntime',

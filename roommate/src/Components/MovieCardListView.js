@@ -7,7 +7,7 @@ const poster_URL = (posterpath) => {
     return 'https://image.tmdb.org/t/p/w500' + posterpath;
 };
 
-const MovieCardListView = ({ id, poster_path, title }) => {
+const MovieCardListView = ({ id, poster_path, title, release_date }) => {
 
     const movies = useRecoilValue(moviesInfo);
 
@@ -31,9 +31,15 @@ const MovieCardListView = ({ id, poster_path, title }) => {
                 <div className="col-2">
                     <img src={poster_URL(poster_path)} className='card-img-top img-fluid' alt='...'></img>
                 </div>
-                <div className="ms-5 d-flex justify-content-end align-items-center">
-                    <h5>{title}</h5>
+                
+                <div className="col-5 ms-5 d-flex align-items-center">
+                    <h5 className="pe-2">{title}</h5>
+                    {
+                        release_date !== '' &&
+                        <h5>({release_date.slice(0,4)})</h5>
+                    }
                 </div>
+
                 <div className="col ms-5 d-flex justify-content-end align-items-center">
                     {
                         movies.some(movie => movie.movieID === id)
