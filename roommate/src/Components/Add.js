@@ -29,13 +29,7 @@ const Add = () => {
             fetch(process.env.REACT_APP_SERVER_API + '/tmdb/searchMovie/' + searchValue)
             .then((response) => response.json())
             .then((data) => {
-                const arr = [];
-                for(let i = 0; i < 4; i++){
-                    if(data.results !== undefined){
-                        arr.push(data.results[i])
-                    }
-                }
-                setFoundMovies(arr);
+                setFoundMovies(data.results);
             });
         }
     }, [searchValue])

@@ -10,6 +10,7 @@ const style = {
     boxShadow: 24,
     p: 4,
     color: 'white',
+    overflow: 'auto',
   };
 
 export default style;

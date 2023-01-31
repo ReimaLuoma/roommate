@@ -11,7 +11,7 @@ const MovieCardListView = ({ id, poster_path, posterpath, title, release_date, r
 
     const movies = useRecoilValue(moviesInfo);
     const [movieUpdate, setMovieUpdate] = useRecoilState(movieDataUpdate);
-    const [posterpathState, setPosterpathState] = useState();
+    const [posterpathState, setPosterpathState] = useState('');
     const [releaseDateState, setreleaseDateState] = useState('');
 
     const addMovie = () => {
