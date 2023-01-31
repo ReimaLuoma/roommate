@@ -77,7 +77,7 @@ router.post('/removeMovie/:id', async (req, res) => {
 
         console.log('TO BE REMOVED -> movieID: ', req.params.id);
 
-        const deleted = await collection.deleteOne({ movieID: req.params.id });
+        const deleted = await collection.deleteOne({ movieID: parseInt(req.params.id) });
         console.log(deleted);
         res.status(204).json({ message: 'Movie has been removed' });
     } catch (error) {
