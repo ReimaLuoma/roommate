@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { movieDataUpdate, moviesInfo } from "../Atoms/movieData";
 import Box from "@mui/material/Box";
 import Modal from '@mui/material/Modal';
@@ -13,47 +13,41 @@ import style from '../Styles/modalStyle';
 const Remove = () => {
 
     const [movieUpdate, setMovieUpdate] = useRecoilState(movieDataUpdate);
-    const [movies, setMovies] = useRecoilState(moviesInfo);
+    const movies = useRecoilValue(moviesInfo);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false);
+        setFoundMovies([]);
         setMovieUpdate(!movieUpdate);
     };
 
     const [searchValue, setSearchValue] = useState("");
     const [foundMovies, setFoundMovies] = useState([]);
-    const isInitialMount = useRef(true);
 
     const dataFromSearch = (data) => {
         setSearchValue(data);
     };
 
-    const filterToDisplay = () => {
-        let list = [...movies];
-
-        if(searchValue.length !== 0){
-
-            let itemsOfMatch = [];
-
-            itemsOfMatch.push(list.filter(movie => movie.title.toLowerCase().includes(searchValue.toLowerCase())));
-
-            let newlist = itemsOfMatch.flat(1);
-            list = [...new Set(newlist)];
-
-            console.log('list', list);
-        }
-    
-        setFoundMovies(list);
-    };
-
     useEffect(() => {
-        if(isInitialMount.current){
-            isInitialMount.current = false;
-        }else{
-            filterToDisplay();
-        }
-    }, [searchValue]);
+        const filterToDisplay = () => {
+            let list = [...movies];
+    
+            if(searchValue.length !== 0){
+    
+                let itemsOfMatch = [];
+    
+                itemsOfMatch.push(list.filter(movie => movie.title.toLowerCase().includes(searchValue.toLowerCase())));
+    
+                let newlist = itemsOfMatch.flat(1);
+                list = [...new Set(newlist)];
+            }
+        
+            setFoundMovies(list);
+        };
+        
+        filterToDisplay();
+    }, [searchValue, movies]);
 
     return (
         <>

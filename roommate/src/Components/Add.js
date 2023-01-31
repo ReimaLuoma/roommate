@@ -16,8 +16,10 @@ const Add = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false);
+        setFoundMovies([]);
         setMovieUpdate(!movieUpdate);
     };
+
     const [searchValue, setSearchValue] = useState("");
     const isInitialMount = useRef(true);
     const [foundMovies, setFoundMovies] = useState([]);
@@ -59,6 +61,7 @@ const Add = () => {
                 <Search dataFromSearch={dataFromSearch} />
                 <br />
                 {
+                    foundMovies !== undefined &&
                     foundMovies.map((movie, index) => {
                         return <MovieCardListView key={index} {...movie} />
                     })

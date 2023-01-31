@@ -45,55 +45,6 @@ const Filters = () => {
 
     const setMoviesToDisplay = useSetRecoilState(moviesDisplay);
 
-    //Fetch initial data
-    useEffect(() => {
-        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/genres')
-            .then((response) => response.json())
-            .then((data) => {
-                //List for 'genres'-filter dropdown element
-                const arr = data.map(item => {return item.name});
-                setGenresList(arr);
-            });
-    }, [language]);
-
-    useEffect(() => {
-        filterToDisplay();
-    }, [selectedGenreFilterItem, selectedDurationFilterItem, searchValue]);
-
-    const handleDeleteGenre = (e) => {
-
-        const arr = [...selectedGenreFilterItem];
-        const index = arr.indexOf(e.item);
-
-        if(e.item === undefined){
-            setSelectedGenreFilterItem([]);
-        }
-
-        if(index !== -1){
-            arr.splice(index, 1);
-            setSelectedGenreFilterItem(arr);
-        }
-
-        filterToDisplay();
-    };
-
-    const handleDeleteDuration = (e) => {
-
-        const arr = [...selectedDurationFilterItem];
-        const index = arr.indexOf(e.item);
-
-        if(e.item === undefined){
-            setSelectedDurationFilterItem([]);
-        }
-
-        if(index !== -1){
-            arr.splice(index, 1);
-            setSelectedDurationFilterItem(arr);
-        }
-
-        filterToDisplay();
-    };
-
     const filterToDisplay = () => {
         
         // reset movies for filttering
@@ -148,6 +99,55 @@ const Filters = () => {
         }
     
         setMoviesToDisplay(list);
+    };
+
+    //Fetch initial data
+    useEffect(() => {
+        fetch(process.env.REACT_APP_SERVER_API + '/tmdb/genres')
+            .then((response) => response.json())
+            .then((data) => {
+                //List for 'genres'-filter dropdown element
+                const arr = data.map(item => {return item.name});
+                setGenresList(arr);
+            });
+    }, [language]);
+
+    useEffect(() => {
+        filterToDisplay();
+    }, [selectedGenreFilterItem, selectedDurationFilterItem, searchValue, filterToDisplay]);
+
+    const handleDeleteGenre = (e) => {
+
+        const arr = [...selectedGenreFilterItem];
+        const index = arr.indexOf(e.item);
+
+        if(e.item === undefined){
+            setSelectedGenreFilterItem([]);
+        }
+
+        if(index !== -1){
+            arr.splice(index, 1);
+            setSelectedGenreFilterItem(arr);
+        }
+
+        filterToDisplay();
+    };
+
+    const handleDeleteDuration = (e) => {
+
+        const arr = [...selectedDurationFilterItem];
+        const index = arr.indexOf(e.item);
+
+        if(e.item === undefined){
+            setSelectedDurationFilterItem([]);
+        }
+
+        if(index !== -1){
+            arr.splice(index, 1);
+            setSelectedDurationFilterItem(arr);
+        }
+
+        filterToDisplay();
     };
 
     const dataFromSearch = (data) => {
