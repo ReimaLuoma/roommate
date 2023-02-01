@@ -17,6 +17,10 @@ body {
     font-optical-sizing: auto;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .logo {
     font-family: 'Rajdhani', sans-serif;
     font-size: 8em;
@@ -77,8 +81,22 @@ body {
     padding: auto;
 }
 
-.profilePage .row div:first-child{
+.profilePage .row div:first-child {
     color: $maincolor;
+}
+
+.no-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.movieDetails .image-container {
+    max-height: 44vh;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.image-container img {
+    mask-image: linear-gradient(rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0) 56%);
 }
 
 @media (max-width: 1080px) {

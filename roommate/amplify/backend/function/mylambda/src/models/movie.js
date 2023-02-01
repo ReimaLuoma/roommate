@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const movieSchema = new mongoose.Schema({
     movieID: {
         type: Number,
-        required: false
+        required: true
     },
     title: {
         type: String,
@@ -23,6 +23,14 @@ const movieSchema = new mongoose.Schema({
     },
     releaseDate: {
         type: Date,
+        required: false
+    },
+    description: {
+        type: String,
+        required: false
+    },
+    imdbID:{
+        type: String,
         required: false
     }
 }, {

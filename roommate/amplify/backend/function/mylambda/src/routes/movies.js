@@ -38,7 +38,9 @@ router.post('/addMovie/:id', async (req, res) => {
         runtime: movieData.runtime,
         genres: movieData.genres,
         posterpath: movieData.poster_path,
-        releaseDate: movieData.release_date
+        releaseDate: movieData.release_date,
+        description: movieData.overview,
+        imdbID: movieData.imdb_id
     })
 
     const newMovie = await collection.insertOne(movie);
@@ -48,26 +50,31 @@ router.post('/addMovie/:id', async (req, res) => {
 })
 
 // Update
-router.patch('/:id', (req, res) => {
-
-})
-
-// Middleware to remove movie from database
-
-const removeFromDatabase = async (req, res, next) => {
-
+router.post('/updateMovie/:id', async (req, res) => {
     try {
+        // TMDB API Get Details for movieData
+        const movieData = await tmdb.fetchMovieById(req.params.id);
+        console.log(movieData);
+        
+        // database connection to collection 'movies'
         const db = await mongo.connectToDatabase();
         const collection =  await db.collection('movies');
 
-        res.status(202).json({ message: 'Movie is being removed' });
-
-        const cursor = await collection.deleteMany({ movieID: req.params.id }); // return cursor
-        next();
+        // updating existing movie's data with updated dataset
+        const updated = await collection.updateOne(
+            { movieID: parseInt(req.params.id) },
+            {$set: {
+                description: movieData.overview,
+                imdbID: movieData.imdb_id
+            }
+            }
+        );
+        console.log(updated);
+        res.send(202).json({ message: 'Movie updated succesfully!'});
     } catch (error) {
-        res.status(500).json({ message: error })
+        res.status(500).json({ message: error });
     }
-}
+})
 
 // Delete
 router.post('/removeMovie/:id', async (req, res) => {

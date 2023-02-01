@@ -51,7 +51,7 @@ const Add = () => {
             aria-labelledby='add movie'
             aria-describedby='add movie by giving movie title and choosing from returned options'
         >
-            <Box sx={style}>
+            <Box sx={style} className='no-scroll'>
                 <div className="d-flex justify-content-end">
                     <Button sx={{color: 'white'}} onClick={handleClose}><CloseIcon /></Button>
                 </div>

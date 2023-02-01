@@ -7,7 +7,7 @@ const poster_URL = (posterpath) => {
     return 'https://image.tmdb.org/t/p/w500' + posterpath;
 };
 
-const MovieCardListView = ({ id, posterpath, title, releaseDate, filterOn = false }) => {
+const MovieCardListView = ({ id = 0, posterpath = '', title = '', releaseDate = '', filterOn = false }) => {
 
     const movies = useRecoilValue(moviesInfo);
     const [movieUpdate, setMovieUpdate] = useRecoilState(movieDataUpdate);
