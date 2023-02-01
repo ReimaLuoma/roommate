@@ -19,10 +19,11 @@ const Remove = () => {
     const handleClose = () => {
         setOpen(false);
         setFoundMovies([]);
+        setSearchValue('')
         setMovieUpdate(!movieUpdate);
     };
 
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState('');
     const [foundMovies, setFoundMovies] = useState([]);
 
     const dataFromSearch = (data) => {
@@ -71,7 +72,7 @@ const Remove = () => {
                 <br />
                 {
                     foundMovies.map((movie, index) => {
-                        return <MovieCardListView key={index} {...movie} filterOn={true}/>
+                        return <MovieCardListView key={index} {...movie} filterOn={true} id={movie.movieID}/>
                     })
                 }
 

@@ -63,7 +63,7 @@ const Add = () => {
                 {
                     foundMovies !== undefined &&
                     foundMovies.map((movie, index) => {
-                        return <MovieCardListView key={index} {...movie} />
+                        return <MovieCardListView key={index} {...movie} posterpath={movie.poster_path} releaseDate={movie.release_date}/>
                     })
                 }
 
