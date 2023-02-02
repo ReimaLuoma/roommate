@@ -64,17 +64,23 @@ router.get('/searchMovie/:searchValue', async (req, res) => {
     }
 })
 
-router.get('/cast/:id', async (req, res) => {
+const fetchMovieCastById = async (movieID) => {
+    console.log('attempting fetch data from TMDB');
     try {
         const response = await axios({
-            url: 'https://api.themoviedb.org/3/movie/' + req.params.id + '/credits?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-US',
+            url: 'https://api.themoviedb.org/3/movie/' + movieID + '/credits?api_key=' + process.env.REACT_APP_TMDB_API_KEY + '&language=en-US',
             method: 'get'
         })
-        console.log(response.data);
-        res.status(200).json(response.data);
+        console.log(response.data.cast);
+        return response.data.cast;
     } catch (error) {
         res.status(500).json({ message: error });
     }
+};
+
+router.get('/cast/:id', async (req, res) => {
+    const movie = await fetchMovieCastById(req.params.id);
+    res.json(movie);
 })
 
-module.exports = {router, fetchMovieById};
+module.exports = {router, fetchMovieById, fetchMovieCastById};

@@ -84,6 +84,14 @@ body::-webkit-scrollbar {
           mask-image: linear-gradient(rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0) 56%);
 }
 
+.height-5 {
+  height: 5rem;
+}
+
+.height-10 {
+  height: 10rem;
+}
+
 @media (max-width: 1080px) {
   .container {
     max-width: 90vw;

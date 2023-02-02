@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Modal, Box, Chip, Accordion } from '@mui/material';
+import { Modal, Box, Chip } from '@mui/material';
 import { style_moviecard } from "../Styles/modalStyle";
 import CastCard from './CastCard';
 
@@ -7,30 +7,17 @@ const poster_URL = (posterpath) => {
     return 'https://image.tmdb.org/t/p/w780' + posterpath;
 };
 
-const MovieCard = ({ movieID, posterpath, releaseDate, runtime, title, genres, description }) => {
+const MovieCard = ({ movieID, posterpath, releaseDate, runtime, title, genres, description, cast }) => {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const isInitialMount = useRef(true);
-    const [cast, setCast] = useState([]);
-
-    useEffect(() => {
-        if(isInitialMount.current){
-            isInitialMount.current = false;
-        }else {
-            fetch(process.env.REACT_APP_SERVER_API + '/tmdb/cast/' + movieID)
-            .then((response) => response.json())
-            .then((data) => {
-                setCast(data.cast);
-            });
-        }
-    }, [open])
 
     return (
         <>
-        <div className='col-lg-2 col-md-3 col-sm-6 card-column'>
+        <div className='col-lg-2 col-md-3 col-sm-6'>
             <div className='card box-shadow me-nd-3 mb-md-5 text-end' onClick={handleOpen}>
                 <img src={poster_URL(posterpath)} className='card-img-top img-fluid' alt='...'></img>
                 <div className='card-body'>
@@ -52,12 +39,12 @@ const MovieCard = ({ movieID, posterpath, releaseDate, runtime, title, genres, d
                 </div>
                 
                 <br />
-                <div className='row ms-4'>
+                <div className='row ms-4 me-4'>
                     <h3>{title}</h3>
                 </div>
 
                 <br />
-                <div className='row ms-4'>
+                <div className='row ms-4 me-4'>
                     <div>
                         {
                             genres.map((genre, index) => {
@@ -68,23 +55,21 @@ const MovieCard = ({ movieID, posterpath, releaseDate, runtime, title, genres, d
                 </div>
 
                 <br />
-                <div className='row ms-4'>
+                <div className='row ms-4 me-4'>
                     <h5>Description</h5>
                     <p>{description}</p>
                     <h5>Runtime:</h5>
                     <p>{runtime} min</p>
                 </div>
 
-                <div className='row ms-4'>
-                    <div className='col'>
-                        {
-                            cast !== undefined &&
-                            cast.map((actor, index) => {
-                                <CastCard key={index} {...actor} />
-                            })
-                        }
-                    </div>
-                    
+                <div className='row ms-4 me-4 mb-4 justify-content-start-safe'>
+                    <h5>Cast:</h5>
+                    {
+                        cast !== undefined &&
+                        cast.map((actor, index) => {
+                            return <CastCard key={index} {...actor} />
+                        })
+                    }
                 </div>
                 
             

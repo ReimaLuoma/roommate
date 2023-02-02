@@ -27,11 +27,22 @@ router.get('/find/all', async (req, res) => {
 // Create
 router.post('/addMovie/:id', async (req, res) => {
 
+    // fetch data from tmdb
     const movieData = await tmdb.fetchMovieById(req.params.id);
+    const movieCast = await tmdb.fetchMovieCastById(req.params.id);
 
+    // shorten movieCast array
+    let arr = [];
+    for(let i = 0; i < movieCast.length; i++){
+        arr.push(movieCast[i]);
+        if(i >= 12){ break; }
+    }
+
+    // open database connection to 'movies' collection
     const db = await mongo.connectToDatabase();
     const collection =  await db.collection('movies');
 
+    // form new movie object
     const movie = new Movie({
         movieID: movieData.id,
         title: movieData.title,
@@ -40,9 +51,11 @@ router.post('/addMovie/:id', async (req, res) => {
         posterpath: movieData.poster_path,
         releaseDate: movieData.release_date,
         description: movieData.overview,
-        imdbID: movieData.imdb_id
+        imdbID: movieData.imdb_id,
+        cast: arr
     })
 
+    // sent movie object to collection
     const newMovie = await collection.insertOne(movie);
 
     res.status(201).json({ newMovie });
@@ -53,24 +66,30 @@ router.post('/addMovie/:id', async (req, res) => {
 router.post('/updateMovie/:id', async (req, res) => {
     try {
         // TMDB API Get Details for movieData
-        const movieData = await tmdb.fetchMovieById(req.params.id);
-        console.log(movieData);
+        const movieData = await tmdb.fetchMovieCastById(req.params.id);
+        console.log('data in updateMovie: ', movieData);
         
         // database connection to collection 'movies'
         const db = await mongo.connectToDatabase();
         const collection =  await db.collection('movies');
 
+        let arr = [];
+        for(let i = 0; i < movieData.length; i++){
+            arr.push(movieData[i]);
+            if(i >= 12){ break; }
+        }
+
+        console.log('this is short array: ', arr);
+
         // updating existing movie's data with updated dataset
         const updated = await collection.updateOne(
             { movieID: parseInt(req.params.id) },
             {$set: {
-                description: movieData.overview,
-                imdbID: movieData.imdb_id
+                cast: arr
             }
             }
         );
-        console.log(updated);
-        res.send(202).json({ message: 'Movie updated succesfully!'});
+        res.status(202).json({ message: 'Movie updated succesfully!'});
     } catch (error) {
         res.status(500).json({ message: error });
     }
@@ -82,10 +101,7 @@ router.post('/removeMovie/:id', async (req, res) => {
         const db = await mongo.connectToDatabase();
         const collection =  await db.collection('movies');
 
-        console.log('TO BE REMOVED -> movieID: ', req.params.id);
-
         const deleted = await collection.deleteOne({ movieID: parseInt(req.params.id) });
-        console.log(deleted);
         res.status(204).json({ message: 'Movie has been removed' });
     } catch (error) {
         res.status(500).json({ message: error })

@@ -32,6 +32,10 @@ const movieSchema = new mongoose.Schema({
     imdbID:{
         type: String,
         required: false
+    },
+    cast:{
+        type: Array,
+        required: false
     }
 }, {
     collection: 'movies'

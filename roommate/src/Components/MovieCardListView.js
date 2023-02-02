@@ -33,6 +33,16 @@ const MovieCardListView = ({ id = 0, posterpath = '', title = '', releaseDate = 
             });
         setMovieUpdate(!movieUpdate);
     }
+
+    const updateMovie = () => {
+        fetch(process.env.REACT_APP_SERVER_API + '/movies/updateMovie/' + id, {method: 'POST'})
+            .then((response) => {
+                if(!response.ok){
+                    console.log(response.status, 'something went wrong');
+                }
+                console.log(response.status);
+            });
+    }
     
     return (
         <div className="row mt-2">
@@ -54,7 +64,7 @@ const MovieCardListView = ({ id = 0, posterpath = '', title = '', releaseDate = 
                         filterOn
                         ?
                             movies.filter(movie => movie.movieID === id) &&
-                            <Button variant='contained' id={id} onClick={removeMovie} sx={{color: 'white', bgcolor: '#ff0000', mr:3, borderRadius: 2, boxShadow: '3px 3px #1c1c1c', ':hover': {bgcolor: '#990000', color: '#fff', boxShadow: '3px 3px #1c1c1c'} }}>Remove</Button>
+                            <Button variant='contained' id={id} onClick={updateMovie} sx={{color: 'white', bgcolor: '#ff0000', mr:3, borderRadius: 2, boxShadow: '3px 3px #1c1c1c', ':hover': {bgcolor: '#990000', color: '#fff', boxShadow: '3px 3px #1c1c1c'} }}>Update</Button>
                         :
                             movies.some(movie => movie.movieID === id)
                             ?<Button variant='contained' id={id} onClick={removeMovie} sx={{color: 'white', bgcolor: '#ff0000', mr:3, borderRadius: 2, boxShadow: '3px 3px #1c1c1c', ':hover': {bgcolor: '#990000', color: '#fff', boxShadow: '3px 3px #1c1c1c'} }}>Remove</Button>
