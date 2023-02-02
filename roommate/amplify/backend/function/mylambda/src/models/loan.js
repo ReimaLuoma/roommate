@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
 const loanSchema = new mongoose.Schema({
-    loanID: {
+    loanInstanceID: {
         type: String,
-        required: true
-    },
-    loanInstance: {
-        type: String,
-        required: true
+        required: false
     },
     userID: {
-        type: Number,
+        type: String,
         required: true
     },
+},  {
+    collection: 'loan'
 })
+
+module.exports = mongoose.model('Loan', loanSchema);

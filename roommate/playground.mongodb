@@ -6,4 +6,4 @@
 // Select the database to use.
 use('test');
 
-db.movies.deleteOne({movieID: 1359});
+db.createCollection("loanInstance");

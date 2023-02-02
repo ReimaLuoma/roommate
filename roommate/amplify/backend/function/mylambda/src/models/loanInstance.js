@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const loanInstanceSchema = new mongoose.Schema({
     loanID: {
         type: String,
-        required: true
+        required: false
     },
     date: {
         type: Date,
@@ -21,4 +21,8 @@ const loanInstanceSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     }
+},  {
+    collection: 'loanInstance'
 })
+
+module.exports = mongoose.model('LoanInstance', loanInstanceSchema);
