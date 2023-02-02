@@ -17,10 +17,6 @@ body {
     font-optical-sizing: auto;
 }
 
-body::-webkit-scrollbar {
-    display: none;
-}
-
 .logo {
     font-family: 'Rajdhani', sans-serif;
     font-size: 8em;
@@ -34,7 +30,7 @@ body::-webkit-scrollbar {
 }
 
 .box-shadow:hover {
-    animation: shadowAdjust 0.5s ease;
+    animation: shadowAdjust 0.5s ease-in-out;
     animation-fill-mode: forwards;
     @keyframes shadowAdjust {
         100% {
@@ -83,7 +79,7 @@ body::-webkit-scrollbar {
 }
 
 .movieCard img:hover {
-    animation: blur 0.25s ease;
+    animation: blur 0.5s ease;
     animation-fill-mode: forwards;
     @keyframes blur {
         100% {
