@@ -17,7 +17,7 @@ const MovieCard = ({ movieID, posterpath, releaseDate, runtime, title, genres, d
 
     return (
         <>
-        <div className='col-lg-2 col-md-3 col-sm-6'>
+        <div className='col-lg-2 col-md-3 col-sm-6 movieCard'>
             <div className='card box-shadow me-nd-3 mb-md-5 text-end' onClick={handleOpen}>
                 <img src={poster_URL(posterpath)} className='card-img-top img-fluid' alt='...'></img>
                 <div className='card-body'>
@@ -48,7 +48,7 @@ const MovieCard = ({ movieID, posterpath, releaseDate, runtime, title, genres, d
                     <div>
                         {
                             genres.map((genre, index) => {
-                                return <Chip key={index} label={genre.name} sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px black', marginRight: 1 }}/>
+                                return <Chip key={index} label={genre.name} sx={{ bgcolor: '#e2c34b', boxShadow: '2px 2px 3px black', marginRight: 1, marginBottom:1 }}/>
                             })
                         }
                     </div>
