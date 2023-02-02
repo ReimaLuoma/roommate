@@ -19,7 +19,8 @@ const User = ({user}) => {
                 <div className="row mb-5">
                     <Logo />
     
-                    <div className="col-6 d-flex justify-content-end align-items-center">
+                    <div className="col-7 d-flex justify-content-end align-items-center">
+                        <Loans />
                         <Add />
                         <Remove />
                         <Account userInfo={user.attributes}/>

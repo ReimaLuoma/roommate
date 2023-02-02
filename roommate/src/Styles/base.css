@@ -22,6 +22,23 @@ body::-webkit-scrollbar {
   box-shadow: 0.5rem 0.5rem 0.5rem #3b66ab;
 }
 
+.box-shadow:hover {
+  -webkit-animation: shadowAdjust 0.5s ease;
+          animation: shadowAdjust 0.5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes shadowAdjust {
+  100% {
+    box-shadow: 0.3rem 0.3rem 0.2rem #3b66ab;
+  }
+}
+@keyframes shadowAdjust {
+  100% {
+    box-shadow: 0.3rem 0.3rem 0.2rem #3b66ab;
+  }
+}
+
 .areacheck {
   background-color: darkmagenta;
 }
@@ -54,6 +71,23 @@ body::-webkit-scrollbar {
 
 .container {
   max-width: 75vw;
+}
+
+.movieCard img:hover {
+  -webkit-animation: blur 0.25s ease;
+          animation: blur 0.25s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes blur {
+  100% {
+    filter: blur(0.5px);
+  }
+}
+@keyframes blur {
+  100% {
+    filter: blur(0.5px);
+  }
 }
 
 .movieCard:hover {

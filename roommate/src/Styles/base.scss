@@ -33,6 +33,16 @@ body::-webkit-scrollbar {
     box-shadow: $box-shadow;
 }
 
+.box-shadow:hover {
+    animation: shadowAdjust 0.5s ease;
+    animation-fill-mode: forwards;
+    @keyframes shadowAdjust {
+        100% {
+            box-shadow: .3rem .3rem .2rem $bgcolor;
+        }
+    }
+}
+
 .areacheck {
     background-color: darkmagenta;
 }
@@ -70,6 +80,16 @@ body::-webkit-scrollbar {
 
 .container {
     max-width: 75vw;
+}
+
+.movieCard img:hover {
+    animation: blur 0.25s ease;
+    animation-fill-mode: forwards;
+    @keyframes blur {
+        100% {
+            filter: blur(0.5px);
+        }
+    }
 }
 
 .movieCard:hover{

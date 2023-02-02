@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Modal, Box, Chip } from '@mui/material';
 import { style_moviecard } from "../Styles/modalStyle";
 import CastCard from './CastCard';
@@ -12,8 +12,6 @@ const MovieCard = ({ movieID, posterpath, releaseDate, runtime, title, genres, d
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const isInitialMount = useRef(true);
 
     return (
         <>
