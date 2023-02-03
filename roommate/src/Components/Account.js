@@ -13,10 +13,10 @@ const Account = ({ userInfo }) => {
     <>
       <Button
         variant="text"
-        sx={{ color: "white", mr: 3, borderRadius: 2 }}
+        sx={{ color: "white", mr: 3, borderRadius: 2, fontSize: "1.6rem" }}
         onClick={handleOpen}
       >
-        <AccountCircleIcon sx={{ mr: 1 }} />
+        <AccountCircleIcon sx={{ mr: 1, fontSize: "1.6rem" }} />
         {userInfo.given_name}
       </Button>
 
@@ -29,12 +29,12 @@ const Account = ({ userInfo }) => {
         <Box className="modalStyle no-scroll">
           <div className="d-flex justify-content-end">
             <Button sx={{ color: "white" }} onClick={handleClose}>
-              <CloseIcon />
+              <CloseIcon sx={{ fontSize: "3rem" }} />
             </Button>
           </div>
           <br />
           <div className="profilePage">
-            <AccountCircleIcon sx={{ fontSize: "6rem" }} />
+            <AccountCircleIcon sx={{ fontSize: "9.6rem" }} />
             <h1>Profile</h1>
             <br />
 

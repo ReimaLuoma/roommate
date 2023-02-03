@@ -56,10 +56,10 @@ const Remove = () => {
     <>
       <Button
         variant="text"
-        sx={{ color: "white", mr: 3 }}
+        sx={{ color: "white", mr: 3, fontSize: "1.6rem" }}
         onClick={handleOpen}
       >
-        <RemoveCircleIcon sx={{ mr: 1 }} />
+        <RemoveCircleIcon sx={{ mr: 1, fontSize: "1.6rem" }} />
         Remove movie
       </Button>
       <Modal

@@ -57,7 +57,7 @@ const MovieCard = ({
 
           <br />
           <div className="row ms-4 me-4">
-            <h3>{title}</h3>
+            <h1>{title}</h1>
           </div>
 
           <br />
@@ -73,6 +73,7 @@ const MovieCard = ({
                       boxShadow: "2px 2px 3px black",
                       marginRight: 1,
                       marginBottom: 1,
+                      fontSize: "1.6rem",
                     }}
                   />
                 );
@@ -82,14 +83,14 @@ const MovieCard = ({
 
           <br />
           <div className="row ms-4 me-4">
-            <h5>Description</h5>
+            <h3>Description</h3>
             <p>{description}</p>
-            <h5>Runtime:</h5>
+            <h3>Runtime:</h3>
             <p>{runtime} min</p>
           </div>
 
           <div className="row ms-4 me-4 mb-4 justify-content-start-safe">
-            <h5>Cast:</h5>
+            <h3>Cast:</h3>
             {cast !== undefined &&
               cast.map((actor, index) => {
                 return <CastCard key={index} {...actor} />;

@@ -6,44 +6,45 @@ import SignOutButton from "./SignOut";
 import Add from "./Add";
 import Remove from "./Remove";
 
-const User = ({user}) => {
+const User = ({ user }) => {
+  //console.log(user.signInUserSession.idToken.payload['cognito:groups']);
+  const userGroup = user.signInUserSession.idToken.payload["cognito:groups"];
 
-    //console.log(user.signInUserSession.idToken.payload['cognito:groups']);
-    const userGroup = user.signInUserSession.idToken.payload['cognito:groups'];
+  //console.log(user.attributes);
 
-    //console.log(user.attributes);
-
-    if(userGroup.includes('admin')){
-        return (
-            <section>
-                <div className="row mb-5">
-                    <Logo />
-    
-                    <div className="col-7 d-flex justify-content-end align-items-center">
-                        <Loans />
-                        <Add />
-                        <Remove />
-                        <Account userInfo={user.attributes}/>
-                        <SignOutButton />
-                    </div>
-                </div>
-            </section>
-        )
-    }
-
+  if (userGroup.includes("admin")) {
     return (
-        <section>
-            <div className="row mb-5">
-                <Logo />
+      <section>
+        <div className="row mb-5">
+          <div className="col-lg-5">
+            <Logo />
+          </div>
 
-                <div className="col-6 d-flex justify-content-end align-items-center">
-                    <Loans />
-                    <Account userName={user.attributes.name}/>
-                    <SignOutButton />
-                </div>
-            </div>
-        </section>
-    )
-}
+          <div className="col-lg-7 d-flex justify-content-end align-items-center">
+            <Loans />
+            <Add />
+            <Remove />
+            <Account userInfo={user.attributes} />
+            <SignOutButton />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section>
+      <div className="row mb-5">
+        <Logo />
+
+        <div className="col-6 d-flex justify-content-end align-items-center">
+          <Loans />
+          <Account userName={user.attributes.name} />
+          <SignOutButton />
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default User;

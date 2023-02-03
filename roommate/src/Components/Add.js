@@ -46,10 +46,10 @@ const Add = () => {
     <>
       <Button
         variant="text"
-        sx={{ color: "white", mr: 3 }}
+        sx={{ color: "white", mr: 3, fontSize: "1.6rem" }}
         onClick={handleOpen}
       >
-        <AddCircleIcon sx={{ mr: 1 }} />
+        <AddCircleIcon sx={{ mr: 1, fontSize: "1.6rem" }} />
         Add movie
       </Button>
       <Modal
