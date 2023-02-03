@@ -88,12 +88,16 @@ body {
   max-width: 75vw;
 }
 
+.movieCard img {
+  filter: brightness(75%);
+}
+
 .movieCard img:hover {
   animation: blur 0.5s ease;
   animation-fill-mode: forwards;
   @keyframes blur {
     100% {
-      filter: blur(0.5px);
+      filter: brightness(100%);
     }
   }
 }

@@ -4,7 +4,7 @@ import { style_moviecard } from "../Styles/modalStyle";
 import CastCard from "./CastCard";
 
 const poster_URL = (posterpath) => {
-  return "https://image.tmdb.org/t/p/w780" + posterpath;
+  return "https://image.tmdb.org/t/p/w1280" + posterpath;
 };
 
 const MovieCard = ({
