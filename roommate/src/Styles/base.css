@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barlow&family=Rajdhani:wght@700&display=swap");
 body {
-  background: linear-gradient(-45deg, #3b66ab, #3A92C2) no-repeat;
+  background: linear-gradient(-45deg, #3b66ab, #3a92c2) no-repeat;
   font-family: "Barlow", sans-serif;
   font-optical-sizing: auto;
 }
@@ -103,9 +103,12 @@ body {
   }
 }
 
+.movieCard img {
+  min-height: 25%;
+}
+
 .card {
   padding: auto;
-  min-height: 27rem;
 }
 
 .card-body {
@@ -120,8 +123,38 @@ body {
   display: none;
 }
 
+.modalStyle {
+  position: relative;
+  top: 50%;
+  left: 49.7%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 75%;
+  background-color: #2c2c2c;
+  border-radius: 15px;
+  box-shadow: 24;
+  padding: 4rem;
+  color: white;
+  overflow-x: auto;
+}
+
+.movieDetails {
+  position: relative;
+  top: 50%;
+  left: 49.7%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 75%;
+  background-color: #2c2c2c;
+  border-radius: 15px;
+  box-shadow: 24;
+  padding: 0;
+  color: white;
+  overflow-x: hidden;
+}
+
 .movieDetails .image-container {
-  max-height: 44vh;
+  max-height: 65%;
   overflow: hidden;
   border-radius: 15px;
 }
@@ -139,7 +172,7 @@ body {
   height: 10rem;
 }
 
-@media (max-width: 1080px) {
+@media (any-pointer: coarse) {
   .container {
     max-width: 90vw;
   }

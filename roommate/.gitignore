@@ -27,6 +27,10 @@ yarn-error.log*
 env.sh
 env.js
 
+
+#mongodb playgrounds
+.mongodb
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -48,6 +52,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-#mongodb playgrounds
-.mongodb
