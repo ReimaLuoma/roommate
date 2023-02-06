@@ -28,7 +28,6 @@ body {
   font-size: 12.8rem;
   color: $maincolor;
   text-shadow: $text-shadow;
-  font-optical-sizing: auto;
 }
 
 .box-shadow {
@@ -89,21 +88,21 @@ body {
 }
 
 .movieCard img {
-  filter: brightness(75%);
+  filter: brightness(85%);
 }
 
 .movieCard img:hover {
-  animation: blur 0.5s ease;
+  animation: blur 0.65s ease;
   animation-fill-mode: forwards;
   @keyframes blur {
     100% {
-      filter: brightness(100%);
+      filter: brightness(95%);
     }
   }
 }
 
 .movieCard:hover {
-  animation: tilt 0.5s ease;
+  animation: tilt 0.65s ease;
   animation-fill-mode: forwards;
   @keyframes tilt {
     100% {
@@ -200,11 +199,11 @@ body {
 
 @media (any-pointer: coarse) {
   .container {
-    max-width: 90vw;
+    max-width: 95vw;
   }
 
   .logo {
-    font-size: 8rem;
+    font-size: 7rem;
   }
 
   .card {

@@ -73,7 +73,7 @@ const MovieCard = ({
                       boxShadow: "2px 2px 3px black",
                       marginRight: 1,
                       marginBottom: 1,
-                      fontSize: "1.6rem",
+                      fontSize: "1.2rem",
                     }}
                   />
                 );

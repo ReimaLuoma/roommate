@@ -17,7 +17,6 @@ body {
   font-size: 12.8rem;
   color: #e2c34b;
   text-shadow: 0.5rem 0.5rem 0.5rem #3b66ab;
-  font-optical-sizing: auto;
 }
 
 .box-shadow {
@@ -80,29 +79,29 @@ body {
 }
 
 .movieCard img {
-  filter: brightness(75%);
+  filter: brightness(85%);
 }
 
 .movieCard img:hover {
-  -webkit-animation: blur 0.5s ease;
-          animation: blur 0.5s ease;
+  -webkit-animation: blur 0.65s ease;
+          animation: blur 0.65s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 @-webkit-keyframes blur {
   100% {
-    filter: brightness(100%);
+    filter: brightness(95%);
   }
 }
 @keyframes blur {
   100% {
-    filter: brightness(100%);
+    filter: brightness(95%);
   }
 }
 
 .movieCard:hover {
-  -webkit-animation: tilt 0.5s ease;
-          animation: tilt 0.5s ease;
+  -webkit-animation: tilt 0.65s ease;
+          animation: tilt 0.65s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -202,10 +201,10 @@ body {
 
 @media (any-pointer: coarse) {
   .container {
-    max-width: 90vw;
+    max-width: 95vw;
   }
   .logo {
-    font-size: 8rem;
+    font-size: 7rem;
   }
   .card {
     min-height: 23rem;
