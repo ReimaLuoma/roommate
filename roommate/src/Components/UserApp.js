@@ -12,11 +12,12 @@ import awsmobile from '../aws-exports';
 Amplify.configure(awsmobile);
 
 const UserApp = ({ signout, user }) => {
+
   return (
     <div className="container">
-      <User user={user}/>
+      <User user = {user}/>
       <Filters />
-      <Display />
+      <Display/>
     </div>
   )
 }

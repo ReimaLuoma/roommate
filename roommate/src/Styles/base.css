@@ -199,6 +199,14 @@ body {
   max-height: 5.5rem;
 }
 
+.opacity-50 {
+  opacity: 50%;
+}
+
+.opacity-25 {
+  opacity: 25%;
+}
+
 @media (any-pointer: coarse) {
   .container {
     max-width: 95vw;

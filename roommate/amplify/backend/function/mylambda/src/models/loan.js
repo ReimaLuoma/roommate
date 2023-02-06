@@ -10,7 +10,7 @@ const loanSchema = new mongoose.Schema({
         required: true
     },
 },  {
-    collection: 'loan'
+    collection: 'loans'
 })
 
 module.exports = mongoose.model('Loan', loanSchema);

@@ -3,6 +3,7 @@ $bgcolor: #3b66ab;
 $bgcolor2: #3a92c2;
 $maincolor: #e2c34b;
 $altcolor01: #b2a866;
+$altcolor02: #6AC230;
 
 $box-shadow: 0.5rem 0.5rem 0.5rem $bgcolor;
 $text-shadow: 0.5rem 0.5rem 0.5rem $bgcolor;
@@ -195,6 +196,13 @@ body {
 
 .searchBar {
   max-height: 5.5rem;
+}
+
+.opacity-50 {
+  opacity: 50%;
+}
+.opacity-25 {
+  opacity: 25%;
 }
 
 @media (any-pointer: coarse) {

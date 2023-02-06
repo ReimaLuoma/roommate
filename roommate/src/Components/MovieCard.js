@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Box, Chip } from "@mui/material";
-import { style_moviecard } from "../Styles/modalStyle";
+import { Modal, Box, Chip, Button } from "@mui/material";
 import CastCard from "./CastCard";
+import { loginState, userData } from '../Atoms/login';
+import { useRecoilValue } from "recoil";
 
 const poster_URL = (posterpath) => {
   return "https://image.tmdb.org/t/p/w1280" + posterpath;
@@ -15,11 +16,22 @@ const MovieCard = ({
   title,
   genres,
   description,
-  cast,
+  cast
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const loggedIn = useRecoilValue(loginState);
+  const userInfo = useRecoilValue(userData);
+
+  const handleLoan = () => {
+    fetch(process.env.REACT_APP_SERVER_API + 'loanInstance/createLoan/'+ userInfo.sub +'/'+ movieID +'/'+ title, {method: 'POST'})
+      .then((response) => response.json())
+      .then((data) => {
+          console.log(data);
+    });
+  };
 
   return (
     <>
@@ -62,7 +74,7 @@ const MovieCard = ({
 
           <br />
           <div className="row ms-4 me-4">
-            <div>
+            <div className="col-8">
               {genres.map((genre, index) => {
                 return (
                   <Chip
@@ -79,6 +91,31 @@ const MovieCard = ({
                 );
               })}
             </div>
+
+            {
+              loggedIn &&
+              <div className="col-4 d-flex align-self-start justify-content-end">
+                <Button
+                  variant="contained"
+                  sx={{
+                    color: "black",
+                    bgcolor: "#6AC230",
+                    mr: 3,
+                    borderRadius: 2,
+                    boxShadow: "3px 3px #1c1c1c",
+                    ":hover": {
+                      bgcolor: "#4F8F24",
+                      color: "#2c2c2c",
+                      boxShadow: "3px 3px #1c1c1c",
+                    },
+                  }}
+                  onClick={handleLoan}
+                >
+                  Ask for a loan
+                </Button>
+              </div>
+            }
+            
           </div>
 
           <br />

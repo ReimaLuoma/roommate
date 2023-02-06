@@ -22,7 +22,7 @@ const loanInstanceSchema = new mongoose.Schema({
         required: true
     }
 },  {
-    collection: 'loanInstance'
+    collection: 'loanInstances'
 })
 
 module.exports = mongoose.model('LoanInstance', loanInstanceSchema);

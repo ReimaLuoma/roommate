@@ -7,6 +7,9 @@ const mongo = require('./mongo');
 // loanInstance data model
 const LoanInstance = require('../models/loanInstance');
 
+// loan data model
+const Loan = require('../models/loan');
+
 // SYNTAX:
 // router.METHOD(PATH, HANDLER)
 
@@ -16,7 +19,7 @@ router.get('/:id', (req, res) => {
 })
 
 // Create
-router.post('/createLoan/:movieID/:title', async (req, res) => {
+router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
 
     // open database connection to 'loanInstances' collection
     const db = await mongo.connectToDatabase();
@@ -32,13 +35,28 @@ router.post('/createLoan/:movieID/:title', async (req, res) => {
     });
 
     // Create doc to collection
-    const loanIns = await collection.insertOne(loanInstance);
-    console.log('created: ', loanIns);
+    const loanInstanceInsert = await collection.insertOne(loanInstance);
+    console.log('created: ', loanInstanceInsert);
 
     // create loan with { loanInstanceID, userID }
+    const loanCollection = await db.collection('loans');
+
+    const loan = new Loan({
+        loanInstanceID: loanInstanceInsert.insertedId,
+        userID: req.params.user
+    });
+
+    const loanInsert = await loanCollection.insertOne(loan);
+    console.log('created: ', loanInsert);
+
     // add loanID to loanInstanceID
 
-    res.status(201).json({ loanIns });
+    await collection.updateOne(
+        {_id: loanInstanceInsert.insertedId},
+        {$set: { loanID: loanInsert.insertedId }}
+    )
+
+    res.status(201);
 })
 
 // Update

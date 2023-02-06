@@ -5,12 +5,16 @@ import Logo from "./Logo";
 import SignOutButton from "./SignOut";
 import Add from "./Add";
 import Remove from "./Remove";
+import { userData } from "../Atoms/login";
+import { useSetRecoilState } from "recoil";
 
 const User = ({ user }) => {
   //console.log(user.signInUserSession.idToken.payload['cognito:groups']);
   const userGroup = user.signInUserSession.idToken.payload["cognito:groups"];
 
   //console.log(user.attributes);
+  const setUserInfo = useSetRecoilState(userData);
+  setUserInfo(user.attributes);
 
   if (userGroup.includes("admin")) {
     return (
@@ -21,7 +25,7 @@ const User = ({ user }) => {
           </div>
 
           <div className="col-lg-7 d-flex justify-content-end align-items-center">
-            <Loans />
+            <Loans user={user.attributes}/>
             <Add />
             <Remove />
             <Account userInfo={user.attributes} />

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import style from "../Styles/modalStyle";
 import { Modal, Box, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -93,6 +92,10 @@ const Account = ({ userInfo }) => {
               >
                 Edit
               </Button>
+              
+              <div className="opacity-25">
+                <p>{userInfo.sub}</p>
+              </div>
             </div>
           </div>
         </Box>

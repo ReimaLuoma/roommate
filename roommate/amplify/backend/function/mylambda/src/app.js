@@ -36,6 +36,14 @@ app.use('/tmdb', tmdbRouter.router);
 const moviesRouter = require('./routes/movies');
 app.use('/movies', moviesRouter);
 
+// loanIntances router
+const loanInstanceRouter = require('./routes/loanInstances');
+app.use('/loanInstance', loanInstanceRouter);
+
+// loans router
+const loansRouter = require('./routes/loans');
+app.use('/loans', loansRouter);
+
 /**********************
  * Example get method *
  **********************/
