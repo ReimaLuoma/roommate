@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BrowseGalleryIcon from "@mui/icons-material/BrowseGallery";
 import style from "../Styles/modalStyle";
+import LoanListView from "./LoanListView";
 
 const Loans = ({ user }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [loans, setLoans] = useState([]);
+
+  useEffect(() => {
+    fetch(process.env.REACT_APP_SERVER_API + '/loans/all')
+      .then((response) => response.json())
+      .then((data) => {
+          setLoans(data);
+    });
+  }, [open]);
 
   return (
     <>
@@ -50,14 +60,23 @@ const Loans = ({ user }) => {
             </div>
 
             <div className="col-4">
-              Loaner
+              Borrower
             </div>
 
             <div className="col">
               Request return
             </div>
 
+            <hr />
+
           </div>
+
+          {
+            loans.map((loan, index) => {
+              return <LoanListView key={index} {...loan}/>
+            })
+          }
+          
         </Box>
       </Modal>
     </>

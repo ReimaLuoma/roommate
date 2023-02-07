@@ -111,7 +111,7 @@ const MovieCard = ({
                   }}
                   onClick={handleLoan}
                 >
-                  Ask for a loan
+                  Borrow this movie
                 </Button>
               </div>
             }

@@ -1,9 +1,10 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
 const loanSchema = new mongoose.Schema({
     loanInstanceID: {
-        type: String,
-        required: false
+        type: ObjectId,
+        required: true
     },
     userID: {
         type: String,

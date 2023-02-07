@@ -23,7 +23,7 @@ router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
 
     // open database connection to 'loanInstances' collection
     const db = await mongo.connectToDatabase();
-    const collection =  await db.collection('loanIntances');
+    const collection =  await db.collection('loanInstances');
 
     // form new loanInstance object
     const loanInstance = new LoanInstance({
@@ -36,7 +36,6 @@ router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
 
     // Create doc to collection
     const loanInstanceInsert = await collection.insertOne(loanInstance);
-    console.log('created: ', loanInstanceInsert);
 
     // create loan with { loanInstanceID, userID }
     const loanCollection = await db.collection('loans');
@@ -47,7 +46,6 @@ router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
     });
 
     const loanInsert = await loanCollection.insertOne(loan);
-    console.log('created: ', loanInsert);
 
     // add loanID to loanInstanceID
 
