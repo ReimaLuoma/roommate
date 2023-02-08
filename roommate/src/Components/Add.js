@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Box from "@mui/material/Box";
@@ -23,7 +23,7 @@ const Add = () => {
   const isInitialMount = useRef(true);
   const [foundMovies, setFoundMovies] = useState([]);
 
-  useEffect(() => {
+  const fetchSearchedMovies = useCallback (() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
@@ -35,7 +35,11 @@ const Add = () => {
           setFoundMovies(data.results);
         });
     }
-  }, [searchValue]);
+  },[searchValue]);
+
+  useEffect(() => {
+    fetchSearchedMovies();
+  }, [fetchSearchedMovies]);
 
   const dataFromSearch = (data) => {
     setSearchValue(data);

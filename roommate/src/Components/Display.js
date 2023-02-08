@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import MovieCard from "./MovieCard";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { moviesInfo, moviesDisplay, movieDataUpdate } from '../Atoms/movieData';
@@ -11,15 +11,19 @@ const Display = () => {
     const [moviesToDisplay, setMoviesToDisplay] = useRecoilState(moviesDisplay);
     const language = useRecoilValue(languageAndArea);
 
-    useEffect(() => {
+    const fetchMovieDataFromDatabase = useCallback (() => {
         fetch(process.env.REACT_APP_SERVER_API + '/movies/find/all')
-            .then((response) => response.json())
-            .then((data) => {
-                data.sort(sortByTitle)
-                setMovies(data);
-                setMoviesToDisplay(data);
-            });
-    }, [language, updateMovies]);
+        .then((response) => response.json())
+        .then((data) => {
+            data.sort(sortByTitle)
+            setMovies(data);
+            setMoviesToDisplay(data);
+        });
+    },[setMovies, setMoviesToDisplay]);
+
+    useEffect(() => {
+        fetchMovieDataFromDatabase();
+    }, [language, updateMovies, fetchMovieDataFromDatabase]);
 
     const sortByTitle = (a, b) => {
 

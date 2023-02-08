@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import MultipleSelectPlaceholder from "./MultipleSelectPlaceholder";
 import Search from "./Search";
@@ -36,17 +36,15 @@ const genres = [
 
 const Filters = () => {
   const [genresList, setGenresList] = useState(genres);
-  const [selectedGenreFilterItem, setSelectedGenreFilterItem] =
-    useRecoilState(selectedGenreFilter);
-  const [selectedDurationFilterItem, setSelectedDurationFilterItem] =
-    useRecoilState(selectedDurationFilter);
+  const [selectedGenreFilterItem, setSelectedGenreFilterItem] = useRecoilState(selectedGenreFilter);
+  const [selectedDurationFilterItem, setSelectedDurationFilterItem] = useRecoilState(selectedDurationFilter);
   const language = useRecoilValue(languageAndArea);
   const movies = useRecoilValue(moviesInfo);
   const [searchValue, setSearchValue] = useState("");
 
   const setMoviesToDisplay = useSetRecoilState(moviesDisplay);
 
-  const filterToDisplay = () => {
+  const filterToDisplay = useCallback(() => {
     // reset movies for filttering
     let list = [...movies];
 
@@ -107,10 +105,9 @@ const Filters = () => {
     }
 
     setMoviesToDisplay(list);
-  };
+  }, [movies, searchValue, selectedDurationFilterItem, selectedGenreFilterItem, setMoviesToDisplay]);
 
-  //Fetch initial data
-  useEffect(() => {
+  const fetchGenresFromTMDB = useCallback(() => {
     fetch(process.env.REACT_APP_SERVER_API + "/tmdb/genres")
       .then((response) => response.json())
       .then((data) => {
@@ -120,7 +117,12 @@ const Filters = () => {
         });
         setGenresList(arr);
       });
-  }, [language]);
+  }, [])
+
+  //Fetch initial data
+  useEffect(() => {
+    fetchGenresFromTMDB();
+  }, [language, fetchGenresFromTMDB]);
 
   useEffect(() => {
     filterToDisplay();

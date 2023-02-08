@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button, Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BrowseGalleryIcon from "@mui/icons-material/BrowseGallery";
@@ -11,7 +11,7 @@ const Loans = ({ user, admin }) => {
   const handleClose = () => setOpen(false);
   const [loans, setLoans] = useState([]);
 
-  useEffect(() => {
+  const fetchLoansByAccessLevel = useCallback(() => {
     if(admin){
       fetch(process.env.REACT_APP_SERVER_API + '/loans/all')
       .then((response) => response.json())
@@ -25,8 +25,11 @@ const Loans = ({ user, admin }) => {
           setLoans(data);
       });
     }
-    
-  }, [open]);
+  }, [admin, user]);
+
+  useEffect(() => {
+    fetchLoansByAccessLevel();
+  }, [open, fetchLoansByAccessLevel]);
 
   return (
     <>

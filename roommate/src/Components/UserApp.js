@@ -1,6 +1,8 @@
 import Filters from "./Filters";
 import Display from "./Display";
 import User from './User';
+import { useSetRecoilState } from "recoil";
+import { userData } from "../Atoms/login";
 
 // NOTE! Display component removed from rendered components in UserApp
 
@@ -11,7 +13,10 @@ import '@aws-amplify/ui-react/styles.css';
 import awsmobile from '../aws-exports';
 Amplify.configure(awsmobile);
 
-const UserApp = ({ signout, user }) => {
+const UserApp = ({ user }) => {
+
+  const setUserInfo = useSetRecoilState(userData);
+  setUserInfo(user.attributes);
 
   return (
     <div className="container">
