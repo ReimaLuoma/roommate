@@ -39,7 +39,7 @@ const MovieCard = ({
           className="card box-shadow me-nd-3 mb-md-5 text-end"
           onClick={handleOpen}
         >
-          <PosterImg size={780} posterpath={posterpath} />
+          <PosterImg size={500} posterpath={posterpath} />
           <div className="card-body">
             <p className="card-title">{runtime} min</p>
             <p className="card-title">{releaseDate.slice(0, 4)}</p>
