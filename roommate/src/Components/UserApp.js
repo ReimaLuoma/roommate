@@ -11,6 +11,7 @@ import { withAuthenticator} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import awsmobile from '../aws-exports';
+import About from "./About";
 Amplify.configure(awsmobile);
 
 const UserApp = ({ user }) => {
@@ -23,6 +24,7 @@ const UserApp = ({ user }) => {
       <User user = {user}/>
       <Filters />
       <Display/>
+      <About />
     </div>
   )
 }
