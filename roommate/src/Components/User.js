@@ -20,12 +20,10 @@ const User = ({ user }) => {
     return (
       <section>
         <div className="row mb-5">
-          <div className="col-lg-5">
             <Logo />
-          </div>
 
           <div className="col-lg-7 d-flex justify-content-end align-items-center">
-            <Loans user={user.attributes}/>
+            <Loans user={user} admin={true}/>
             <Add />
             <Remove />
             <Account userInfo={user.attributes} />
@@ -42,7 +40,7 @@ const User = ({ user }) => {
         <Logo />
 
         <div className="col-6 d-flex justify-content-end align-items-center">
-          <Loans />
+          <Loans user={user.attributes} admin={false}/>
           <Account userName={user.attributes.name} />
           <SignOutButton />
         </div>

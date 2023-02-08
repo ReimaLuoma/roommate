@@ -2,10 +2,7 @@ import { Button, Card } from "@mui/material";
 import React from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { moviesInfo, movieDataUpdate } from "../Atoms/movieData";
-
-const poster_URL = (posterpath) => {
-  return "https://image.tmdb.org/t/p/w500" + posterpath;
-};
+import PosterImg from "./PosterImg";
 
 const MovieCardListView = ({
   id = 0,
@@ -56,11 +53,7 @@ const MovieCardListView = ({
         }}
       >
         <div className="col-2">
-          <img
-            src={poster_URL(posterpath)}
-            className="card-img-top img-fluid"
-            alt="..."
-          ></img>
+          <PosterImg size={500} posterpath={posterpath} />
         </div>
 
         <div className="col-6 ms-4 d-flex align-items-center">

@@ -5,18 +5,27 @@ import BrowseGalleryIcon from "@mui/icons-material/BrowseGallery";
 import style from "../Styles/modalStyle";
 import LoanListView from "./LoanListView";
 
-const Loans = ({ user }) => {
+const Loans = ({ user, admin }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [loans, setLoans] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_SERVER_API + '/loans/all')
+    if(admin){
+      fetch(process.env.REACT_APP_SERVER_API + '/loans/all')
       .then((response) => response.json())
       .then((data) => {
           setLoans(data);
-    });
+      });
+    } else {
+      fetch(process.env.REACT_APP_SERVER_API + '/loans/' + user.attributes.sub)
+      .then((response) => response.json())
+      .then((data) => {
+          setLoans(data);
+      });
+    }
+    
   }, [open]);
 
   return (
@@ -44,7 +53,7 @@ const Loans = ({ user }) => {
           </div>
 
           <div>
-            <p className="opacity-25">{user.sub}</p>
+            <p className="opacity-25">{user.attributes.sub}</p>
           </div>
 
           <div>

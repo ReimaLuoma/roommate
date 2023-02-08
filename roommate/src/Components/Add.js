@@ -6,7 +6,6 @@ import Modal from "@mui/material/Modal";
 import Search from "./Search";
 import MovieCardListView from "./MovieCardListView";
 import CloseIcon from "@mui/icons-material/Close";
-import style from "../Styles/modalStyle";
 import { movieDataUpdate } from "../Atoms/movieData";
 import { useRecoilState } from "recoil";
 

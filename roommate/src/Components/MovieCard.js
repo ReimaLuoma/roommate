@@ -3,10 +3,8 @@ import { Modal, Box, Chip, Button } from "@mui/material";
 import CastCard from "./CastCard";
 import { loginState, userData } from '../Atoms/login';
 import { useRecoilValue } from "recoil";
-
-const poster_URL = (posterpath) => {
-  return "https://image.tmdb.org/t/p/w1280" + posterpath;
-};
+import PosterImg from "./PosterImg";
+import ImdbButton from "./ImdbButton";
 
 const MovieCard = ({
   movieID,
@@ -16,7 +14,8 @@ const MovieCard = ({
   title,
   genres,
   description,
-  cast
+  cast,
+  imdbID
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -40,11 +39,7 @@ const MovieCard = ({
           className="card box-shadow me-nd-3 mb-md-5 text-end"
           onClick={handleOpen}
         >
-          <img
-            src={poster_URL(posterpath)}
-            className="card-img-top img-fluid"
-            alt="..."
-          ></img>
+          <PosterImg size={780} posterpath={posterpath} />
           <div className="card-body">
             <p className="card-title">{runtime} min</p>
             <p className="card-title">{releaseDate.slice(0, 4)}</p>
@@ -60,11 +55,7 @@ const MovieCard = ({
       >
         <Box className="movieDetails no-scroll">
           <div className="image-container">
-            <img
-              src={poster_URL(posterpath)}
-              className="img-fluid"
-              alt="..."
-            ></img>
+          <PosterImg size={1280} posterpath={posterpath} />
           </div>
 
           <br />
@@ -91,31 +82,31 @@ const MovieCard = ({
                 );
               })}
             </div>
-
+            <div className="col-4 d-flex flex-column align-self-start justify-content-end">
             {
               loggedIn &&
-              <div className="col-4 d-flex align-self-start justify-content-end">
-                <Button
-                  variant="contained"
-                  sx={{
-                    color: "black",
-                    bgcolor: "#6AC230",
-                    mr: 3,
-                    borderRadius: 2,
-                    boxShadow: "3px 3px #1c1c1c",
-                    ":hover": {
-                      bgcolor: "#4F8F24",
-                      color: "#2c2c2c",
+                  <Button
+                    variant="contained"
+                    sx={{
+                      color: "black",
+                      bgcolor: "#3a92c2",
+                      mr: 3,
+                      mb: 1,
+                      borderRadius: 2,
                       boxShadow: "3px 3px #1c1c1c",
-                    },
-                  }}
-                  onClick={handleLoan}
-                >
-                  Borrow this movie
-                </Button>
-              </div>
+                      ":hover": {
+                        bgcolor: "#3b66ab",
+                        color: "white",
+                        boxShadow: "3px 3px #1c1c1c",
+                      },
+                    }}
+                    onClick={handleLoan}
+                  >
+                    Borrow this movie
+                  </Button>
             }
-            
+            <ImdbButton imdbID={imdbID} />
+            </div>
           </div>
 
           <br />

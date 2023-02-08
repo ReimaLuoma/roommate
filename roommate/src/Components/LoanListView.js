@@ -2,10 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { moviesInfo } from '../Atoms/movieData';
-
-const poster_URL = (posterpath) => {
-    return "https://image.tmdb.org/t/p/w500" + posterpath;
-  };
+import PosterImg from './PosterImg';
 
 const LoanListView = ({ movieID }) => {
 
@@ -18,7 +15,7 @@ const LoanListView = ({ movieID }) => {
             <div className="col-2">
                 {
                     posterpath !== null &&
-                    <img src={poster_URL(posterpath)} className='img-fluid' alt={movie.title}></img>
+                    <PosterImg size={500} posterpath={posterpath} />
                 }
             </div>
 
