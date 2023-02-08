@@ -15,10 +15,23 @@ const Display = () => {
         fetch(process.env.REACT_APP_SERVER_API + '/movies/find/all')
             .then((response) => response.json())
             .then((data) => {
+                data.sort(sortByTitle)
                 setMovies(data);
                 setMoviesToDisplay(data);
             });
     }, [language, updateMovies]);
+
+    const sortByTitle = (a, b) => {
+
+        if ( a.title < b.title ){
+            return -1;
+        }
+        if ( a.title > b.title ){
+            return 1;
+        }
+        return 0;
+
+    }
 
     if(moviesToDisplay.length !== 0){
         return (
