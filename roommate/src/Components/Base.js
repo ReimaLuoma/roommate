@@ -1,6 +1,7 @@
 import Landing from "./Landing";
 import Filters from "./Filters";
 import Display from "./Display";
+import About from "./About";
 
 const Base = () => {
   return (
@@ -9,6 +10,7 @@ const Base = () => {
       <Landing />
       <Filters />
       <Display />
+      <About />
     </div>
     </>
   );
