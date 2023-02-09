@@ -20,7 +20,7 @@ const User = ({ user }) => {
             <Loans user={user} admin={true}/>
             <Add />
             <Remove />
-            <Account userInfo={user.attributes} />
+            <Account user={user.attributes} />
             <SignOutButton />
           </div>
         </div>
@@ -33,8 +33,8 @@ const User = ({ user }) => {
           <Logo />
 
           <div className="col-lg-7 d-flex justify-content-end align-items-center">
-            <Loans user={user.attributes} admin={false}/>
-            <Account userName={user.attributes.name} />
+            <Loans user={user} admin={false}/>
+            <Account user={user.attributes} />
             <SignOutButton />
           </div>
         </div>

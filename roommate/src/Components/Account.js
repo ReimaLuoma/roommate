@@ -3,7 +3,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Modal, Box, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Account = ({ userInfo }) => {
+const Account = ({ user }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -16,7 +16,7 @@ const Account = ({ userInfo }) => {
         onClick={handleOpen}
       >
         <AccountCircleIcon sx={{ mr: 1, fontSize: "1.6rem" }} />
-        {userInfo.given_name}
+        {user.given_name}
       </Button>
 
       <Modal
@@ -42,7 +42,7 @@ const Account = ({ userInfo }) => {
                 <h5>First Name:</h5>
               </div>
               <div className="col">
-                <h5>{userInfo.given_name}</h5>
+                <h5>{user.given_name}</h5>
               </div>
             </div>
 
@@ -51,7 +51,7 @@ const Account = ({ userInfo }) => {
                 <h5>Family Name:</h5>
               </div>
               <div className="col">
-                <h5>{userInfo.family_name}</h5>
+                <h5>{user.family_name}</h5>
               </div>
             </div>
 
@@ -60,7 +60,7 @@ const Account = ({ userInfo }) => {
                 <h5>Email:</h5>
               </div>
               <div className="col">
-                <h5>{userInfo.email}</h5>
+                <h5>{user.email}</h5>
               </div>
             </div>
 
@@ -69,7 +69,7 @@ const Account = ({ userInfo }) => {
                 <h5>Phone:</h5>
               </div>
               <div className="col">
-                <h5>{userInfo.phone_number}</h5>
+                <h5>{user.phone_number}</h5>
               </div>
             </div>
 
@@ -94,7 +94,7 @@ const Account = ({ userInfo }) => {
               </Button>
               
               <div className="opacity-25">
-                <p>{userInfo.sub}</p>
+                <p>{user.sub}</p>
               </div>
             </div>
           </div>

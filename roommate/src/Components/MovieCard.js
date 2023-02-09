@@ -28,7 +28,7 @@ const MovieCard = ({
     fetch(process.env.REACT_APP_SERVER_API + 'loanInstance/createLoan/'+ userInfo.sub +'/'+ movieID +'/'+ title, {method: 'POST'})
       .then((response) => response.json())
       .then((data) => {
-          console.log(data);
+        // does something happen here?
     });
   };
 

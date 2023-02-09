@@ -31,68 +31,135 @@ const Loans = ({ user, admin }) => {
     fetchLoansByAccessLevel();
   }, [open, fetchLoansByAccessLevel]);
 
-  return (
-    <>
-      <Button
-        variant="text"
-        sx={{ color: "white", mr: 3, borderRadius: 2, fontSize: "1.6rem" }}
-        onClick={handleOpen}
-      >
-        <BrowseGalleryIcon sx={{ mr: 1, fontSize: "1.6rem" }} />
-        Loans
-      </Button>
-
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style} className="no-scroll">
-          <div className="d-flex justify-content-end">
-            <Button sx={{ color: "white" }} onClick={handleClose}>
-              <CloseIcon />
-            </Button>
-          </div>
-
-          <div>
-            <p className="opacity-25">{user.attributes.sub}</p>
-          </div>
-
-          <div>
-            <h1>Loans</h1>
-          </div>
-
-          <br />
-
-          <div className="row">
-
-            <div className="col-4">
-              Movie
+  if(admin){
+    return (
+      <>
+        <Button
+          variant="text"
+          sx={{ color: "white", mr: 3, borderRadius: 2, fontSize: "1.6rem" }}
+          onClick={handleOpen}
+        >
+          <BrowseGalleryIcon sx={{ mr: 1, fontSize: "1.6rem" }} />
+          Loans
+        </Button>
+  
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style} className="no-scroll">
+            <div className="d-flex justify-content-end">
+              <Button sx={{ color: "white" }} onClick={handleClose}>
+                <CloseIcon />
+              </Button>
             </div>
-
-            <div className="col-4">
-              Borrower
+  
+            <div>
+              <p className="opacity-25">{user.attributes.sub}</p>
             </div>
-
-            <div className="col">
-              Request return
+  
+            <div>
+              <h1>Loans</h1>
             </div>
+  
+            <br />
+  
+            <div className="row">
+  
+              <div className="col-4">
+                Movie
+              </div>
+  
+              <div className="col-4">
+                Borrower
+              </div>
+  
+              <div className="col">
+                Action
+              </div>
+  
+              <hr />
+  
+            </div>
+  
+            {
+              loans.map((loan, index) => {
+                return <LoanListView key={index} {...loan} admin={admin}/>
+              })
+            }
+            
+          </Box>
+        </Modal>
+      </>
+    );
+  }
 
-            <hr />
+  if(!admin){
+    return (
+      <>
+        <Button
+          variant="text"
+          sx={{ color: "white", mr: 3, borderRadius: 2, fontSize: "1.6rem" }}
+          onClick={handleOpen}
+        >
+          <BrowseGalleryIcon sx={{ mr: 1, fontSize: "1.6rem" }} />
+          Loans
+        </Button>
+  
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style} className="no-scroll">
+            <div className="d-flex justify-content-end">
+              <Button sx={{ color: "white" }} onClick={handleClose}>
+                <CloseIcon />
+              </Button>
+            </div>
+  
+            <div>
+              <p className="opacity-25">{user.attributes.sub}</p>
+            </div>
+  
+            <div>
+              <h1>Loans</h1>
+            </div>
+  
+            <br />
+  
+            <div className="row">
+  
+              <div className="col-4">
+                Movie
+              </div>
 
-          </div>
-
-          {
-            loans.map((loan, index) => {
-              return <LoanListView key={index} {...loan}/>
-            })
-          }
-          
-        </Box>
-      </Modal>
-    </>
-  );
+              <div className="col-4">
+                Title
+              </div>
+  
+              <div className="col">
+                Action
+              </div>
+  
+              <hr />
+  
+            </div>
+  
+            {
+              loans.map((loan, index) => {
+                return <LoanListView key={index} {...loan} admin={admin}/>
+              })
+            }
+            
+          </Box>
+        </Modal>
+      </>
+    );
+  }
 };
 
 export default Loans;
