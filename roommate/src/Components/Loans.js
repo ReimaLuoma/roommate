@@ -73,7 +73,7 @@ const Loans = ({ user, admin }) => {
               </div>
   
               <div className="col-4">
-                Borrower
+                User
               </div>
   
               <div className="col">
@@ -141,7 +141,7 @@ const Loans = ({ user, admin }) => {
                 Title
               </div>
   
-              <div className="col">
+              <div className="col ps-5">
                 Action
               </div>
   

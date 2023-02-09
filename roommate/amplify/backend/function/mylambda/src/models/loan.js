@@ -9,7 +9,7 @@ const loanSchema = new mongoose.Schema({
     userID: {
         type: String,
         required: true
-    },
+    }
 },  {
     collection: 'loans'
 })

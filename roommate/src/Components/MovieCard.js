@@ -102,7 +102,7 @@ const MovieCard = ({
                     }}
                     onClick={handleLoan}
                   >
-                    Borrow this movie
+                    Request a borrowing
                   </Button>
             }
             <ImdbButton imdbID={imdbID} />
