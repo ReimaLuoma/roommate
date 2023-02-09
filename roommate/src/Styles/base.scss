@@ -214,6 +214,12 @@ body {
   color: white;
 }
 
+.about a {
+  text-decoration-style: dashed;
+  text-decoration-thickness: 1px;
+  color: white;
+}
+
 @media (any-pointer: coarse) {
   .container {
     max-width: 95vw;

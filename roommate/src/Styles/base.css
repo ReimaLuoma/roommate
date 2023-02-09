@@ -24,15 +24,8 @@ body {
 }
 
 .box-shadow:hover {
-  -webkit-animation: shadowAdjust 0.5s ease-in-out;
-          animation: shadowAdjust 0.5s ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-@-webkit-keyframes shadowAdjust {
-  100% {
-    box-shadow: 0.3rem 0.3rem 0.2rem #3b66ab;
-  }
+  animation: shadowAdjust 0.5s ease-in-out;
+  animation-fill-mode: forwards;
 }
 @keyframes shadowAdjust {
   100% {
@@ -83,15 +76,8 @@ body {
 }
 
 .movieCard img:hover {
-  -webkit-animation: blur 0.65s ease;
-          animation: blur 0.65s ease;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-@-webkit-keyframes blur {
-  100% {
-    filter: brightness(95%);
-  }
+  animation: blur 0.65s ease;
+  animation-fill-mode: forwards;
 }
 @keyframes blur {
   100% {
@@ -100,15 +86,8 @@ body {
 }
 
 .movieCard:hover {
-  -webkit-animation: tilt 0.65s ease;
-          animation: tilt 0.65s ease;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-@-webkit-keyframes tilt {
-  100% {
-    transform: scale(99%);
-  }
+  animation: tilt 0.65s ease;
+  animation-fill-mode: forwards;
 }
 @keyframes tilt {
   100% {
@@ -213,6 +192,12 @@ body {
 }
 
 .about {
+  color: white;
+}
+
+.about a {
+  text-decoration-style: dashed;
+  text-decoration-thickness: 1px;
   color: white;
 }
 
