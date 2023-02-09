@@ -1,22 +1,15 @@
-import { Button } from "@mui/material";
+
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { moviesInfo } from '../Atoms/movieData';
+import LoanStatusAction from "./LoanStatusAction";
 import PosterImg from './PosterImg';
 
-const LoanListView = ({ title, movieID, admin }) => {
+const LoanListView = ({ title, movieID, admin, availability }) => {
 
     const movies = useRecoilValue(moviesInfo);
     const movie = movies.find(movie => movie.movieID === movieID);
     const posterpath = movie.posterpath;
-
-    const handleReturn = () => {
-        console.log('handling return');
-    };
-
-    const handleReturnRequest = () => {
-        console.log('handling return request');
-    };
 
     if(admin) {
         return (
@@ -28,29 +21,11 @@ const LoanListView = ({ title, movieID, admin }) => {
                     }
                 </div>
     
-                <div className="col-6">
+                <div className="col-6 text-center">
                     
                 </div>
     
-                <Button
-                    className="col-3"
-                    variant="contained"
-                    sx={{
-                        color: "black",
-                        bgcolor: "#e2c34b",
-                        mr: 3,
-                        borderRadius: 2,
-                        boxShadow: "3px 3px #1c1c1c",
-                        ":hover": {
-                        bgcolor: "#ffdc54",
-                        color: "#2c2c2c",
-                        boxShadow: "3px 3px #1c1c1c",
-                        },
-                    }}
-                    onClick={handleReturnRequest}
-                >
-                  Request return
-                </Button>
+                <LoanStatusAction status={availability} admin={admin} movieID={movieID}/>
             </div>
         )
     }
@@ -68,26 +43,8 @@ const LoanListView = ({ title, movieID, admin }) => {
                 <div className="col-6 text-center">
                     {title}
                 </div>
-    
-                <Button
-                    className="col-3"
-                    variant="contained"
-                    sx={{
-                        color: "black",
-                        bgcolor: "#e2c34b",
-                        mr: 3,
-                        borderRadius: 2,
-                        boxShadow: "3px 3px #1c1c1c",
-                        ":hover": {
-                        bgcolor: "#ffdc54",
-                        color: "#2c2c2c",
-                        boxShadow: "3px 3px #1c1c1c",
-                        },
-                    }}
-                    onClick={handleReturn}
-                >
-                  Return
-                </Button>
+
+                <LoanStatusAction status={availability} movieID={movieID}/>
             </div>
         )
     }

@@ -12,6 +12,19 @@ body {
   font-optical-sizing: auto;
 }
 
+.glow {
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 2px #e2c34b;
+  }
+  to {
+    text-shadow: 0 0 2px #fff, 0 0 3px #e2c34b;
+  }
+}
+
 .logo {
   font-family: "Rajdhani", sans-serif;
   font-size: 12.8rem;

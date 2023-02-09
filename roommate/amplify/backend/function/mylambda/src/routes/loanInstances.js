@@ -75,13 +75,34 @@ router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
 })
 
 // Update
-router.patch('/:id', (req, res) => {
+router.post('/:id', (req, res) => {
 
 })
 
 // Delete
-router.delete('/:id', (req, res) => {
+router.post('/cancelRequest/:id', async (req, res) => {
 
+    console.log('request id: ', req.params.id);
+
+    try {
+
+        // open database connection to 'loanInstances' collection
+        const db = await mongo.connectToDatabase();
+        const loanInstances =  await db.collection('loanInstances');
+
+        // delete loanInstance
+        const deletedInstance = await loanInstances.deleteOne({ _id: req.params.id });
+
+        // open database connection to 'loans' collection
+        const loans =  await db.collection('loans');
+        const deletedLoan = await loans.deleteOne({ loanInstanceID: req.params.id });
+
+        res.status(204).json({ message: 'Loan has been removed' });
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+
+    
 })
 
 module.exports = {router, updateLoanInstanceAvailability};
