@@ -10,7 +10,7 @@ const User = ({ user }) => {
   //console.log(user.signInUserSession.idToken.payload['cognito:groups']);
   const userGroup = user.signInUserSession.idToken.payload["cognito:groups"];
 
-  if (userGroup.includes("admin")) {
+  if (userGroup !== undefined && userGroup.includes("admin")) {
     return (
       <section>
         <div className="row mb-5">
@@ -26,21 +26,21 @@ const User = ({ user }) => {
         </div>
       </section>
     );
-  }
+  }else {
+    return (
+      <section>
+        <div className="row mb-5">
+          <Logo />
 
-  return (
-    <section>
-      <div className="row mb-5">
-        <Logo />
-
-        <div className="col-6 d-flex justify-content-end align-items-center">
-          <Loans user={user.attributes} admin={false}/>
-          <Account userName={user.attributes.name} />
-          <SignOutButton />
+          <div className="col-lg-7 d-flex justify-content-end align-items-center">
+            <Loans user={user.attributes} admin={false}/>
+            <Account userName={user.attributes.name} />
+            <SignOutButton />
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }  
 };
 
 export default User;

@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 
 const signOut = async () => {
   try {
-    await Auth.signOut();
+    await Auth.signOut({ global: true });
   } catch (error) {
     console.log("error signing out: ", error);
   }
@@ -19,7 +19,6 @@ const SignOutButton = () => {
         color: "black",
         fontSize: "1.6rem",
         bgcolor: "#e2c34b",
-        mr: 3,
         borderRadius: 2,
         ":hover": { bgcolor: "#ffdc54", color: "#3b66ab" },
       }}
