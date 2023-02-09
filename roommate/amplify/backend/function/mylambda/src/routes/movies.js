@@ -21,7 +21,7 @@ router.get('/find/all', async (req, res) => {
     const cursor = await collection.find(); // return cursor
     const allValues = await cursor.toArray(); // return array of all docs
 
-    res.json(allValues);
+    res.status(200).json(allValues);
 })
 
 // Create

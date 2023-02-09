@@ -38,7 +38,7 @@ app.use('/movies', moviesRouter);
 
 // loanIntances router
 const loanInstanceRouter = require('./routes/loanInstances');
-app.use('/loanInstance', loanInstanceRouter);
+app.use('/loanInstance', loanInstanceRouter.router);
 
 // loans router
 const loansRouter = require('./routes/loans');
