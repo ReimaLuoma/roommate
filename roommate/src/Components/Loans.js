@@ -4,12 +4,15 @@ import CloseIcon from "@mui/icons-material/Close";
 import BrowseGalleryIcon from "@mui/icons-material/BrowseGallery";
 import style from "../Styles/modalStyle";
 import LoanListView from "./LoanListView";
+import { loanUpdate } from "../Atoms/LoanUpdate";
+import { useRecoilValue } from "recoil";
 
 const Loans = ({ user, admin }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [loans, setLoans] = useState([]);
+  const updateLoans = useRecoilValue(loanUpdate);
 
   const fetchLoansByAccessLevel = useCallback(() => {
     if(admin){
@@ -29,7 +32,7 @@ const Loans = ({ user, admin }) => {
 
   useEffect(() => {
     fetchLoansByAccessLevel();
-  }, [open, fetchLoansByAccessLevel]);
+  }, [updateLoans, fetchLoansByAccessLevel]);
 
   if(admin){
     return (

@@ -5,7 +5,7 @@ import { moviesInfo } from '../Atoms/movieData';
 import LoanStatusAction from "./LoanStatusAction";
 import PosterImg from './PosterImg';
 
-const LoanListView = ({ title, movieID, admin, availability }) => {
+const LoanListView = ({ title, movieID, admin, availability, _id }) => {
 
     const movies = useRecoilValue(moviesInfo);
     const movie = movies.find(movie => movie.movieID === movieID);
@@ -25,7 +25,7 @@ const LoanListView = ({ title, movieID, admin, availability }) => {
                     
                 </div>
     
-                <LoanStatusAction status={availability} admin={admin} movieID={movieID}/>
+                <LoanStatusAction status={availability} admin={admin} movieID={movieID} _id={_id}/>
             </div>
         )
     }
@@ -44,7 +44,7 @@ const LoanListView = ({ title, movieID, admin, availability }) => {
                     {title}
                 </div>
 
-                <LoanStatusAction status={availability} movieID={movieID}/>
+                <LoanStatusAction status={availability} movieID={movieID} _id={_id}/>
             </div>
         )
     }

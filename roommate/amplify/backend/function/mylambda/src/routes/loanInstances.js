@@ -3,6 +3,7 @@ const router = express.Router();
 
 // mongoose and database setup
 const mongo = require('./mongo');
+const { ObjectId } = require('mongodb');
 
 // loanInstance data model
 const LoanInstance = require('../models/loanInstance');
@@ -21,17 +22,22 @@ router.get('/:id', (req, res) => {
 const updateLoanInstanceAvailability = async (loanInstanceID, status) => {
 
     try {
+        const id = ObjectId(loanInstanceID);
+
         const db = await mongo.connectToDatabase();
         const collection =  await db.collection('loanInstances');
 
         const updated = await collection.updateOne(
-            {_id: loanInstanceID},
+            {_id: id},
             {$set: {availability: status}}
         )
 
-        res.status(202).json("status updated succesfully");
+        console.log(updated);
+
+        return 202;
+
     } catch (error) {
-        res.status(500).json({ message: error });
+        return 500;
     }
 }
 
@@ -75,7 +81,11 @@ router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
 })
 
 // Update
-router.post('/:id', (req, res) => {
+router.post('/updateStatus/:id/:status', async (req, res) => {
+
+    const update = await updateLoanInstanceAvailability(req.params.id, req.params.status);
+
+    res.status(update);
 
 })
 
@@ -85,20 +95,22 @@ router.post('/cancelRequest/:id', async (req, res) => {
     console.log('request id: ', req.params.id);
 
     try {
+        // create mongodb ID from req.params.id
+        const id = ObjectId(req.params.id);
 
         // open database connection to 'loanInstances' collection
         const db = await mongo.connectToDatabase();
         const loanInstances =  await db.collection('loanInstances');
 
         // delete loanInstance
-        const deletedInstance = await loanInstances.deleteOne({ _id: req.params.id });
+        const deletedInstance = await loanInstances.deleteOne({ _id: id });
 
         // open database connection to 'loans' collection
         const loans =  await db.collection('loans');
-        const deletedLoan = await loans.deleteOne({ loanInstanceID: req.params.id });
+        const deletedLoan = await loans.deleteOne({ loanInstanceID: id });
 
-        res.status(204).json({ message: 'Loan has been removed' });
-        
+        res.status(204).json({ message: 'cancelled'});
+
     } catch (error) {
         res.status(500).json({ message: error });
     }
