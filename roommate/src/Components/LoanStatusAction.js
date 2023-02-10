@@ -2,8 +2,13 @@ import { Button } from '@mui/material';
 
 const LoanStatusAction = ({ status, admin=false, movieID }) => {
 
-    const handleCancel = () => {
-        console.log('cancel');
+    const handleCancel = (loanInstanceID) => {
+        console.log('cancel: ', loanInstanceID);
+        fetch(process.env.REACT_APP_SERVER_API + '/loanInstance/cancelRequest/' + loanInstanceID)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data.data);
+        });
     };
 
     const handleRequest = () => {

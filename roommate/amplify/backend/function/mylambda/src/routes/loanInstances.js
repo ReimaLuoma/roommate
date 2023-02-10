@@ -98,11 +98,10 @@ router.post('/cancelRequest/:id', async (req, res) => {
         const deletedLoan = await loans.deleteOne({ loanInstanceID: req.params.id });
 
         res.status(204).json({ message: 'Loan has been removed' });
+        
     } catch (error) {
         res.status(500).json({ message: error });
     }
-
-    
 })
 
 module.exports = {router, updateLoanInstanceAvailability};
