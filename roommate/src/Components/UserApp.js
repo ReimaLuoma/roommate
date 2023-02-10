@@ -12,12 +12,17 @@ import '@aws-amplify/ui-react/styles.css';
 
 import awsmobile from '../aws-exports';
 import About from "./About";
+import { useEffect } from "react";
 Amplify.configure(awsmobile);
 
 const UserApp = ({ user }) => {
 
   const setUserInfo = useSetRecoilState(userData);
-  setUserInfo(user.attributes);
+  
+
+  useEffect(() => {
+    setUserInfo(user.attributes);
+  },[])
 
   return (
     <div className="container">

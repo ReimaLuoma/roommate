@@ -32,7 +32,7 @@ const Loans = ({ user, admin }) => {
 
   useEffect(() => {
     fetchLoansByAccessLevel();
-  }, [updateLoans, fetchLoansByAccessLevel]);
+  }, [open, updateLoans, fetchLoansByAccessLevel]);
 
   if(admin){
     return (
