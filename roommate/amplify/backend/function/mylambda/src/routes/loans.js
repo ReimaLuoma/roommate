@@ -11,14 +11,52 @@ const { ObjectId } = require('mongodb');
 // Get all
 router.get('/all', async (req, res) => {
 
-    // open database connection to 'loanInstances' collection
-    const db = await mongo.connectToDatabase();
-    const loanInstances =  await db.collection('loanInstances');
+    try {
 
-    // return all loanInstances
-    const data = await loanInstances.find().toArray();
+        // open database connection to 'loanInstances' collection
+        const db = await mongo.connectToDatabase();
+        const loans =  await db.collection('loans');
 
-    res.status(200).json(data);
+        /*
+        if(loans.count((err, count) => {
+            if(!err && count === 0){
+                res.status(200).json({ message: 'no loans'});
+            }
+        }));
+        */
+
+        // return all loanInstances
+        const data = await loans.aggregate([
+            {
+                $lookup:{
+                    from: "loanInstances",
+                    localField: "loanInstanceID",
+                    foreignField: "_id",
+                    as: "loanInstanceData"
+                }
+            },
+            {
+                $unwind: "$loanInstanceData"
+            },
+            {
+                $lookup:{
+                    from: "users",
+                    localField: "userID",
+                    foreignField: "userID",
+                    as: "userData"
+                }
+            }
+        ]).toArray();
+
+        console.log('data from loans', data);
+
+        res.status(200).json(data);
+        
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+
+    
 
 })
 

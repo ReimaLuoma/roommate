@@ -25,10 +25,11 @@ const MovieCard = ({
   const userInfo = useRecoilValue(userData);
 
   const handleLoan = () => {
-    fetch(process.env.REACT_APP_SERVER_API + 'loanInstance/createLoan/'+ userInfo.sub +'/'+ movieID +'/'+ title, {method: 'POST'})
+    fetch(process.env.REACT_APP_SERVER_API + 'loanInstance/createLoan/'+ userInfo.sub +'/'+ userInfo.given_name +'/'+ userInfo.family_name +'/'+ userInfo.phone_number +'/'+ userInfo.email +'/'+ movieID +'/'+ title, {method: 'POST'})
       .then((response) => response.json())
       .then((data) => {
         // does something happen here?
+        console.log(data);
     });
   };
 

@@ -2,12 +2,12 @@ import { Button } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { loanUpdate } from '../Atoms/LoanUpdate';
 
-const LoanStatusAction = ({ status, admin=false, _id }) => {
+const LoanStatusAction = ({ status, admin=false, _id, userID }) => {
 
     const [loanUp, setLoanUp] = useRecoilState(loanUpdate);
 
     const handleCancel = () => {
-        fetch(process.env.REACT_APP_SERVER_API + '/loanInstance/cancelRequest/' + _id, {method: 'POST'})
+        fetch(process.env.REACT_APP_SERVER_API + '/loanInstance/cancelRequest/' + _id + '/' + userID, {method: 'POST'})
         .then(() => {
             setLoanUp(!loanUp);
         });

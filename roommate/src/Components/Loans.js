@@ -20,6 +20,7 @@ const Loans = ({ user, admin }) => {
       .then((response) => response.json())
       .then((data) => {
           setLoans(data);
+          console.log(loans);
       });
     } else {
       fetch(process.env.REACT_APP_SERVER_API + '/loans/' + user.attributes.sub)
@@ -88,6 +89,7 @@ const Loans = ({ user, admin }) => {
             </div>
   
             {
+              loans.length > 0 &&
               loans.map((loan, index) => {
                 return <LoanListView key={index} {...loan} admin={admin}/>
               })

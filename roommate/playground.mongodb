@@ -6,4 +6,24 @@
 // Select the database to use.
 use('test');
 
-db.createCollection("loanInstance");
+db.loans.aggregate([
+    {
+        $lookup:{
+            from: "loanInstances",
+            localField: "loanInstanceID",
+            foreignField: "_id",
+            as: "loanInstanceData"
+        }
+    },
+    {
+        $unwind: "$loanInstanceData"
+    },
+    {
+        $lookup:{
+            from: "users",
+            localField: "userID",
+            foreignField: "userID",
+            as: "userData"
+        }
+    }
+]).toArray();

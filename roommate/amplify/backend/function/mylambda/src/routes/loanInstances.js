@@ -11,6 +11,9 @@ const LoanInstance = require('../models/loanInstance');
 // loan data model
 const Loan = require('../models/loan');
 
+// user creation
+const User = require('./users');
+
 // SYNTAX:
 // router.METHOD(PATH, HANDLER)
 
@@ -42,7 +45,7 @@ const updateLoanInstanceAvailability = async (loanInstanceID, status) => {
 }
 
 // Create
-router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
+router.post('/createLoan/:userID/:userName/:userFamily/:userPhone/:userEmail/:movieID/:title', async (req, res) => {
 
     // open database connection to 'loanInstances' collection
     const db = await mongo.connectToDatabase();
@@ -57,6 +60,16 @@ router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
         availability: 'loan requested'
     });
 
+    // check if user is already in database
+    const userData = await User.getUserFromDatabase(req.params.userID);
+    console.log('userData: ', userData);
+
+    if(userData === null){
+        // create user to database
+        console.log('creating user to database');
+        await User.createUserToDatabase(req.params.userID, req.params.userName, req.params.userFamily, req.params.userPhone, req.params.userEmail);
+    }
+
     // Create doc to collection
     const loanInstanceInsert = await collection.insertOne(loanInstance);
 
@@ -65,7 +78,7 @@ router.post('/createLoan/:user/:movieID/:title', async (req, res) => {
 
     const loan = new Loan({
         loanInstanceID: loanInstanceInsert.insertedId,
-        userID: req.params.user,
+        userID: req.params.userID,
     });
 
     const loanInsert = await loanCollection.insertOne(loan);
@@ -90,7 +103,7 @@ router.post('/updateStatus/:id/:status', async (req, res) => {
 })
 
 // Delete
-router.post('/cancelRequest/:id', async (req, res) => {
+router.post('/cancelRequest/:id/:userID', async (req, res) => {
 
     console.log('request id: ', req.params.id);
 
@@ -108,6 +121,11 @@ router.post('/cancelRequest/:id', async (req, res) => {
         // open database connection to 'loans' collection
         const loans =  await db.collection('loans');
         const deletedLoan = await loans.deleteOne({ loanInstanceID: id });
+
+        // delete user if not connected to other loans
+        const users = await db.collection('users');
+        const deleteUserStatus = await User.removeUserFromDatabase(req.params.userID);
+        console.log(deleteUserStatus);
 
         res.status(204).json({ message: 'cancelled'});
 
