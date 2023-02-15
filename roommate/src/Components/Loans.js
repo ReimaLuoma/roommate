@@ -20,7 +20,6 @@ const Loans = ({ user, admin }) => {
       .then((response) => response.json())
       .then((data) => {
           setLoans(data);
-          console.log(loans);
       });
     } else {
       fetch(process.env.REACT_APP_SERVER_API + '/loans/' + user.attributes.sub)
