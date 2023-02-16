@@ -43,7 +43,7 @@ const Display = () => {
                 <div className="row justify-content-start">
                     {
                         moviesToDisplay.map((movie, index) => {
-                            return <MovieCard key={index} {...movie}/>
+                            return <MovieCard key={index} movie={movie}/>
                         })
                     }
                 </div>
