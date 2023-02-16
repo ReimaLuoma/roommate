@@ -38,6 +38,7 @@ const Loans = ({ user, admin }) => {
     return (
       <>
         <Button
+          data-testid='admin-button-loans'
           variant="text"
           sx={{ color: "white", mr: 3, borderRadius: 2, fontSize: "1.6rem" }}
           onClick={handleOpen}
@@ -52,7 +53,7 @@ const Loans = ({ user, admin }) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style} className="no-scroll">
+          <Box className="no-scroll modalStyle">
             <div className="d-flex justify-content-end">
               <Button sx={{ color: "white" }} onClick={handleClose}>
                 <CloseIcon />
@@ -104,6 +105,7 @@ const Loans = ({ user, admin }) => {
     return (
       <>
         <Button
+          data-testid='user-button-loans'
           variant="text"
           sx={{ color: "white", mr: 3, borderRadius: 2, fontSize: "1.6rem" }}
           onClick={handleOpen}
@@ -115,10 +117,10 @@ const Loans = ({ user, admin }) => {
         <Modal
           open={open}
           onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
+          aria-labelledby="loans"
+          aria-describedby="check loans"
         >
-          <Box sx={style} className="no-scroll">
+          <Box className="no-scroll modalStyle">
             <div className="d-flex justify-content-end">
               <Button sx={{ color: "white" }} onClick={handleClose}>
                 <CloseIcon />

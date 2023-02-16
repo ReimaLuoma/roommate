@@ -54,12 +54,13 @@ const RemoveModal = ({handleStatus}) => {
         <Modal
             open={open}
             onClose={handleClose}
-            aria-labelledby="add movie"
-            aria-describedby="add movie by giving movie title and choosing from returned options"
+            aria-labelledby="remove movie"
+            aria-describedby="remove movie by giving movie title and choosing from returned options"
+            data-testid='modal'
         >
-            <Box className="modalStyle no-scroll">
+            <Box data-testid='box' className="modalStyle no-scroll">
             <div className="d-flex justify-content-end">
-                <Button sx={{ color: "white" }} onClick={handleClose}>
+                <Button data-testid='close-button' sx={{ color: "white" }} onClick={handleClose}>
                 <CloseIcon />
                 </Button>
             </div>

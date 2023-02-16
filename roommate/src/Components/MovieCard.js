@@ -29,7 +29,6 @@ const MovieCard = ({
       .then((response) => response.json())
       .then((data) => {
         // does something happen here?
-        console.log(data);
     });
   };
 

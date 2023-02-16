@@ -45,33 +45,36 @@ const AddModal = ({handleStatus}) => {
 
     return (
         <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="add movie"
-            aria-describedby="add movie by giving movie title and choosing from returned options"
+          data-testid='modal'
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="add movie"
+          aria-describedby="add movie by giving movie title and choosing from returned options"
         >
-            <Box className="modalStyle no-scroll">
-            <div className="d-flex justify-content-end">
-                <Button sx={{ color: "white" }} onClick={handleClose}>
-                <CloseIcon />
-                </Button>
-            </div>
-            <br />
-            <br />
-            <br />
-            <Search dataFromSearch={dataFromSearch} />
-            <br />
-            {foundMovies !== undefined &&
-                foundMovies.map((movie, index) => {
-                return (
-                    <MovieCardListView
-                    key={index}
-                    {...movie}
-                    posterpath={movie.poster_path}
-                    releaseDate={movie.release_date}
-                    />
-                );
-                })}
+            <Box data-testid='box' className="modalStyle no-scroll">
+              <div className="d-flex justify-content-end">
+                  <Button data-testid='close-button' sx={{ color: "white" }} onClick={handleClose}>
+                  <CloseIcon />
+                  </Button>
+              </div>
+
+              <br />
+              <br />
+              <br />
+
+              <Search dataFromSearch={dataFromSearch} />
+              <br />
+              {foundMovies !== undefined &&
+                  foundMovies.map((movie, index) => {
+                  return (
+                      <MovieCardListView
+                      key={index}
+                      {...movie}
+                      posterpath={movie.poster_path}
+                      releaseDate={movie.release_date}
+                      />
+                  );
+                  })}
             </Box>
         </Modal>
     )
