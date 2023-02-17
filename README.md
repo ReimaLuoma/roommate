@@ -23,6 +23,7 @@ Unregistered user
 /// TECH STACK
    
 - React
+- NodeJS + ExpressJS
 - MongoDB
 - AWS (Amplify, Lambda, API Gateway, Cognito)
     
