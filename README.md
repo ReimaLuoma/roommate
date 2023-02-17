@@ -22,33 +22,35 @@ Unregistered user
    
 /// TECH STACK
    
-   Technologies used:
-    - React
-    - MongoDB
-    - AWS (Amplify, Lambda, API Gateway, Cognito)
+- React
+- MongoDB
+- AWS (Amplify, Lambda, API Gateway, Cognito)
     
 /// WORKED CURRENTLY:
-    - Documentation
-    - Unit testing
+
+- Documentation
+- Unit testing
     
 /// IMPROVEMENT IDEAS:
-    - Normal user to have admin rights
-      - Resources to manage own library and loans
-      - Way to access friends library for browsing
 
-    - More quick filter options
-      - Language
-      - Subtitles
-      - Release Year
-      - Custom duration range
+Normal user to have admin rights
+- Resources to manage own library and loans
+- Way to access friends library for browsing
 
-    - More robust search bar
-      - include section for actors
-      - movie collections
+More quick filter options
+- Language
+- Subtitles
+- Release Year
+- Custom duration range
 
-    - Add books and music sections
+More robust search bar
+- include section for actors
+- movie collections
+
+Add books and music sections
     
 /// ABOUT
 
 This site is a project for personal usage and part of my CV. This is not commercial product.
-All the movie data comes from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.
+
+All the movie data comes from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB. More about TMDB at https://www.themoviedb.org/
