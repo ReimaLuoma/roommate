@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "@mui/material";
 
 const poster_URL = (posterpath) => {
-  return "https://image.tmdb.org/t/p/w780" + posterpath;
+  return "https://image.tmdb.org/t/p/w500" + posterpath;
 };
 
 const CastCard = ({ name, character, profile_path }) => {
@@ -28,9 +28,9 @@ const CastCard = ({ name, character, profile_path }) => {
       </div>
       <div className="col-md-8 ps-5 pt-3">
         <h2>
-          <b>{name}</b>
+          <b data-testid='name'>{name}</b>
         </h2>
-        <p>{character}</p>
+        <p data-testid='character'>{character}</p>
       </div>
     </Card>
   );

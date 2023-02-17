@@ -1,12 +1,20 @@
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import MovieCard from '../MovieCard';
+import MovieCardModal from '../MovieCardModal';
 import { RecoilRoot } from 'recoil';
 
 afterEach(() => {
     cleanup();
     jest.restoreAllMocks();
 });
+
+const user = {
+    given_name: 'Matti',
+    family_name: 'Meikalainen',
+    email: 'matti.meikalainen@gmail.com',
+    phone_number: '+358400123456',
+    sub: 'ouhaoidawiu-aoiwhdaoid-oaihwdoan'
+}
 
 const movie = {
     "_id": "63d27292b708356420123eaa",
@@ -217,22 +225,29 @@ const movie = {
     ]
     }
 
-describe('MovieCard', () => {
-    test('MovieCard - does the movie card render', () =>{
-        render(<RecoilRoot><MovieCard movie={movie}/></RecoilRoot>);
-        const screenElement = screen.getByTestId('moviecard');
+describe('MovieCardModal', () => {
+    test('MovieCardModal - modal renders', () => {
+        const handleStatus = jest.fn();
+        render(<RecoilRoot><MovieCardModal movie={movie} handleStatus={handleStatus}/></RecoilRoot>);
+        const screenElement = screen.getByTestId('modal');
+
         expect(screenElement).toBeInTheDocument();
-    })
+    });
 
+    test('MovieCardModal - borrow button renders', () => {
+        const handleStatus = jest.fn();
+        render(<RecoilRoot><MovieCardModal movie={movie} loggedIn/></RecoilRoot>);
+        const screenElement = screen.getByTestId('borrow');
+
+        expect(screenElement).toBeInTheDocument();
+    });
     /*
-    test('MovieCard - does the onClick call handleOpen', () => {
-        render(<RecoilRoot><MovieCard movie={movie}/></RecoilRoot>);
+    test('MovieCardModal - handleLoan is called', () => {
+        const handleLoan = jest.fn();
+        render(<MovieCardModal movie={movie} userInfo={user} loggedIn />);
+        fireEvent.click(screen.getByTestId('borrow'));
 
-        const handleOpenSpy = jest.spyOn(<MovieCard movie={movie}/>, 'handleOpen');
-
-        fireEvent.click(getByTestId('moviecard'));
-
-        expect(handleOpenSpy).toHaveBeenCalled();
+        expect(handleLoan).toHaveBeenCalled();
     });
     */
 });

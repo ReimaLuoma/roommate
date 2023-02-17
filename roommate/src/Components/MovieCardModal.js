@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Modal, Box, Chip, Button } from "@mui/material";
 import CastCard from "./CastCard";
-import { loginState, userData } from '../Atoms/login';
-import { useRecoilValue } from "recoil";
 import PosterImg from "./PosterImg";
 import ImdbButton from "./ImdbButton";
 
-const MovieCardModal = ({ handleStatus, movie }) => {
+const MovieCardModal = ({ handleStatus, movie, userInfo, loggedIn }) => {
 
     const {movieID, posterpath, releaseDate, runtime, title, genres, description, cast, imdbID} = {...movie};
 
@@ -15,9 +13,6 @@ const MovieCardModal = ({ handleStatus, movie }) => {
         handleStatus(false);
         setOpen(false);
     };
-
-    const loggedIn = useRecoilValue(loginState);
-    const userInfo = useRecoilValue(userData);
 
     const handleLoan = () => {
         fetch(process.env.REACT_APP_SERVER_API + 'loanInstance/createLoan/'+ userInfo.sub +'/'+ userInfo.given_name +'/'+ userInfo.family_name +'/'+ userInfo.phone_number +'/'+ userInfo.email +'/'+ movieID +'/'+ title, {method: 'POST'})
@@ -29,6 +24,7 @@ const MovieCardModal = ({ handleStatus, movie }) => {
 
     return (
         <Modal
+        data-testid='modal'
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -67,6 +63,7 @@ const MovieCardModal = ({ handleStatus, movie }) => {
             {
               loggedIn &&
                   <Button
+                  data-testid='borrow'
                     variant="contained"
                     sx={{
                       color: "black",

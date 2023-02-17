@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import PosterImg from "./PosterImg";
 import MovieCardModal from "./MovieCardModal";
+import { loginState, userData } from '../Atoms/login';
+import { useRecoilValue } from "recoil";
 
 const MovieCard = ({ movie }) => {
 
   const { posterpath, releaseDate, runtime } = {...movie};
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
+
+  const loggedIn = useRecoilValue(loginState);
+  const userInfo = useRecoilValue(userData);
 
   const handleStatus = (status) => {
     setOpen(status)
@@ -29,7 +34,7 @@ const MovieCard = ({ movie }) => {
       </div>
 
       {
-        open && <MovieCardModal movie={movie} handleStatus={handleStatus} />
+        open && <MovieCardModal movie={movie} handleStatus={handleStatus} loggedIn={loggedIn} userInfo={userInfo}/>
       }
       
     </>

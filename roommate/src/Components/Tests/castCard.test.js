@@ -1,12 +1,6 @@
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import MovieCard from '../MovieCard';
-import { RecoilRoot } from 'recoil';
-
-afterEach(() => {
-    cleanup();
-    jest.restoreAllMocks();
-});
+import CastCard from '../CastCard';
 
 const movie = {
     "_id": "63d27292b708356420123eaa",
@@ -217,22 +211,21 @@ const movie = {
     ]
     }
 
-describe('MovieCard', () => {
-    test('MovieCard - does the movie card render', () =>{
-        render(<RecoilRoot><MovieCard movie={movie}/></RecoilRoot>);
-        const screenElement = screen.getByTestId('moviecard');
+describe('CastCard', () => {
+    test('CastCard - name prop found', () => {
+        render(<CastCard cast={movie.cast} />);
+        const screenElement = screen.getByTestId('name');
         expect(screenElement).toBeInTheDocument();
-    })
-
-    /*
-    test('MovieCard - does the onClick call handleOpen', () => {
-        render(<RecoilRoot><MovieCard movie={movie}/></RecoilRoot>);
-
-        const handleOpenSpy = jest.spyOn(<MovieCard movie={movie}/>, 'handleOpen');
-
-        fireEvent.click(getByTestId('moviecard'));
-
-        expect(handleOpenSpy).toHaveBeenCalled();
     });
-    */
-});
+    test('CastCard - character prop found', () => {
+        render(<CastCard cast={movie.cast} />);
+        const screenElement = screen.getByTestId('character');
+        expect(screenElement).toBeInTheDocument();
+    });
+    test('CastCard - correct posterpath', () => {
+        render(<CastCard cast={movie.cast} />);
+        const url = 'https://image.tmdb.org/t/p/w500' + movie.cast.profile_path;
+        const screenElement = document.querySelector('img');
+        expect(screenElement.src).toContain(url);
+    });
+})
