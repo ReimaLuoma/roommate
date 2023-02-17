@@ -31,22 +31,22 @@ Unregistered user
     - Documentation
     - Unit testing
     
-/// Improvement ideas:
-    * Normal user to have admin rights
+/// IMPROVEMENT IDEAS:
+    - Normal user to have admin rights
       - Resources to manage own library and loans
       - Way to access friends library for browsing
 
-    * More quick filter options
+    - More quick filter options
       - Language
       - Subtitles
       - Release Year
       - Custom duration range
 
-    * More robust search bar
+    - More robust search bar
       - include section for actors
       - movie collections
 
-    * Add books and music sections
+    - Add books and music sections
     
 /// ABOUT
 
