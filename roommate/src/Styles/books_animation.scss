@@ -78,7 +78,7 @@ $darkenbg: darken($singlebg, 10%);
   clear: both;
   margin: auto;
 
-  animation: tilt $animation-lenght $animation-speedCurve infinite alternate;
+  animation: tiltBooks $animation-lenght $animation-speedCurve infinite alternate;
   transform-origin: top;
   animation-delay: var(delay);
 }
@@ -107,12 +107,12 @@ $darkenbg: darken($singlebg, 10%);
   background-color: $bg;
   height: .4rem;
 
-  animation: tilt $animation-lenght $animation-speedCurve infinite alternate;
+  animation: tiltBooks $animation-lenght $animation-speedCurve infinite alternate;
   transform-origin: top;
   animation-delay: var(delay);
 }
 
-@keyframes tilt{
+@keyframes tiltBooks{
   0%{
     transform: scale(100%, 0%);
   }

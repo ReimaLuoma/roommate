@@ -314,7 +314,7 @@ body {
   height: 3rem;
   clear: both;
   margin: auto;
-  animation: tilt 2s ease infinite alternate;
+  animation: tiltBooks 2s ease infinite alternate;
   transform-origin: top;
   animation-delay: var(delay);
 }
@@ -340,12 +340,12 @@ body {
 .bgNeg {
   background-color: linear-gradient(-45deg, #3b66ab, #3a92c2) no-repeat;
   height: 0.4rem;
-  animation: tilt 2s ease infinite alternate;
+  animation: tiltBooks 2s ease infinite alternate;
   transform-origin: top;
   animation-delay: var(delay);
 }
 
-@keyframes tilt {
+@keyframes tiltBooks {
   0% {
     transform: scale(100%, 0%);
   }
