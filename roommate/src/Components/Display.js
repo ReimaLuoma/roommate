@@ -50,8 +50,35 @@ const Display = () => {
           </section>
         )
     }else{
-        return <section>
-            <h1 style={{color: 'white'}}>wow! such empty place...</h1>
+        return <section className="loading">
+            <div className="books">
+
+                <div className="book shadow" style={{delay: '-20s', width: '2rem', background: 'chocolate', margin: '.5rem', height: '17rem'}}>
+                    <div className="bookTop">
+                        <div className="bgNeg"></div>
+                    </div>
+                </div>
+
+                <div className="book shadow" style={{delay: '-15s', width: '4rem', background: 'hotpink', margin: '.6rem', height: '15rem'}}>
+                    <div className="bookTop">
+                        <div className="bgNeg"></div>
+                    </div>
+                </div>
+
+                <div className="book shadow" style={{delay: '-10s', width: '3rem', background: 'coral', margin: '.4rem', height: '20rem'}}>
+                    <div className="bookTop">
+                        <div className="bgNeg"></div>
+                    </div>
+                </div>
+
+                <div className="book shadow" style={{delay: '-5s', width: '3rem', background: 'mediumslateblue', margin: '.3rem', height: '18rem'}}>
+                    <div className="bookTop">
+                        <div className="bgNeg"></div>
+                    </div>
+                    <p style={{marginTop: '5.5em'}}>loading</p>
+                </div>
+
+            </div>
         </section>
     }
 }

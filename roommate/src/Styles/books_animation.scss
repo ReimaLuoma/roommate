@@ -1,0 +1,125 @@
+@use 'base';
+
+$animation-lenght: 2s;
+$animation-speedCurve: ease;
+
+$bg: base.$background;
+$singlebg: base.$bgcolor2;
+$darkenbg: darken($singlebg, 10%);
+
+.loading {
+  padding: 0;
+  color: white;
+  margin: 0;
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.books {
+  vertical-align: bottom;
+}
+
+.book p {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  margin-top: var(marginTop);
+  margin-block-start: 0;
+  margin-block-end: 25%;
+
+  animation: textSkew $animation-lenght $animation-speedCurve infinite alternate;
+  transform-origin: bottom;
+  animation-delay: var(delay);
+
+  @keyframes textSkew{
+      0%{
+          transform: rotateX(0deg);
+      }
+      50%{
+          transform: rotateX(0deg);
+      }
+      100% {
+          transform: rotateX(22deg);
+      }
+  }
+}
+
+.book {
+  background-color: white;
+
+  width: var(width);
+  height: var(height);
+  margin-left: var(margin);
+  display: inline-block;
+
+  animation: bookTilt $animation-lenght $animation-speedCurve infinite alternate;
+  transform-origin: top;
+  animation-delay: var(delay);
+
+  @keyframes bookTilt{
+      0%{
+          filter: grayscale(50%);
+      }
+      50%{
+          filter: grayscale(50%);
+      }
+      100% {
+          filter: grayscale(50%);
+      }
+  }
+}
+
+.bookTop {
+  background-image: linear-gradient(to right, rgb(146, 145, 145) 15%, rgb(236, 236, 236) 100%);
+  width: 70%;
+  height: 3rem;
+  clear: both;
+  margin: auto;
+
+  animation: tilt $animation-lenght $animation-speedCurve infinite alternate;
+  transform-origin: top;
+  animation-delay: var(delay);
+}
+
+.shadow {
+  box-shadow: 0rem 1rem 1rem $darkenbg;
+
+  animation: tiltShadow $animation-lenght $animation-speedCurve infinite alternate;
+  transform-origin: top;
+  animation-delay: var(delay);
+
+  @keyframes tiltShadow{
+    0%{
+      box-shadow: .1rem 2rem 1rem $darkenbg;
+    }
+    50%{
+      box-shadow: .1rem 2rem 1rem $darkenbg;
+    }
+    100% {
+      box-shadow: .2rem .2rem .3rem $darkenbg;
+    }
+  }
+}
+
+.bgNeg {
+  background-color: $bg;
+  height: .4rem;
+
+  animation: tilt $animation-lenght $animation-speedCurve infinite alternate;
+  transform-origin: top;
+  animation-delay: var(delay);
+}
+
+@keyframes tilt{
+  0%{
+    transform: scale(100%, 0%);
+  }
+  50%{
+    transform: scale(100%, 0%);
+  }
+  100% {
+    transform: scale(100%, 100%);
+  }
+}

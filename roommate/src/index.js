@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './Styles/base.css';
+import './Styles/books_animation.css'
 
 // recoil
 import { RecoilRoot } from 'recoil';
