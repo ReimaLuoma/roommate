@@ -4,7 +4,7 @@ $animation-lenght: 2s;
 $animation-speedCurve: ease;
 
 $bg: base.$background;
-$singlebg: base.$bgcolor2;
+$singlebg: #3a8bbe;
 $darkenbg: darken($singlebg, 10%);
 
 .loading {
@@ -31,7 +31,7 @@ $darkenbg: darken($singlebg, 10%);
 
   animation: textSkew $animation-lenght $animation-speedCurve infinite alternate;
   transform-origin: bottom;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 
   @keyframes textSkew{
       0%{
@@ -56,7 +56,7 @@ $darkenbg: darken($singlebg, 10%);
 
   animation: bookTilt $animation-lenght $animation-speedCurve infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 
   @keyframes bookTilt{
       0%{
@@ -80,7 +80,7 @@ $darkenbg: darken($singlebg, 10%);
 
   animation: tiltBooks $animation-lenght $animation-speedCurve infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 }
 
 .shadow {
@@ -88,7 +88,7 @@ $darkenbg: darken($singlebg, 10%);
 
   animation: tiltShadow $animation-lenght $animation-speedCurve infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 
   @keyframes tiltShadow{
     0%{
@@ -104,12 +104,12 @@ $darkenbg: darken($singlebg, 10%);
 }
 
 .bgNeg {
-  background-color: $bg;
+  background-color: $singlebg;
   height: .4rem;
 
   animation: tiltBooks $animation-lenght $animation-speedCurve infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 }
 
 @keyframes tiltBooks{

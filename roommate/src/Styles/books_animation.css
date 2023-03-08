@@ -272,7 +272,7 @@ body {
           margin-block-end: 25%;
   animation: textSkew 2s ease infinite alternate;
   transform-origin: bottom;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 }
 @keyframes textSkew {
   0% {
@@ -294,7 +294,7 @@ body {
   display: inline-block;
   animation: bookTilt 2s ease infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 }
 @keyframes bookTilt {
   0% {
@@ -316,33 +316,33 @@ body {
   margin: auto;
   animation: tiltBooks 2s ease infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 }
 
 .shadow {
-  box-shadow: 0rem 1rem 1rem #2e749b;
+  box-shadow: 0rem 1rem 1rem #2e6e97;
   animation: tiltShadow 2s ease infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 }
 @keyframes tiltShadow {
   0% {
-    box-shadow: 0.1rem 2rem 1rem #2e749b;
+    box-shadow: 0.1rem 2rem 1rem #2e6e97;
   }
   50% {
-    box-shadow: 0.1rem 2rem 1rem #2e749b;
+    box-shadow: 0.1rem 2rem 1rem #2e6e97;
   }
   100% {
-    box-shadow: 0.2rem 0.2rem 0.3rem #2e749b;
+    box-shadow: 0.2rem 0.2rem 0.3rem #2e6e97;
   }
 }
 
 .bgNeg {
-  background-color: linear-gradient(-45deg, #3b66ab, #3a92c2) no-repeat;
+  background-color: #3a8bbe;
   height: 0.4rem;
   animation: tiltBooks 2s ease infinite alternate;
   transform-origin: top;
-  animation-delay: var(delay);
+  animation-delay: var(animationDelay);
 }
 
 @keyframes tiltBooks {

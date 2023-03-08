@@ -53,25 +53,25 @@ const Display = () => {
         return <section className="loading">
             <div className="books">
 
-                <div className="book shadow" style={{delay: '-20s', width: '2rem', background: 'chocolate', margin: '.5rem', height: '17rem'}}>
+                <div className="book shadow" style={{animationDelay: '-20s', width: '2rem', background: 'chocolate', margin: '.5rem', height: '17rem'}}>
                     <div className="bookTop">
                         <div className="bgNeg"></div>
                     </div>
                 </div>
 
-                <div className="book shadow" style={{delay: '-15s', width: '4rem', background: 'hotpink', margin: '.6rem', height: '15rem'}}>
+                <div className="book shadow" style={{animationDelay: '-15s', width: '4rem', background: 'hotpink', margin: '.6rem', height: '15rem'}}>
                     <div className="bookTop">
                         <div className="bgNeg"></div>
                     </div>
                 </div>
 
-                <div className="book shadow" style={{delay: '-10s', width: '3rem', background: 'coral', margin: '.4rem', height: '20rem'}}>
+                <div className="book shadow" style={{animationDelay: '-10s', width: '3rem', background: 'coral', margin: '.4rem', height: '20rem'}}>
                     <div className="bookTop">
                         <div className="bgNeg"></div>
                     </div>
                 </div>
 
-                <div className="book shadow" style={{delay: '-5s', width: '3rem', background: 'mediumslateblue', margin: '.3rem', height: '18rem'}}>
+                <div className="book shadow" style={{animationDelay: '-5s', width: '3rem', background: 'mediumslateblue', margin: '.3rem', height: '18rem'}}>
                     <div className="bookTop">
                         <div className="bgNeg"></div>
                     </div>
